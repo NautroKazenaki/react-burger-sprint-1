@@ -1,0 +1,174 @@
+.burgerIngredientsContainer {
+    overflow-y: scroll;
+    position: absolute;
+    width: 600px;
+    height: 912px;
+    left: 380px;
+    top: 128px;
+    background: #131316;
+    /* border: 2px solid #4C4CFF; */
+    display: flexbox;
+}
+.burgerHeaderTextContainer {
+    /* position: absolute; */
+    width: 600px;
+    height: 40px;
+    left: 0px;
+    top: 40px;
+    background: #131316;
+    /* border: 1px dashed #4C4CFF; */
+}
+.burgerTabsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    /* position: absolute; */
+    width: 600px;
+    height: 56px;
+    left: 0px;
+    top: 100px;
+}
+.burgerTabsContentContainer{
+    /* position: absolute; */
+    width: 600px;
+    height: 756px;
+    left: 0px;
+    top: 156px;
+    gap: 10px;
+    overflow-y: scroll;
+    border-radius: 0px;
+}
+.burgerIngredientsBreadHeader{
+    /* position: absolute; */
+    width: 600px;
+    height: 30px;
+    left: 0px;
+    top: 40px;
+    background: #131316;
+    /* border: 1px dashed #4C4CFF; */
+}
+.burgerIngredientsColumnsPuns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px 16px;
+    gap: 24px;
+    /* position: absolute; */
+    width: 600px;
+    height: 208px;
+    left: 0px;
+    top: 94px;
+}
+.burgerIngredientsColumn1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 32px;
+    width: 272px;
+    height: 208px;
+    left: 16px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+.burgerIngredientsColumn2{
+    composes: burgerIngredientsColumn1;
+    left: 312px;
+    order: 1;
+}
+.burgerIngredientsItemContainer{
+    width: 272px;
+    height: 208px;
+    /* border: 1px dashed #4C4CFF; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.burgerIngredientsCounter{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    left: 240px;
+    right: 0px;
+    top: 0px;
+    background: #131316;
+    /* border: 1px dashed #4C4CFF; */
+    /* visibility: hidden; */
+}
+.burgerItem2Container{
+    composes: burgerIngredientsItemContainer;
+    order: 1;
+}
+.burgerIngredientsContentContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    width: 272px;
+    /* position: absolute; */
+    height: 208px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}
+.burgerIngredientsImg{
+    /* position: absolute; */
+    object-fit: cover;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    /* background: url(bun-02.png); */
+}
+.burgerIngredientsPrice{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    width: 62px;
+    height: 24px;
+    top: 128px;
+    left: 105px;
+    background: #131316;
+    /* border: 1px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.burgerIngredientsDescription1{
+    width: 272px;
+    height: 48px;
+    top: 160px;
+    background: #131316;
+    /* border: 1px dashed #4C4CFF; */
+    flex: none;
+    order: 2;
+    /* align-self: stretch; */
+    flex-grow: 1;
+    text-align: center;
+}
+.brugerIngredientsDescription2{
+    composes: burgerIngredientsDescription1;
+    flex-grow: 0;
+}
+.burgerIngredientsColumnsSauses{
+    composes:burgerIngredientsColumnsPuns;
+    height: 472px;
+    top: 396px;
+
+}
+.burgerIngredientsSauseHeader{
+    composes:burgerIngredientsBreadHeader;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.burgerIngredientsColumn3{
+    composes:burgerIngredientsColumn1;
+    flex-direction: column;
+}
