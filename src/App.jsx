@@ -9,7 +9,7 @@ const App = () => {
     <div>
       <AppHeader />
       <BurgerIngredients data={State}/>
-      <BurgerConstructor />
+      <BurgerConstructor data={State}/>
     </div>
   )
 }

@@ -1,0 +1,55 @@
+.burgerConstructorContainer{
+    position: absolute;
+    width: 600px;
+    height: 912px;
+    left: 1020px;
+    top: 128px;
+    /* border: 2px solid #4C4CFF; */
+}
+.burgerConstructorItemsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    position: absolute;
+    width: 568px;
+    height: 656px;
+    left: 16px;
+    top: 100px;
+}
+.burgerConstructorItemContainer{
+    width: 568px;
+    height: 80px;
+    /* border: 1px dashed #4C4CFF; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.burgerConstructorPayInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 40px;
+    position: relative;
+    width: 568px;
+    height: 64px;
+    left: 16px;
+    top: 796px;
+}
+.burgerConstructorFinalPrice{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    width: 119px;
+    height: 64px;
+    /* border: 1px dashed #4C4CFF; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
