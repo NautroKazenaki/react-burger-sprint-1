@@ -1,0 +1,93 @@
+.headerContainer {
+    margin: 0 auto;
+    padding: 16px 320px 16px 320px;
+    justify-content: center;
+    Width:1920px;
+    Height: 88px;
+    Top: 40px;
+    Left: 40px;
+    display: inline-flex;
+    box-sizing: border-box;
+    /* position: absolute; */
+    height: 88px;
+    left: 2%;
+    right: 2%;
+    top: 40px;
+    background: #1C1C21;
+    /* border: 2px solid #4C4CFF; */
+    box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.headerButtonContainer {
+    Width: 178px;
+    Height: 56px;
+    /* Padding:0 20px ; */
+    Gap: 8px;
+    margin: 0 8px 0 20px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 8px;
+    width: 178px;
+    height: 56px;
+    background: #1C1C21;
+    border: none;
+    border-radius: 40px;
+    color: #8585AD;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.headerButtonContainer:active{
+    color: #F2F2F3;
+    border: 1px dashed #4C4CFF;
+    border-radius: 40px;
+}
+.headerOrderListButtonContainer{
+    composes: headerButtonContainer;
+    Left: 186px;
+    margin-right: 112px;
+    
+}
+
+.headerProfileButtonContainer {
+    composes: headerButtonContainer;
+    width: 207px;
+    left: 1073px;
+    
+
+}
+.headerButtonIcon {
+    min-width: 24px;
+    min-height: 24px;
+    /* position: absolute; */
+    background: #000000;
+    display: flex;
+}
+.headerText{
+    /* position: absolute; */
+    width: 106px;
+    height: 24px;
+    left: 0px;
+    top: 0px;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #8585AD;
+}
+.headerText:active{
+    color: #F2F2F3;
+}
+.headerLogoContainer {
+    left: 495px;
+     margin-right: 288.85px; 
+    /* position: absolute; */
+    background: #1C1C21;
+    /* border: 1px dashed #4C4CFF; */
+}
