@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import bIStyles from './BurgerIngredients.module.css'
@@ -374,6 +374,10 @@ const BurgerIngredients = (props) => {
             
         </div>
     )
+}
+
+BurgerIngredients.propTypes = {
+    props: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default BurgerIngredients

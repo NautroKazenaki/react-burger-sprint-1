@@ -1,9 +1,10 @@
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
+import PropTypes from 'prop-types';
 import bCStyles from './BurgerConstructor.module.css'
 
-const BurgerConstructor = (data) => {
-    console.log(data)
+const BurgerConstructor = (props) => {
+    console.log(props)
     return (
         <div className={bCStyles.burgerConstructorContainer}>
             <div className={bCStyles.burgerConstructorItemsContainer}>
@@ -14,18 +15,18 @@ const BurgerConstructor = (data) => {
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text={data.data[0].name + `(верх)`}
+                        text={props.data[0].name + `(верх)`}
                         price={200}
-                        thumbnail={data.data[0].image}
+                        thumbnail={props.data[0].image}
                     />
                 </div>
 
                 <div className={bCStyles.burgerConstructorItemContainer}>
                     <DragIcon type="primary" />
                     <ConstructorElement
-                        text={data.data[1].name}
+                        text={props.data[1].name}
                         price={50}
-                        thumbnail={data.data[1].image}
+                        thumbnail={props.data[1].image}
                     />
                 </div>
             
@@ -37,9 +38,9 @@ const BurgerConstructor = (data) => {
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
-                        text={data.data[0].name + `(низ)`}
+                        text={props.data[0].name + `(низ)`}
                         price={200}
-                        thumbnail={data.data[0].image}
+                        thumbnail={props.data[0].image}
                     />
                 </div>
             
@@ -57,5 +58,9 @@ const BurgerConstructor = (data) => {
       
     )
   }
+
+  BurgerConstructor.propTypes = {
+    props: PropTypes.arrayOf(PropTypes.object)
+  }; 
 
 export default BurgerConstructor
