@@ -1,5 +1,5 @@
 .burgerIngredientsContainer {
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: absolute;
     width: 600px;
     height: 912px;
@@ -8,6 +8,8 @@
     background: #131316;
     /* border: 2px solid #4C4CFF; */
     display: flexbox;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
 }
 .burgerHeaderTextContainer {
     /* position: absolute; */
@@ -28,16 +30,21 @@
     height: 56px;
     left: 0px;
     top: 100px;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
 }
 .burgerTabsContentContainer{
     /* position: absolute; */
-    width: 600px;
+    width: 580px;
     height: 756px;
     left: 0px;
     top: 156px;
     gap: 10px;
     overflow-y: scroll;
+    overflow-x: hidden;
     border-radius: 0px;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
 }
 .burgerIngredientsBreadHeader{
     /* position: absolute; */
@@ -47,36 +54,42 @@
     top: 40px;
     background: #131316;
     /* border: 1px dashed #4C4CFF; */
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
 }
 .burgerIngredientsColumnsPuns{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    padding: 0px 16px;
+    /* padding: 0px 16px; */
     gap: 24px;
     /* position: absolute; */
-    width: 600px;
+    width: 580px;
     height: 208px;
     left: 0px;
     top: 94px;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
 }
 .burgerIngredientsColumn1{
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
     padding: 0px;
     gap: 32px;
     width: 272px;
     height: 208px;
-    left: 16px;
+    left: 0px;
     flex: none;
     order: 0;
     flex-grow: 1;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
 }
 .burgerIngredientsColumn2{
     composes: burgerIngredientsColumn1;
-    left: 312px;
+    left: 300px;
     order: 1;
 }
 .burgerIngredientsItemContainer{
@@ -86,6 +99,8 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
 }
 .burgerIngredientsCounter{
     position: relative;
@@ -171,4 +186,22 @@
 .burgerIngredientsColumn3{
     composes:burgerIngredientsColumn1;
     flex-direction: column;
+}
+
+@-moz-document url-prefix() {
+	:root {
+		scrollbar-color: #8585AD #2F2F37;
+	}
+}
+
+.customScroll::-webkit-scrollbar {
+	width: 12px;
+}
+.customScroll::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.customScroll::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #2F2F37;
+	border-radius: 6px;
 }

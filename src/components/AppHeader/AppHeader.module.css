@@ -68,7 +68,7 @@
 }
 .headerText{
     /* position: absolute; */
-    width: 106px;
+    width: 114px;
     height: 24px;
     left: 0px;
     top: 0px;
@@ -79,9 +79,9 @@
     line-height: 24px;
     display: flex;
     align-items: center;
-    color: #8585AD;
+    color: #7d7d9c;
 }
-.headerText:active{
+.active{
     color: #F2F2F3;
 }
 .headerLogoContainer {

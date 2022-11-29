@@ -8,7 +8,9 @@ const BurgerConstructor = (data) => {
         <div className={bCStyles.burgerConstructorContainer}>
             <div className={bCStyles.burgerConstructorItemsContainer}>
                 <div className={bCStyles.burgerConstructorItemContainer}>
-                    {/* <DragIcon type="primary" /> */}
+                    <div style={{display:"inline", visibility:"hidden"}}>
+                        <DragIcon type="primary" />
+                    </div>
                     <ConstructorElement
                         type="top"
                         isLocked={true}
@@ -28,7 +30,10 @@ const BurgerConstructor = (data) => {
                 </div>
             
                 <div className={bCStyles.burgerConstructorItemContainer}>
-                    {/* <DragIcon type="primary" /> */}
+                    <div style={{display:"inline", visibility:"hidden"}}>
+                        <DragIcon type="primary" />
+                    </div>
+                    
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}

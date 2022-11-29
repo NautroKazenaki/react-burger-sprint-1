@@ -7,13 +7,13 @@ const AppHeader = () => {
         <div className={headerStyles.headerContainer}>
             <div className={headerStyles.headerButtonContainer}>
                 <BurgerIcon type="primary" className={headerStyles.headerButtonIcon} />
-                    <p className={headerStyles.headerText}>
+                    <p className={`${headerStyles.headerText} + ${headerStyles.active}`}>
                        Конструктор
                     </p>
             </div>
           
             <div className={headerStyles.headerOrderListButtonContainer}>
-                <ListIcon type="primary" className={headerStyles.headerButtonIcon} />
+                <ListIcon type="secondary" className={headerStyles.headerButtonIcon} />
                 <p className={headerStyles.headerText}>
                     Лента Заказов
                 </p>
@@ -24,7 +24,7 @@ const AppHeader = () => {
             </div>
 
             <div className={headerStyles.headerProfileButtonContainer}>
-                <ProfileIcon type="primary" className={headerStyles.headerButtonIcon} />
+                <ProfileIcon type="secondary" className={headerStyles.headerButtonIcon} />
                     <p className={headerStyles.headerText}>
                        Личный кабинет
                     </p>

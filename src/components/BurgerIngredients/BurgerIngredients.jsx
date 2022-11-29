@@ -6,18 +6,17 @@ import bIStyles from './BurgerIngredients.module.css'
 import BurgerIngredientsTabs from './BurgerIngredientsTabs'
 
 const BurgerIngredients = (props) => {
-    console.log()
     return (
-        <div className={bIStyles.burgerIngredientsContainer}>
+        <div className={`${bIStyles.burgerIngredientsContainer} + ${bIStyles.customScroll}`}>
             <div className={bIStyles.burgerHeaderTextContainer}>
                 <p className="text text_type_main-large" > Соберите бургер </p>
             </div>
 
-            <div className={bIStyles.burgerTabsContainer}>
+            <div className={`${bIStyles.burgerTabsContainer} + ${bIStyles.customScroll}`}>
                 <BurgerIngredientsTabs />
             </div>
 
-            <div className={bIStyles.burgerTabsContentContainer}>
+            <div className={`${bIStyles.burgerTabsContentContainer} + ${bIStyles.customScroll}`}>
                 <section className={bIStyles.burgerIngredientsBreadHeader}>
                     <p className="text text_type_main-medium"> Булки </p>
                 </section>
