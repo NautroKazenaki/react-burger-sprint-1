@@ -1,13 +1,12 @@
+
 .burgerIngredientsContainer {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
     width: 600px;
-    height: 912px;
     left: 380px;
     top: 128px;
-    background: #131316;
-    display: flexbox;
-    scrollbar-color: #2F2F37 #8585AD;
-	scrollbar-width: thin;
+    height: 800px;
+    position: absolute;
 }
 .burgerHeaderTextContainer {
     width: 600px;
@@ -29,17 +28,13 @@
     scrollbar-color: #2F2F37 #8585AD;
 	scrollbar-width: thin;
 }
+
 .burgerTabsContentContainer{
-    width: 580px;
-    height: 756px;
-    left: 0px;
-    top: 156px;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
-    border-radius: 0px;
-    scrollbar-color: #2F2F37 #8585AD;
-	scrollbar-width: thin;
+    height: 800px;
 }
 .burgerIngredientsBreadHeader{
     width: 600px;
@@ -50,46 +45,14 @@
     scrollbar-color: #2F2F37 #8585AD;
 	scrollbar-width: thin;
 }
+
 .burgerIngredientsColumnsPuns{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
-    width: 580px;
-    height: 208px;
-    left: 0px;
-    top: 94px;
-    scrollbar-color: #2F2F37 #8585AD;
-	scrollbar-width: thin;
+    flex-wrap: wrap;
+    row-gap: 32px;
 }
-.burgerIngredientsColumn1{
-    flex-direction: row;
-    padding: 0px;
-    gap: 32px;
-    width: 272px;
-    height: 208px;
-    left: 0px;
-    flex: none;
-    order: 0;
-    flex-grow: 1;
-    scrollbar-color: #2F2F37 #8585AD;
-	scrollbar-width: thin;
-}
-.burgerIngredientsColumn2{
-    composes: burgerIngredientsColumn1;
-    left: 300px;
-    order: 1;
-}
-.burgerIngredientsItemContainer{
-    width: 272px;
-    height: 208px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    scrollbar-color: #2F2F37 #8585AD;
-	scrollbar-width: thin;
-}
+
+
 .burgerIngredientsCounter{
     position: relative;
     width: 32px;
@@ -99,10 +62,7 @@
     top: 0px;
     background: #131316;
 }
-.burgerItem2Container{
-    composes: burgerIngredientsItemContainer;
-    order: 1;
-}
+
 .burgerIngredientsContentContainer{
     display: flex;
     flex-direction: column;
@@ -152,21 +112,8 @@
     composes: burgerIngredientsDescription1;
     flex-grow: 0;
 }
-.burgerIngredientsColumnsSauses{
-    composes:burgerIngredientsColumnsPuns;
-    height: 472px;
-    top: 396px;
 
-}
-.burgerIngredientsSauseHeader{
-    composes:burgerIngredientsBreadHeader;
-    flex-direction: column;
-    margin-top: 40px;
-}
-.burgerIngredientsColumn3{
-    composes:burgerIngredientsColumn1;
-    flex-direction: column;
-}
+
 
 @-moz-document url-prefix() {
 	:root {
