@@ -5,30 +5,30 @@ import headerStyles from './AppHeader.module.css'
 const AppHeader = () => {
     return (
         <div className={headerStyles.headerContainer}>
-            <div className={headerStyles.headerButtonContainer}>
-                <BurgerIcon type="primary" className={headerStyles.headerButtonIcon} />
+            <a href='javascript:;' className={headerStyles.headerConstructorLinkContainer}>
+                <BurgerIcon type="primary" className={headerStyles.headerLinkIcon} />
                     <p className={`${headerStyles.headerText} + ${headerStyles.active}`}>
                        Конструктор
                     </p>
-            </div>
+            </a>
           
-            <div className={headerStyles.headerOrderListButtonContainer}>
-                <ListIcon type="secondary" className={headerStyles.headerButtonIcon} />
+            <a href='javascript:;' className={headerStyles.headerOrderListLinkContainer}>
+                <ListIcon type="secondary" className={headerStyles.headerLinkIcon} />
                 <p className={headerStyles.headerText}>
                     Лента Заказов
                 </p>
-            </div>
+            </a>
 
             <div className={headerStyles.headerLogoContainer}>
                 <Logo />
             </div>
 
-            <div className={headerStyles.headerProfileButtonContainer}>
-                <ProfileIcon type="secondary" className={headerStyles.headerButtonIcon} />
+            <a href='javascript:;' className={headerStyles.headerProfileLinkContainer}>
+                <ProfileIcon type="secondary" className={headerStyles.headerLinkIcon} />
                     <p className={headerStyles.headerText}>
                        Личный кабинет
                     </p>
-            </div>
+            </a>
            
         </div>
     )

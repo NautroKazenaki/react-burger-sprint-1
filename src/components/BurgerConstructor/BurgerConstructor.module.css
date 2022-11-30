@@ -4,7 +4,6 @@
     height: 912px;
     left: 1020px;
     top: 128px;
-    /* border: 2px solid #4C4CFF; */
 }
 .burgerConstructorItemsContainer{
     display: flex;
@@ -23,11 +22,16 @@
 .burgerConstructorItemContainer{
     width: 568px;
     height: 80px;
-    /* border: 1px dashed #4C4CFF; */
-    flex: none;
+    display: flex;
     order: 0;
     flex-grow: 0;
 }
+.burgerDragIconContainer{
+    padding: 15px;
+    margin-top: 10px;
+    /* visibility: hidden; */
+}
+
 .burgerConstructorPayInfo{
     display: flex;
     flex-direction: row;
@@ -50,7 +54,6 @@
     gap: 8px;
     width: 119px;
     height: 64px;
-    /* border: 1px dashed #4C4CFF; */
     flex: none;
     order: 0;
     flex-grow: 0;

@@ -51,7 +51,9 @@ const BurgerIngredients = (props) => {
 
                     <div className={bIStyles.burgerIngredientsColumn2}>
                         <div className={bIStyles.burgerIngredientsItemContainer}>
-                            {/* <Counter count={1} size="default" extraClass="m-1" /> */}
+                            {/* <div className={bIStyles.burgerIngredientsCounter}>
+                                <Counter  count={1} size="default" extraClass="m-1" />
+                            </div> */}
                             <div className={bIStyles.burgerIngredientsContentContainer}>
                                 <img className={bIStyles.burgerIngredientsImg} src={props.data[14].image} alt="здесь будет картинка" />
                                 <div className={bIStyles.burgerIngredientsPrice}>
@@ -375,9 +377,22 @@ const BurgerIngredients = (props) => {
         </div>
     )
 }
-
+const ingredientTypes = PropTypes.shape({
+    _id: PropTypes.number,
+   name:PropTypes.string,
+   type:PropTypes.string,
+   proteins:PropTypes.number,
+   fat:PropTypes.number,
+   carbohydrates:PropTypes.number,
+   calories:PropTypes.number,
+   price:PropTypes.number,
+   image:PropTypes.string,
+   image_mobile:PropTypes.string,
+   image_large:PropTypes.string,
+   __v:PropTypes.number
+})
 BurgerIngredients.propTypes = {
-    props: PropTypes.arrayOf(PropTypes.object)
+    props: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired
 }
 
 export default BurgerIngredients
