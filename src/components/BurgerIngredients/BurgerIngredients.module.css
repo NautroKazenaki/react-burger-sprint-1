@@ -1,0 +1,134 @@
+
+.burgerIngredientsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    left: 380px;
+    top: 128px;
+    height: 800px;
+    position: absolute;
+}
+.burgerHeaderTextContainer {
+    width: 600px;
+    height: 40px;
+    left: 0px;
+    top: 40px;
+    background: #131316;
+}
+.burgerTabsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 600px;
+    height: 56px;
+    left: 0px;
+    top: 100px;
+    margin-top: 20px;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
+}
+
+.burgerTabsContentContainer{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 800px;
+}
+.burgerIngredientsBreadHeader{
+    width: 600px;
+    height: 30px;
+    left: 0px;
+    margin-top: 40px;
+    background: #131316;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
+}
+
+.burgerIngredientsColumnsPuns{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 32px;
+}
+
+
+.burgerIngredientsCounter{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    left: 240px;
+    right: 0px;
+    top: 0px;
+    background: #131316;
+}
+
+.burgerIngredientsContentContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    width: 272px;
+    height: 208px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}
+.burgerIngredientsImg{
+    object-fit: cover;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+}
+.burgerIngredientsPrice{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    width: 62px;
+    height: 24px;
+    top: 128px;
+    left: 105px;
+    background: #131316;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.burgerIngredientsDescription1{
+    width: 272px;
+    height: 48px;
+    top: 160px;
+    background: #131316;
+    flex: none;
+    order: 2;
+    flex-grow: 1;
+    text-align: center;
+}
+.brugerIngredientsDescription2{
+    composes: burgerIngredientsDescription1;
+    flex-grow: 0;
+}
+
+
+
+@-moz-document url-prefix() {
+	:root {
+		scrollbar-color: #8585AD #2F2F37;
+	}
+}
+
+.customScroll::-webkit-scrollbar {
+	width: 12px;
+}
+.customScroll::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.customScroll::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #2F2F37;
+	border-radius: 6px;
+}
