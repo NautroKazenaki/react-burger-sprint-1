@@ -3,8 +3,13 @@ import React from "react";
 import bIStyles from "./BurgerIngredients.module.css";
 
 const MainIngredient = (props) => {
+
+  const handleClick = (e) => {
+    props.onOpen(props.mains)
+  }
+
   return (
-    <div className={bIStyles.burgerIngredientsContentContainer}>
+    <div className={bIStyles.burgerIngredientsContentContainer} onClick={handleClick}>
       <img
         className={bIStyles.burgerIngredientsImg}
         src={props.mains.image}

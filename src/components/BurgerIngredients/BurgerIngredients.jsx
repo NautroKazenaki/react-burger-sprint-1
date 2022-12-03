@@ -3,7 +3,7 @@ import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, { useState } from "react";
 import bIStyles from "./BurgerIngredients.module.css";
 
 import BurgerIngredientsTabs from "./BurgerIngredientsTabs";
@@ -11,11 +11,25 @@ import Bun from "./Bun";
 import Sause from "./Sause";
 import MainIngredient from "./MainIngredient";
 import ingredientTypes from '../../utils/PropTypes'
+import ModalWindow from "../ModalWindow/ModalWindow";
+import IngredientsDetails from "../IngredientDetails/IngredientsDetails";
 
 const BurgerIngredients = ({data}) => {
   const buns = data.filter((ingredient) => ingredient.type === "bun");
   const sauses = data.filter((ingredient) => ingredient.type === "sauce");
   const mains = data.filter((ingredient) => ingredient.type === "main");
+  
+
+  const [isModalWindowShows, setIsModalWindowShows] = useState(false)
+  const ModalWindowToggler = () => {
+    setIsModalWindowShows(!isModalWindowShows)
+  }
+
+  const [clickedIngredient, setClickedIngredient] = useState(null)
+  const burgerIngredientModalWindowShow = (ingredient) => {
+    setClickedIngredient(ingredient)
+    setIsModalWindowShows(!isModalWindowShows)
+  }
 
   return (
     <div
@@ -42,7 +56,7 @@ const BurgerIngredients = ({data}) => {
             <Counter count={1} size="default" extraClass="m-1" />
           </div>
           {buns.map((bun) => (
-            <Bun buns={bun} key={bun.id} />
+            <Bun buns={bun} key={bun.id} onOpen={burgerIngredientModalWindowShow} />
           ))}
         </div>
 
@@ -51,7 +65,7 @@ const BurgerIngredients = ({data}) => {
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
           {sauses.map((sause) => (
-            <Sause sauses={sause} key={sause.id} />
+            <Sause sauses={sause} key={sause.id} onOpen={burgerIngredientModalWindowShow} />
           ))}
         </div>
 
@@ -60,10 +74,15 @@ const BurgerIngredients = ({data}) => {
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
           {mains.map((main) => (
-            <MainIngredient mains={main} key={main.id} />
+            <MainIngredient mains={main} key={main.id} onOpen={burgerIngredientModalWindowShow}/>
           ))}
         </div>
       </div>
+      {isModalWindowShows && (
+        <ModalWindow onClose={ModalWindowToggler}>
+          <IngredientsDetails onClose={ModalWindowToggler} ingredient={clickedIngredient} data={{data}.data} />
+        </ModalWindow>
+      )}
     </div>
   );
 };
