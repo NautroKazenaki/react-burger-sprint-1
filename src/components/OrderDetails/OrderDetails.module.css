@@ -1,0 +1,97 @@
+.mainContainer {
+    position: absolute;
+    width: 720px;
+    height: 718px;
+    left: 640px;
+    top: 180px;
+    
+}
+.orderDetailsContainer {
+    box-sizing: border-box;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #1C1C21;
+    border: 1px solid rgba(76, 76, 255, 0.2);
+    box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+}
+.orderDetailsHeaderAndXButtonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 36px;
+    position: absolute;
+    height: 64px;
+    left: 40px;
+    right: 40px;
+    top: 40px;
+    
+}
+.orderDetailsHeaderContainer{
+    width: 580px;
+    height: 64px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+.orderDetailsCloseIcon{
+    width: 24px;
+    height: 24px;
+    background: #1C1C21;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.orderNumberContainer{
+    position: absolute;
+    width: 520px;
+    height: 120px;
+    left: 100px;
+    top: 120px;
+    background: #1C1C21;
+    text-align: center;
+}
+.idOrdercontainer{
+    position: absolute;
+    width: 520px;
+    height: 30px;
+    left: 100px;
+    top: 272px;
+    background: #1C1C21;
+    text-align: center;
+}
+.iconEffectsContainer{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 300px;
+    top: 362px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(128, 26, 179, 0) 0%, rgba(76, 76, 255, 0.125) 100%) ;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.iconContainer{
+    position: absolute;
+    top: 40%;
+}
+.plsWaitText{
+    position: absolute;
+    width: 520px;
+    height: 24px;
+    left: 100px;
+    top: 542px;
+    text-align: center;
+}
+.plsWaitText2{
+    composes: plsWaitText;
+    top: 570px;
+}

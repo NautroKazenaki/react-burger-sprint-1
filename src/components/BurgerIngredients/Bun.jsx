@@ -1,10 +1,9 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
-import bIStyles from './BurgerIngredients.module.css'
+import bIStyles from "./BurgerIngredients.module.css";
 
 const Bun = (props) => {
   return (
-      
     <div className={bIStyles.burgerIngredientsContentContainer}>
       <img
         className={bIStyles.burgerIngredientsImg}

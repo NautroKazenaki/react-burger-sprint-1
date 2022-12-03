@@ -1,6 +1,6 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
-import bIStyles from './BurgerIngredients.module.css'
+import bIStyles from "./BurgerIngredients.module.css";
 
 const MainIngredient = (props) => {
   return (
