@@ -1,6 +1,8 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import bIStyles from "./BurgerIngredients.module.css";
+import PropTypes from "prop-types";
+import {mainTypes} from '../../utils/PropTypes'
 
 const MainIngredient = (props) => {
 
@@ -26,6 +28,9 @@ const MainIngredient = (props) => {
       </div>
     </div>
   );
+};
+MainIngredient.propTypes = {
+  props: PropTypes.arrayOf(mainTypes.isRequired).isRequired,
 };
 
 export default MainIngredient;

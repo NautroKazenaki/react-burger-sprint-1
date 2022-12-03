@@ -10,8 +10,8 @@ import BurgerIngredientsTabs from "./BurgerIngredientsTabs";
 import Bun from "./Bun";
 import Sause from "./Sause";
 import MainIngredient from "./MainIngredient";
-import ingredientTypes from '../../utils/PropTypes'
-import ModalWindow from "../ModalWindow/ModalWindow";
+import {ingredientTypes} from '../../utils/PropTypes'
+import ModalWindow from "../Modal/ModalWindow";
 import IngredientsDetails from "../IngredientDetails/IngredientsDetails";
 
 const BurgerIngredients = ({data}) => {

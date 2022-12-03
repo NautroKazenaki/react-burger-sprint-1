@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-const ingredientTypes = PropTypes.shape({
+
+export const ingredientTypes = PropTypes.shape({
     _id: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.string,
@@ -14,4 +15,25 @@ const ingredientTypes = PropTypes.shape({
     __v: PropTypes.number,
   });
 
-  export default ingredientTypes
+  export const bunTypes = PropTypes.shape({
+  bun: PropTypes.ingredientTypes,
+  key: PropTypes.number,
+  onOpen: PropTypes.func
+})
+
+export const mainTypes = PropTypes.shape({
+  mains: PropTypes.ingredientTypes,
+  key: PropTypes.number,
+  onOpen: PropTypes.func
+})
+export const sauseTypes = PropTypes.shape({
+  sause: PropTypes.ingredientTypes,
+  key: PropTypes.number,
+  onOpen: PropTypes.func
+})
+export const ingredientsDetailsType = PropTypes.shape({
+  onClose: PropTypes.func,
+  ingredient: PropTypes.ingredientTypes,
+  data: PropTypes.ingredientTypes
+})
+  

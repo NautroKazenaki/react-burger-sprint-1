@@ -6,6 +6,7 @@ import IDStyles from './IngredientsDetails.module.css'
 import U from './U'
 import ZH from './ZH'
 
+
 const IngredientsDetails = (props) => {
     debugger
     const b = props.ingredient.proteins

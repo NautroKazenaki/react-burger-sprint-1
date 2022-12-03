@@ -7,8 +7,8 @@ import {
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import bCStyles from "./BurgerConstructor.module.css";
-import ingredientTypes from '../../utils/PropTypes'
-import ModalWindow from "../ModalWindow/ModalWindow";
+import {ingredientTypes} from '../../utils/PropTypes'
+import ModalWindow from "../Modal/ModalWindow";
 import OrderDetails from "../OrderDetails/OrderDetails";
 
 

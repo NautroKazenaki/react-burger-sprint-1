@@ -1,6 +1,8 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import bIStyles from "./BurgerIngredients.module.css";
+import PropTypes from "prop-types";
+import {bunTypes} from '../../utils/PropTypes'
 
 const Bun = (props) => {
 
@@ -26,6 +28,10 @@ const Bun = (props) => {
       </div>
     </div>
   );
+};
+
+Bun.propTypes = {
+  props: PropTypes.arrayOf(bunTypes.isRequired).isRequired,
 };
 
 export default Bun;
