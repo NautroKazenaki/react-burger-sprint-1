@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import {
   Counter,
-  CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React, { useState } from "react";
 import bIStyles from "./BurgerIngredients.module.css";
@@ -88,7 +87,7 @@ const BurgerIngredients = ({data}) => {
 };
 
 BurgerIngredients.propTypes = {
-  props: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
+  data: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
 };
 
 export default BurgerIngredients;

@@ -1,14 +1,18 @@
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
-import B from './B'
-import C from './C'
 import IDStyles from './IngredientsDetails.module.css'
-import U from './U'
-import ZH from './ZH'
+import PropTypes from "prop-types";
+import {ingredientTypes} from '../../utils/PropTypes'
+
+
 
 
 const IngredientsDetails = (props) => {
-    debugger
+    
+    IngredientsDetails.propTypes = {
+        props: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
+      };
+    
     const b = props.ingredient.proteins
     const zh = props.ingredient.fat
     const u = props.ingredient.carbohydrates
@@ -32,16 +36,20 @@ const IngredientsDetails = (props) => {
                 </div>
                 <div className={IDStyles.bzhuContainer}>
                     <div className={IDStyles.bzhuContentContainer}>
-                        <C c={c}/>
+                        <div><p className="text text_type_main-default text_color_inactive">Калории, ккал </p></div>
+                        <div><p className="text text_type_digits-default text_color_inactive">{c}</p></div>
                     </div>
                     <div className={IDStyles.bzhuContentContainer}>
-                        <B b={b}/>
+                        <div><p className="text text_type_main-default text_color_inactive">Белки, г </p></div>
+                        <div><p className="text text_type_digits-default text_color_inactive">{b}</p></div>
                     </div>
                     <div className={IDStyles.bzhuContentContainer}>
-                        <ZH zh={zh}/>
+                        <div><p className="text text_type_main-default text_color_inactive">Жиры, г </p></div>
+                        <div><p className="text text_type_digits-default text_color_inactive">{zh}</p></div>
                     </div>
                     <div className={IDStyles.bzhuContentContainer}>
-                        <U u={u}/>
+                        <div><p className="text text_type_main-default text_color_inactive">Углеводы, г </p></div>
+                        <div><p className="text text_type_digits-default text_color_inactive">{u}</p></div>
                     </div>
                        
                         

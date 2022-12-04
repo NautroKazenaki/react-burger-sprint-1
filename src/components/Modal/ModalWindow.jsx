@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+
 import ModalWindowOverlay from './ModalWindowOverlay';
+
 import PropTypes from "prop-types";
-import ingredientTypes from '../../utils/PropTypes'
 
 const modalRoot = document.getElementById('react-modals')
   
@@ -11,6 +11,9 @@ const modalRoot = document.getElementById('react-modals')
 
 
 const ModalWindow = (props) => {
+
+   
+    
     const closeModalWindow = (e) => {
         if(e.key === 'Escape') {
             props.onClose();
@@ -19,7 +22,7 @@ const ModalWindow = (props) => {
 
     useEffect(() => {
         document.addEventListener('keydown', closeModalWindow)
-        return (e) => {
+        return () => {
             document.removeEventListener('keydown', closeModalWindow)
         }
     }, [])
@@ -34,6 +37,10 @@ const ModalWindow = (props) => {
         </>,
         modalRoot
       );
+     
+}
+ModalWindow.PropTypes = {
+    props: PropTypes.func
 }
 
 export default ModalWindow

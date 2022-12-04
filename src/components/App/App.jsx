@@ -2,28 +2,25 @@ import React, { useState, useEffect } from "react";
 import AppHeader from "../AppHeader/AppHeader";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
-import State from "../../utils/data.js";
-import { burgerIngredientsDataURL } from "../../api/api";
+import { BURGER_INGREDIENTS_DATA_URL } from "../../api/api";
+import {checkResponse} from '../../api/api'
 
 
 const App = () => {
   const [state, setState] = useState({burgerIngredientsData: []});
   
   useEffect(() => {
-    const getburgerIngredientsData = () => {
-      fetch(burgerIngredientsDataURL)
-        .then((response) => {
-          return response.json();
-        })
+    const getBurgerIngredientsData = () => {
+      fetch(BURGER_INGREDIENTS_DATA_URL)
+       .then(checkResponse)
         .then((json) => {
          setState({burgerIngredientsData: json.data});
         })
         .catch((err) => console.log(`${err}`));
     };
-    getburgerIngredientsData()
+    getBurgerIngredientsData()
     
   }, []);
-  console.log(state)
   
   return (
     <div>

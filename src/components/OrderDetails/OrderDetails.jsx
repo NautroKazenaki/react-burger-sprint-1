@@ -4,6 +4,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import ODStyles from "./OrderDetails.module.css";
+import PropTypes from "prop-types";
 
 const OrderDetails = (props) => {
   return (
@@ -21,7 +22,7 @@ const OrderDetails = (props) => {
         <div className={ODStyles.orderNumberContainer}>
           <p className="text text_type_digits-large"> 034536</p>
         </div>
-        <div className={ODStyles.idOrdercontainer}>
+        <div className={ODStyles.idOrderContainer}>
           <p className="text text_type_main-small">Идентификатор заказа</p>
         </div>
         <div className={ODStyles.iconEffectsContainer}>
@@ -43,5 +44,7 @@ const OrderDetails = (props) => {
     </div>
   );
 };
-
+OrderDetails.propTypes = {
+  props: PropTypes.func
+}
 export default OrderDetails;

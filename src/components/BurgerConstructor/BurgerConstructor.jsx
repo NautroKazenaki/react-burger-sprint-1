@@ -13,14 +13,11 @@ import OrderDetails from "../OrderDetails/OrderDetails";
 
 
 const BurgerConstructor = ({data}) => {
-  debugger
-  console.log({data})
    const bun = data.find((ingredient) => ingredient.type === "bun");
    const nonBunIngredients = data.filter(
      (ingredient) => ingredient.type !== "bun"
    );
    const nonBunIngredientsMock = data.slice(14)
-   console.log(nonBunIngredientsMock)
 
   const [isModalWindowShows, setIsModalWindowShows] = useState(false)
   const ModalWindowToggler = () => {

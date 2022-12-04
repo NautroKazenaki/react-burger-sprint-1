@@ -1,9 +1,12 @@
 import React from 'react'
 import MWOStyles from './ModalWindowOverlay.module.css'
 import PropTypes from "prop-types";
-import ingredientTypes from '../../utils/PropTypes'
+
 
 const ModalWindowOverlay = (props) => {
+     ModalWindowOverlay.propTypes = {
+         props: PropTypes.func.isRequired
+     }
     return (
         <div className={MWOStyles.mwOverlay} onClick={props.onClose}>
             

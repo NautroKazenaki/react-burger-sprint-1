@@ -1,8 +1,8 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import bIStyles from "./BurgerIngredients.module.css";
-import {sauseTypes} from '../../utils/PropTypes'
 import PropTypes from "prop-types";
+import {ingredientTypes} from '../../utils/PropTypes'
 
 const Sause = (props) => {
 
@@ -33,7 +33,11 @@ const Sause = (props) => {
 };
 
 Sause.propTypes = {
-  props: PropTypes.arrayOf(sauseTypes.isRequired).isRequired,
+  props: {
+    sause: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
+    key: PropTypes.number,
+    onOpen: PropTypes.func
+  }
 };
 
 export default Sause;
