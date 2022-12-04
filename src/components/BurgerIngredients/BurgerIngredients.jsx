@@ -55,7 +55,7 @@ const BurgerIngredients = ({data}) => {
             <Counter count={1} size="default" extraClass="m-1" />
           </div>
           {buns.map((bun) => (
-            <Bun buns={bun} key={bun.id} onOpen={burgerIngredientModalWindowShow} />
+            <Bun buns={bun} key={bun._id} onOpen={burgerIngredientModalWindowShow} />
           ))}
         </div>
 
@@ -64,7 +64,7 @@ const BurgerIngredients = ({data}) => {
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
           {sauses.map((sause) => (
-            <Sause sauses={sause} key={sause.id} onOpen={burgerIngredientModalWindowShow} />
+            <Sause sauses={sause} key={sause._id} onOpen={burgerIngredientModalWindowShow} />
           ))}
         </div>
 
@@ -73,13 +73,13 @@ const BurgerIngredients = ({data}) => {
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
           {mains.map((main) => (
-            <MainIngredient mains={main} key={main.id} onOpen={burgerIngredientModalWindowShow}/>
+            <MainIngredient mains={main} key={main._id} onOpen={burgerIngredientModalWindowShow}/>
           ))}
         </div>
       </div>
       {isModalWindowShows && (
-        <ModalWindow onClose={ModalWindowToggler}>
-          <IngredientsDetails onClose={ModalWindowToggler} ingredient={clickedIngredient} data={{data}.data} />
+        <ModalWindow onClose={ModalWindowToggler} title="Детали ингредиента">
+          <IngredientsDetails onClose={ModalWindowToggler} ingredient={clickedIngredient}  />
         </ModalWindow>
       )}
     </div>

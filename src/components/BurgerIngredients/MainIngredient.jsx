@@ -32,11 +32,8 @@ const MainIngredient = (props) => {
 };
 
 MainIngredient.propTypes = {
-  props: {
-    mains: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
-    key: PropTypes.number,
-    onOpen: PropTypes.func
-  } 
+    mains: ingredientTypes.isRequired,
+    onOpen: PropTypes.func.isRequired
 };
 
 export default MainIngredient;

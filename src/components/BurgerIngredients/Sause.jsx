@@ -33,11 +33,9 @@ const Sause = (props) => {
 };
 
 Sause.propTypes = {
-  props: {
-    sause: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
-    key: PropTypes.number,
-    onOpen: PropTypes.func
-  }
+    sauses: ingredientTypes.isRequired,
+    onOpen: PropTypes.func.isRequired
+  
 };
 
 export default Sause;

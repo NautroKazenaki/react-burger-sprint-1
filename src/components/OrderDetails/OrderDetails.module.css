@@ -1,28 +1,23 @@
 .mainContainer {
     position: absolute;
     width: 720px;
-    height: 718px;
+    height: 618px;
     left: 640px;
     top: 180px;
     
 }
 .orderDetailsContainer {
-    box-sizing: border-box;
     position: absolute;
     left: 0%;
     right: 0%;
     top: 0%;
     bottom: 0%;
     background: #1C1C21;
-    border: 1px solid rgba(76, 76, 255, 0.2);
-    box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
-    border-radius: 40px;
 }
 .orderDetailsHeaderAndXButtonContainer{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: center;
     padding: 0px;
     gap: 36px;
     position: absolute;
@@ -33,6 +28,7 @@
     
 }
 .orderDetailsHeaderContainer{
+    text-align: center;
     width: 580px;
     height: 64px;
     flex: none;

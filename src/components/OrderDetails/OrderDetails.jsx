@@ -8,17 +8,7 @@ import PropTypes from "prop-types";
 
 const OrderDetails = (props) => {
   return (
-    <div className={ODStyles.mainContainer}>
-      <div className={ODStyles.orderDetailsContainer}>
-        <div className={ODStyles.orderDetailsHeaderAndXButtonContainer}>
-          <div className={ODStyles.orderDetailsHeaderContainer}></div>
-          <div
-            onClick={props.onClose}
-            className={ODStyles.orderDetailsCloseIcon}
-          >
-            <CloseIcon type="primary" />
-          </div>
-        </div>
+    <>
         <div className={ODStyles.orderNumberContainer}>
           <p className="text text_type_digits-large"> 034536</p>
         </div>
@@ -40,8 +30,7 @@ const OrderDetails = (props) => {
             Дождитесь готовности на орбитальной станции
           </p>
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 OrderDetails.propTypes = {

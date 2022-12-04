@@ -29,7 +29,10 @@
 .burgerDragIconContainer{
     padding: 15px;
     margin-top: 10px;
-    /* visibility: hidden; */
+}
+.burgerDragIconContainerForBuns{
+    composes:burgerDragIconContainer;
+    visibility: hidden; 
 }
 
 .burgerConstructorPayInfo{

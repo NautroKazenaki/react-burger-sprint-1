@@ -4,14 +4,15 @@ import PropTypes from "prop-types";
 
 
 const ModalWindowOverlay = (props) => {
-     ModalWindowOverlay.propTypes = {
-         props: PropTypes.func.isRequired
-     }
+    
     return (
         <div className={MWOStyles.mwOverlay} onClick={props.onClose}>
             
         </div>
     )
+}
+ModalWindowOverlay.propTypes = {
+    onClose: PropTypes.func.isRequired
 }
 
 export default ModalWindowOverlay

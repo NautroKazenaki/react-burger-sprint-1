@@ -36,7 +36,7 @@ const BurgerConstructor = ({data}) => {
     <div className={bCStyles.burgerConstructorContainer}>
       <div className={bCStyles.burgerConstructorItemsContainer}>
         <div className={bCStyles.burgerConstructorItemContainer}>
-          <div className={bCStyles.burgerDragIconContainer}>
+          <div className={bCStyles.burgerDragIconContainerForBuns}>
             <DragIcon type="primary" />
           </div>
           <div>
@@ -63,6 +63,7 @@ const BurgerConstructor = ({data}) => {
                   text={ingredient.name}
                   price={ingredient.price}
                   thumbnail={ingredient.image}
+                  key={ingredient._id}
               />
               ))}
             </div>
@@ -70,7 +71,7 @@ const BurgerConstructor = ({data}) => {
         </div>
 
         <div className={bCStyles.burgerConstructorItemContainer}>
-          <div className={bCStyles.burgerDragIconContainer}>
+          <div className={bCStyles.burgerDragIconContainerForBuns}>
             <DragIcon type="primary" />
           </div>
           <div>
@@ -94,7 +95,7 @@ const BurgerConstructor = ({data}) => {
           Оформить заказ
         </Button>
         {isModalWindowShows && (
-          <ModalWindow onClose={ModalWindowToggler}>
+          <ModalWindow onClose={ModalWindowToggler} >
             <OrderDetails onClose={ModalWindowToggler} />
           </ModalWindow>
         )}

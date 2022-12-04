@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-
+import MWStyles from './ModalWindow.module.css'
+import ODStyles from '../OrderDetails/OrderDetails.module.css'
 import ModalWindowOverlay from './ModalWindowOverlay';
 
 import PropTypes from "prop-types";
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const modalRoot = document.getElementById('react-modals')
   
@@ -30,17 +32,33 @@ const ModalWindow = (props) => {
     return ReactDOM.createPortal(
         <>
             <ModalWindowOverlay onClose={props.onClose} />
-           <div>
-                {props.children}
-            </div> 
+            <div className={ODStyles.mainContainer}>
+                <div className={ODStyles.orderDetailsContainer}>
+                    <div className={ODStyles.orderDetailsHeaderAndXButtonContainer}>
+                        <div className={ODStyles.orderDetailsHeaderContainer}>
+                            <p className="text text_type_main-medium">{props.title}</p>
+                        </div>
+                        <div onClick={props.onClose} className={ODStyles.orderDetailsCloseIcon}>
+                            <CloseIcon type="primary" onClick={props.onClose}/>
+                        </div>
+                    </div>
+                    <div>
+                        {props.children}
+                    </div> 
+                </div>
+            </div>
+            
+           
             
         </>,
         modalRoot
       );
      
 }
-ModalWindow.PropTypes = {
-    props: PropTypes.func
+ModalWindow.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    children: PropTypes.element.isRequired,
+    title: PropTypes.string.isRequired
 }
 
 export default ModalWindow
