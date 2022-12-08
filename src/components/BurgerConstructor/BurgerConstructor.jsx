@@ -10,25 +10,53 @@ import bCStyles from "./BurgerConstructor.module.css";
 import {ingredientTypes} from '../../utils/PropTypes'
 import ModalWindow from "../Modal/ModalWindow";
 import OrderDetails from "../OrderDetails/OrderDetails";
+import {dataContext} from '../../Context/dataContext'
+import {checkResponse, POST_BURGER_INGREDIENTS_DATA_URL} from '../../api/api'
 
 
-const BurgerConstructor = ({data}) => {
+const BurgerConstructor = () => {
+  const {data} = React.useContext(dataContext)
    const bun = data.find((ingredient) => ingredient.type === "bun");
    const nonBunIngredients = data.filter(
      (ingredient) => ingredient.type !== "bun"
    );
    const nonBunIngredientsMock = data.slice(14)
+    console.log(bun)
+   const getFinalPrice = () =>  bun.price*2 + nonBunIngredientsMock.reduce((acc, curr) => curr.type === "bun" ? acc + curr.price*2 : acc + curr.price, 0) 
+  
+   const [orderNumber, setOrderNumber] = useState(0)
+  const getOrder = () => {
 
+    const burgerIngredientsId = data.map((item) => item._id);
+    console.log(burgerIngredientsId)
+    fetch(POST_BURGER_INGREDIENTS_DATA_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': "application/json;charset=utf-8"
+        },
+        body: JSON.stringify({
+            ingredients: burgerIngredientsId
+        })
+    })
+    .then(checkResponse)
+    .then((json) => {
+      setOrderNumber(json.order.number);
+     })
+    .catch(err => console.log(err));
+}
+  console.log(orderNumber)
   const [isModalWindowShows, setIsModalWindowShows] = useState(false)
   const ModalWindowToggler = () => {
     setIsModalWindowShows(!isModalWindowShows)
+    getOrder()
+    setOrderNumber('')
   }
 
   BurgerConstructor.propTypes = {
     data: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
   };
 
-
+  
 
 
 
@@ -88,7 +116,7 @@ const BurgerConstructor = ({data}) => {
 
       <div className={bCStyles.burgerConstructorPayInfo}>
         <div className={bCStyles.burgerConstructorFinalPrice}>
-          <p className="text text_type_digits-medium">5510</p>
+          <p className="text text_type_digits-medium">{getFinalPrice()}</p>
           <CurrencyIcon type="primary" />
         </div>
         <Button onClick={ModalWindowToggler} htmlType="button" type="primary" size="medium">
@@ -96,7 +124,7 @@ const BurgerConstructor = ({data}) => {
         </Button>
         {isModalWindowShows && (
           <ModalWindow onClose={ModalWindowToggler} >
-            <OrderDetails onClose={ModalWindowToggler} />
+            <OrderDetails  orderNumber={orderNumber}/>
           </ModalWindow>
         )}
       </div>

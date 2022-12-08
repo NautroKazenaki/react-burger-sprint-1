@@ -12,8 +12,10 @@ import MainIngredient from "./MainIngredient";
 import {ingredientTypes} from '../../utils/PropTypes'
 import ModalWindow from "../Modal/ModalWindow";
 import IngredientsDetails from "../IngredientDetails/IngredientsDetails";
+import {dataContext} from '../../Context/dataContext'
 
-const BurgerIngredients = ({data}) => {
+const BurgerIngredients = () => {
+  const {data} = React.useContext(dataContext)
   const buns = data.filter((ingredient) => ingredient.type === "bun");
   const sauses = data.filter((ingredient) => ingredient.type === "sauce");
   const mains = data.filter((ingredient) => ingredient.type === "main");

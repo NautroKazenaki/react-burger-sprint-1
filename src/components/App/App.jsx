@@ -4,6 +4,7 @@ import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import { BURGER_INGREDIENTS_DATA_URL } from "../../api/api";
 import {checkResponse} from '../../api/api'
+import {dataContext} from '../../Context/dataContext'
 
 
 const App = () => {
@@ -21,15 +22,16 @@ const App = () => {
     getBurgerIngredientsData()
     
   }, []);
-  
+  let data = state.burgerIngredientsData
+
   return (
     <div>
       <AppHeader />
       {state.burgerIngredientsData.length > 0 && (
-        <>
-          <BurgerIngredients data={state.burgerIngredientsData} />
-          <BurgerConstructor data={state.burgerIngredientsData} />
-        </>
+        <dataContext.Provider value={{data}}>
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </dataContext.Provider>
       )}
       
     </div>
