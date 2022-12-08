@@ -25,7 +25,7 @@ const BurgerConstructor = () => {
    const getFinalPrice = () =>  bun.price*2 + nonBunIngredientsMock.reduce((acc, curr) => curr.type === "bun" ? acc + curr.price*2 : acc + curr.price, 0) 
   
    const [orderNumber, setOrderNumber] = useState(0)
-  const getOrder = () => {
+  const getOrderNumber = () => {
 
     const burgerIngredientsId = data.map((item) => item._id);
     console.log(burgerIngredientsId)
@@ -44,11 +44,11 @@ const BurgerConstructor = () => {
      })
     .catch(err => console.log(err));
 }
-  console.log(orderNumber)
+
   const [isModalWindowShows, setIsModalWindowShows] = useState(false)
   const ModalWindowToggler = () => {
     setIsModalWindowShows(!isModalWindowShows)
-    getOrder()
+    getOrderNumber()
     setOrderNumber('')
   }
 
