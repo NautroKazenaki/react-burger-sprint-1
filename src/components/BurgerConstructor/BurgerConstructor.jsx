@@ -4,51 +4,52 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import bCStyles from "./BurgerConstructor.module.css";
+import {ingredientTypes} from '../../utils/PropTypes'
+import ModalWindow from "../Modal/ModalWindow";
+import OrderDetails from "../OrderDetails/OrderDetails";
 
-const ingredientTypes = PropTypes.shape({
-  _id: PropTypes.number,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  calories: PropTypes.number,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
-  __v: PropTypes.number,
-});
 
-const BurgerConstructor = (props) => {
+const BurgerConstructor = ({data}) => {
+   const bun = data.find((ingredient) => ingredient.type === "bun");
+   const nonBunIngredients = data.filter(
+     (ingredient) => ingredient.type !== "bun"
+   );
+   const nonBunIngredientsMock = data.slice(14)
 
-  const bun = props.data.find((ingredient) => ingredient.type === "bun");
-  const nonBunIngredients = props.data.filter(
-    (ingredient) => ingredient.type !== "bun"
-  );
+  const [isModalWindowShows, setIsModalWindowShows] = useState(false)
+  const ModalWindowToggler = () => {
+    setIsModalWindowShows(!isModalWindowShows)
+  }
 
   BurgerConstructor.propTypes = {
-    props: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
+    data: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
   };
+
+
+
+
 
   return (
     <div className={bCStyles.burgerConstructorContainer}>
       <div className={bCStyles.burgerConstructorItemsContainer}>
         <div className={bCStyles.burgerConstructorItemContainer}>
-          <div className={bCStyles.burgerDragIconContainer}>
+          <div className={bCStyles.burgerDragIconContainerForBuns}>
             <DragIcon type="primary" />
           </div>
           <div>
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={bun.name + `(верх)`}
-              price={bun.price}
-              thumbnail={bun.image}
-            />
+        
+                <ConstructorElement
+                type="top"
+                isLocked={true}
+                text={bun.name + `(верх)`}
+                price={bun.price}
+                thumbnail={bun.image}
+              />
+            
+            
           </div>
         </div>
 
@@ -56,16 +57,21 @@ const BurgerConstructor = (props) => {
           <div className={bCStyles.burgerDragIconContainer}>
             <DragIcon type="primary" />
           </div>
-
-          <ConstructorElement
-            text={nonBunIngredients[0].name}
-            price={nonBunIngredients[0].price}
-            thumbnail={nonBunIngredients[0].image}
-          />
+            <div>
+              {nonBunIngredientsMock.map((ingredient) => (
+                <ConstructorElement
+                  text={ingredient.name}
+                  price={ingredient.price}
+                  thumbnail={ingredient.image}
+                  key={ingredient._id}
+              />
+              ))}
+            </div>
+          
         </div>
 
         <div className={bCStyles.burgerConstructorItemContainer}>
-          <div className={bCStyles.burgerDragIconContainer}>
+          <div className={bCStyles.burgerDragIconContainerForBuns}>
             <DragIcon type="primary" />
           </div>
           <div>
@@ -79,15 +85,20 @@ const BurgerConstructor = (props) => {
           </div>
         </div>
       </div>
-      
+
       <div className={bCStyles.burgerConstructorPayInfo}>
         <div className={bCStyles.burgerConstructorFinalPrice}>
           <p className="text text_type_digits-medium">5510</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button htmlType="button" type="primary" size="medium">
+        <Button onClick={ModalWindowToggler} htmlType="button" type="primary" size="medium">
           Оформить заказ
         </Button>
+        {isModalWindowShows && (
+          <ModalWindow onClose={ModalWindowToggler} >
+            <OrderDetails onClose={ModalWindowToggler} />
+          </ModalWindow>
+        )}
       </div>
     </div>
   );

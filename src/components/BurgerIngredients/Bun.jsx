@@ -1,11 +1,17 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
-import bIStyles from './BurgerIngredients.module.css'
+import bIStyles from "./BurgerIngredients.module.css";
+import PropTypes from "prop-types";
+import {ingredientTypes} from '../../utils/PropTypes'
 
 const Bun = (props) => {
+
+  const handleClick = (e) => {
+    props.onOpen(props.buns)
+  }
+
   return (
-      
-    <div className={bIStyles.burgerIngredientsContentContainer}>
+    <div className={bIStyles.burgerIngredientsContentContainer} onClick={handleClick}>
       <img
         className={bIStyles.burgerIngredientsImg}
         src={props.buns.image}
@@ -22,6 +28,11 @@ const Bun = (props) => {
       </div>
     </div>
   );
+};
+
+Bun.propTypes = {
+  onOpen: PropTypes.func.isRequired,
+  buns: ingredientTypes.isRequired,
 };
 
 export default Bun;
