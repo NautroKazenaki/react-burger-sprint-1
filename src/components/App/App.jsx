@@ -7,7 +7,10 @@ import {checkResponse} from '../../api/api'
 import {dataContext} from '../../Context/dataContext'
 
 
+
+
 const App = () => {
+  
   const [state, setState] = useState({burgerIngredientsData: []});
   
   useEffect(() => {

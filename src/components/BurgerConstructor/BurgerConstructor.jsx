@@ -28,7 +28,7 @@ const BurgerConstructor = () => {
   const getOrderNumber = () => {
 
     const burgerIngredientsId = data.map((item) => item._id);
-    console.log(burgerIngredientsId)
+  
     fetch(POST_BURGER_INGREDIENTS_DATA_URL, {
         method: 'POST',
         headers: {
