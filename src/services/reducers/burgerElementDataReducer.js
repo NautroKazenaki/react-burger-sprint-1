@@ -6,7 +6,7 @@ const initialState = {
     isShowing: false
 }
 
-export const burgerElementDataReducer = (state = initialState, action) => {
+const burgerElementDataReducer = (state = initialState, action) => {
     switch(action.type) {
         case SHOW_BURGER_ELEMENT_DATA: {
             return {
@@ -27,3 +27,4 @@ export const burgerElementDataReducer = (state = initialState, action) => {
         }
     }
 }
+export default burgerElementDataReducer

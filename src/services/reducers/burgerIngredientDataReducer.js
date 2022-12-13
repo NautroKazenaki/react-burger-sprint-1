@@ -8,7 +8,7 @@ const initialState = {
     hasError: false
 }
 
-export const burgerIngredientDataReducer = (state = initialState, action) => {
+ const burgerIngredientDataReducer = (state = initialState, action) => {
     switch(action.type) {
         case GET_BURGER_INGREDIENTS_DATA_REQUEST: {
             return {
@@ -35,3 +35,4 @@ export const burgerIngredientDataReducer = (state = initialState, action) => {
         }
     }
 }
+export default burgerIngredientDataReducer

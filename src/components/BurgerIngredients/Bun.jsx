@@ -7,6 +7,7 @@ import {ingredientTypes} from '../../utils/PropTypes'
 const Bun = (props) => {
 
   const handleClick = (e) => {
+    e.preventDefault()
     props.onOpen(props.buns)
   }
 

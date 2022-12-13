@@ -7,77 +7,78 @@ import {
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import bCStyles from "./BurgerConstructor.module.css";
-import {ingredientTypes} from '../../utils/PropTypes'
+import { ingredientTypes } from "../../utils/PropTypes";
 import ModalWindow from "../Modal/ModalWindow";
 import OrderDetails from "../OrderDetails/OrderDetails";
-import {dataContext} from '../../Context/dataContext'
-import {checkResponse, POST_BURGER_INGREDIENTS_DATA_URL} from '../../api/api'
-
+import { checkResponse, POST_BURGER_INGREDIENTS_DATA_URL } from "../../api/api";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setIngredientData,
+  setBunAC,
+  setNonBunIngredientAC,
+} from "../../services/actions/burgerConstructorDataActions";
+import {getOrderNumber, showOrderDetailsDataAC, hideOrderDetailsDataAC, getOrderNumberDataSuccessAC} from '../../services/actions/orderDetailsDataActions'
 
 const BurgerConstructor = () => {
-  const {data} = React.useContext(dataContext)
-   const bun = data.find((ingredient) => ingredient.type === "bun");
-   const nonBunIngredients = data.filter(
-     (ingredient) => ingredient.type !== "bun"
-   );
-   const nonBunIngredientsMock = data.slice(14)
-    console.log(bun)
-   const getFinalPrice = () =>  bun.price*2 + nonBunIngredientsMock.reduce((acc, curr) => curr.type === "bun" ? acc + curr.price*2 : acc + curr.price, 0) 
   
-   const [orderNumber, setOrderNumber] = useState(0)
-  const getOrderNumber = () => {
+  const dispatch = useDispatch();
 
-    const burgerIngredientsId = data.map((item) => item._id);
-  
-    fetch(POST_BURGER_INGREDIENTS_DATA_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': "application/json;charset=utf-8"
-        },
-        body: JSON.stringify({
-            ingredients: burgerIngredientsId
-        })
-    })
-    .then(checkResponse)
-    .then((json) => {
-      setOrderNumber(json.order.number);
-     })
-    .catch(err => console.log(err));
-}
+  const data = useSelector(
+    (state) => state.burgerIngredients.burgerIngredientsData
+  );
 
-  const [isModalWindowShows, setIsModalWindowShows] = useState(false)
-  const ModalWindowToggler = () => {
-    setIsModalWindowShows(!isModalWindowShows)
-    getOrderNumber()
-    setOrderNumber('')
-  }
+  const bun = data.find((ingredient) => ingredient.type === "bun");
 
-  BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
+  const setBun = (bun) => {
+    dispatch(setBunAC(bun));
+  };
+  setBun(bun);
+
+  const nonBunIngredients = data.filter(
+    (ingredient) => ingredient.type !== "bun"
+  );
+  const nonBunIngredientsMock = data.slice(14);
+
+  const setNonBunIngredientsMock = (nonBunIngredientsMock) => {
+    dispatch(setNonBunIngredientAC(nonBunIngredientsMock));
+  };
+  setNonBunIngredientsMock(nonBunIngredientsMock);
+
+    const getFinalPrice = () => {
+      const sum = [...nonBunIngredientsMock, bun];
+      return sum.reduce((acc, curr) => curr.type === 'bun' ? acc  + curr.price * 2 : acc + curr.price, 0);
   };
 
-  
+  const orderNumber = useSelector((state) => state.orderDetails.orderNumber)
+ 
 
-
+  const isShowing = useSelector((state) => state.orderDetails.isShowing)
+   
+ 
+   const showModalWindow = () => {
+     dispatch(getOrderNumber(bun, nonBunIngredients))
+   };
+  const hideModalWindow= () => {
+    dispatch(hideOrderDetailsDataAC())
+  };
 
   return (
     <div className={bCStyles.burgerConstructorContainer}>
-      <div className={bCStyles.burgerConstructorItemsContainer}>
+      <div
+        className={`${bCStyles.burgerConstructorItemsContainer} + ${bCStyles.customScroll}`}
+      >
         <div className={bCStyles.burgerConstructorItemContainer}>
           <div className={bCStyles.burgerDragIconContainerForBuns}>
             <DragIcon type="primary" />
           </div>
           <div>
-        
-                <ConstructorElement
-                type="top"
-                isLocked={true}
-                text={bun.name + `(верх)`}
-                price={bun.price}
-                thumbnail={bun.image}
-              />
-            
-            
+            <ConstructorElement
+              type="top"
+              isLocked={true}
+              text={bun.name + `(верх)`}
+              price={bun.price}
+              thumbnail={bun.image}
+            />
           </div>
         </div>
 
@@ -85,17 +86,16 @@ const BurgerConstructor = () => {
           <div className={bCStyles.burgerDragIconContainer}>
             <DragIcon type="primary" />
           </div>
-            <div>
-              {nonBunIngredientsMock.map((ingredient) => (
-                <ConstructorElement
-                  text={ingredient.name}
-                  price={ingredient.price}
-                  thumbnail={ingredient.image}
-                  key={ingredient._id}
+          <div>
+            {nonBunIngredientsMock.map((ingredient) => (
+              <ConstructorElement
+                text={ingredient.name}
+                price={ingredient.price}
+                thumbnail={ingredient.image}
+                key={ingredient._id}
               />
-              ))}
-            </div>
-          
+            ))}
+          </div>
         </div>
 
         <div className={bCStyles.burgerConstructorItemContainer}>
@@ -119,12 +119,17 @@ const BurgerConstructor = () => {
           <p className="text text_type_digits-medium">{getFinalPrice()}</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button onClick={ModalWindowToggler} htmlType="button" type="primary" size="medium">
+        <Button
+          onClick={showModalWindow}
+          htmlType="button"
+          type="primary"
+          size="medium"
+        >
           Оформить заказ
         </Button>
-        {isModalWindowShows && (
-          <ModalWindow onClose={ModalWindowToggler} >
-            <OrderDetails  orderNumber={orderNumber}/>
+        {isShowing && (
+          <ModalWindow onClose={hideModalWindow}>
+            <OrderDetails orderNumber={orderNumber} />
           </ModalWindow>
         )}
       </div>

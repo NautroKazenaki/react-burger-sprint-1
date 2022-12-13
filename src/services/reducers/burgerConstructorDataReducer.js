@@ -6,7 +6,7 @@ const initialState = {
     nonBunIngredients: []
 }
 
-export const burgerConstructorDataReducer = (state = initialState, action) => {
+const burgerConstructorDataReducer = (state = initialState, action) => {
     switch(action.type) {
         case SET_BUN: {
             return {
@@ -25,3 +25,5 @@ export const burgerConstructorDataReducer = (state = initialState, action) => {
         }
     }
 }
+
+export default burgerConstructorDataReducer

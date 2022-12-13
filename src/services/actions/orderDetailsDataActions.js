@@ -11,7 +11,7 @@ export const getOrderNumberDataRequestAC = () => ({
 })
 export const getOrderNumberDataSuccessAC = (res) => ({
     type: GET_ORDER_NUMBER_DATA_SUCCESS,
-    orderNumber: res.data.order.number
+    orderNumber: res
 })
 export const getOrderNumberDataFailedAC = () => ({
     type: GET_ORDER_NUMBER_DATA_FAILED,
@@ -23,13 +23,14 @@ export const hideOrderDetailsDataAC = () => ({
     type: HIDE_ORDER_DETAILS_DATA
 })
 
-export const getOrderNumber = (bun, nonBunIngredients) = (dispatch) => {
-
-    const bun = bun.filter(Boolean)
-    const nonBunIngredients = [...nonBunIngredients]
-    nonBunIngredients.unshift(...bun).push(...bun)
-
+export const getOrderNumber = (bun, nonBunIngredients ) => (dispatch) => {
+     
+    nonBunIngredients = [...nonBunIngredients];
+    nonBunIngredients.unshift(bun);
+    nonBunIngredients.push(bun);
+      
     const burgerIngredientsId = nonBunIngredients.map((item) => item._id);
+   console.log(burgerIngredientsId)
     dispatch(getOrderNumberDataRequestAC())
     fetch(`${BASE_URL}/orders`, {
         method: 'POST',
@@ -41,10 +42,10 @@ export const getOrderNumber = (bun, nonBunIngredients) = (dispatch) => {
         })
     })
     .then(checkResponse)
-    .then((json) => {
-      //setOrderNumber(json.order.number);
-      dispatch(getOrderNumberDataSuccessAC(json))
+    .then((res) => {
+      dispatch(getOrderNumberDataSuccessAC(res.order.number))
      })
+     .then(dispatch(showOrderDetailsDataAC()))
     .catch(err => dispatch(getOrderNumberDataFailedAC()));
 }
 

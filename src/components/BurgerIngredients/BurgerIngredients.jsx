@@ -12,24 +12,27 @@ import MainIngredient from "./MainIngredient";
 import {ingredientTypes} from '../../utils/PropTypes'
 import ModalWindow from "../Modal/ModalWindow";
 import IngredientsDetails from "../IngredientDetails/IngredientsDetails";
-import {dataContext} from '../../Context/dataContext'
+import {showBurgerElementDataAC, hideBurgerElementDataAC} from '../../services/actions/burgerElementDataActions'
+import {useSelector, useDispatch} from 'react-redux'
 
 const BurgerIngredients = () => {
-  const {data} = React.useContext(dataContext)
+const dispatch = useDispatch()
+
+ const data = useSelector((state) => state.burgerIngredients.burgerIngredientsData)
+ const clickedIngredient = useSelector((state) => state.burgerElement.clickedIngredient)
+ const isShowing = useSelector((state) => state.burgerElement.isShowing)
+
   const buns = data.filter((ingredient) => ingredient.type === "bun");
   const sauses = data.filter((ingredient) => ingredient.type === "sauce");
   const mains = data.filter((ingredient) => ingredient.type === "main");
   
 
-  const [isModalWindowShows, setIsModalWindowShows] = useState(false)
-  const ModalWindowToggler = () => {
-    setIsModalWindowShows(!isModalWindowShows)
+  const showModalWindow = (ingredient) => {
+    dispatch(showBurgerElementDataAC(ingredient))
   }
 
-  const [clickedIngredient, setClickedIngredient] = useState(null)
-  const burgerIngredientModalWindowShow = (ingredient) => {
-    setClickedIngredient(ingredient)
-    setIsModalWindowShows(!isModalWindowShows)
+  const hideModalWindow = () => {
+    dispatch(hideBurgerElementDataAC())
   }
 
   return (
@@ -57,7 +60,7 @@ const BurgerIngredients = () => {
             <Counter count={1} size="default" extraClass="m-1" />
           </div>
           {buns.map((bun) => (
-            <Bun buns={bun} key={bun._id} onOpen={burgerIngredientModalWindowShow} />
+            <Bun buns={bun} key={bun._id} onOpen={showModalWindow} />
           ))}
         </div>
 
@@ -66,7 +69,7 @@ const BurgerIngredients = () => {
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
           {sauses.map((sause) => (
-            <Sause sauses={sause} key={sause._id} onOpen={burgerIngredientModalWindowShow} />
+            <Sause sauses={sause} key={sause._id} onOpen={showModalWindow} />
           ))}
         </div>
 
@@ -75,21 +78,19 @@ const BurgerIngredients = () => {
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
           {mains.map((main) => (
-            <MainIngredient mains={main} key={main._id} onOpen={burgerIngredientModalWindowShow}/>
+            <MainIngredient mains={main} key={main._id} onOpen={showModalWindow}/>
           ))}
         </div>
       </div>
-      {isModalWindowShows && (
-        <ModalWindow onClose={ModalWindowToggler} title="Детали ингредиента">
-          <IngredientsDetails onClose={ModalWindowToggler} ingredient={clickedIngredient}  />
+      {isShowing && (
+        <ModalWindow onClose={hideModalWindow} title="Детали ингредиента">
+          <IngredientsDetails onClose={hideModalWindow} ingredient={clickedIngredient}  />
         </ModalWindow>
       )}
     </div>
   );
 };
 
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
-};
+
 
 export default BurgerIngredients;
