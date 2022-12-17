@@ -4,6 +4,8 @@ import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import {getBurgerIngredientsData} from '../../services/actions/burgerIngredientsDataActions'
 import {useSelector, useDispatch} from 'react-redux'
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 
 
@@ -22,10 +24,10 @@ const App = () => {
     <div>
       <AppHeader />
       {burgerIngredientsData.length > 0 && (
-        <>
+        <DndProvider backend={HTML5Backend}>
           <BurgerIngredients />
           <BurgerConstructor />
-        </>
+        </DndProvider>
       )}
       
     </div>

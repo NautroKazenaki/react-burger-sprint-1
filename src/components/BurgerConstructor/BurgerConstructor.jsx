@@ -4,48 +4,46 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
+
 import bCStyles from "./BurgerConstructor.module.css";
-import { ingredientTypes } from "../../utils/PropTypes";
+
 import ModalWindow from "../Modal/ModalWindow";
 import OrderDetails from "../OrderDetails/OrderDetails";
-import { checkResponse, POST_BURGER_INGREDIENTS_DATA_URL } from "../../api/api";
+
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setIngredientData,
-  setBunAC,
-  setNonBunIngredientAC,
-} from "../../services/actions/burgerConstructorDataActions";
-import {getOrderNumber, showOrderDetailsDataAC, hideOrderDetailsDataAC, getOrderNumberDataSuccessAC} from '../../services/actions/orderDetailsDataActions'
+import { addIngredient } from "../../services/actions/burgerConstructorDataActions";
+import {getOrderNumber, hideOrderDetailsDataAC} from '../../services/actions/orderDetailsDataActions'
+import BurgerConstructorElementContainer from "./BurgerConstructorElementContainer";
+import { useDrop } from "react-dnd";
+
 
 const BurgerConstructor = () => {
   
   const dispatch = useDispatch();
 
-  const data = useSelector(
-    (state) => state.burgerIngredients.burgerIngredientsData
-  );
+   const data = useSelector(
+     (state) => state.burgerIngredients.burgerIngredientsData
+   );
 
-  const bun = data.find((ingredient) => ingredient.type === "bun");
+  const buns = data.find((ingredient) => ingredient.type === "bun");
+  
+  console.log(buns)
+  
+  const nonBunIngredients = useSelector((state) => state.burgerConstructor.nonBunIngredients)
+  
+  const [{}, dragRef] = useDrop({
+    accept: 'ingredient',
+    drop(ingredient) {
+      debugger
+      addIngredient(ingredient, dispatch)
+        }
+    })
+  
 
-  const setBun = (bun) => {
-    dispatch(setBunAC(bun));
-  };
-  setBun(bun);
-
-  const nonBunIngredients = data.filter(
-    (ingredient) => ingredient.type !== "bun"
-  );
-  const nonBunIngredientsMock = data.slice(14);
-
-  const setNonBunIngredientsMock = (nonBunIngredientsMock) => {
-    dispatch(setNonBunIngredientAC(nonBunIngredientsMock));
-  };
-  setNonBunIngredientsMock(nonBunIngredientsMock);
 
     const getFinalPrice = () => {
-      const sum = [...nonBunIngredientsMock, bun];
+      const sum = [...nonBunIngredients, buns];
       return sum.reduce((acc, curr) => curr.type === 'bun' ? acc  + curr.price * 2 : acc + curr.price, 0);
   };
 
@@ -56,14 +54,14 @@ const BurgerConstructor = () => {
    
  
    const showModalWindow = () => {
-     dispatch(getOrderNumber(bun, nonBunIngredients))
+     dispatch(getOrderNumber(buns, nonBunIngredients))
    };
   const hideModalWindow= () => {
     dispatch(hideOrderDetailsDataAC())
   };
 
   return (
-    <div className={bCStyles.burgerConstructorContainer}>
+    <div className={bCStyles.burgerConstructorContainer} ref={dragRef}>
       <div
         className={`${bCStyles.burgerConstructorItemsContainer} + ${bCStyles.customScroll}`}
       >
@@ -75,28 +73,13 @@ const BurgerConstructor = () => {
             <ConstructorElement
               type="top"
               isLocked={true}
-              text={bun.name + `(верх)`}
-              price={bun.price}
-              thumbnail={bun.image}
+              text={buns.name + `(верх)`}
+              price={buns.price}
+              thumbnail={buns.image}
             />
           </div>
         </div>
-
-        <div className={bCStyles.burgerConstructorItemContainer}>
-          <div className={bCStyles.burgerDragIconContainer}>
-            <DragIcon type="primary" />
-          </div>
-          <div>
-            {nonBunIngredientsMock.map((ingredient) => (
-              <ConstructorElement
-                text={ingredient.name}
-                price={ingredient.price}
-                thumbnail={ingredient.image}
-                key={ingredient._id}
-              />
-            ))}
-          </div>
-        </div>
+        <BurgerConstructorElementContainer />
 
         <div className={bCStyles.burgerConstructorItemContainer}>
           <div className={bCStyles.burgerDragIconContainerForBuns}>
@@ -106,9 +89,9 @@ const BurgerConstructor = () => {
             <ConstructorElement
               type="bottom"
               isLocked={true}
-              text={bun.name + `(низ)`}
-              price={bun.price}
-              thumbnail={bun.image}
+              text={buns.name + `(низ)`}
+              price={buns.price}
+              thumbnail={buns.image}
             />
           </div>
         </div>

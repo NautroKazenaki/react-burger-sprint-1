@@ -55,14 +55,12 @@
 
 .burgerIngredientsCounter{
     position: relative;
-    width: 32px;
-    height: 32px;
-    left: 240px;
-    right: 0px;
-    top: 0px;
+    width: 272px;
+    display: flex;
+    align-items: center;
     background: #131316;
+    
 }
-
 .burgerIngredientsContentContainer{
     display: flex;
     flex-direction: column;

@@ -1,5 +1,7 @@
 import {SET_BUN,
-    SET_NON_BUN_INGREDIENT} from '../actions/burgerConstructorDataActions'
+    SET_NON_BUN_INGREDIENT,
+    DELETE_INGREDIENT, 
+    CHANGE_INGREDIENT_POSITION} from '../actions/burgerConstructorDataActions'
 
 const initialState = {
     buns: [],
@@ -11,13 +13,28 @@ const burgerConstructorDataReducer = (state = initialState, action) => {
         case SET_BUN: {
             return {
                 ...state,
-                buns: [action.payload]
+                buns: [ action.payload]
             }
         }
         case SET_NON_BUN_INGREDIENT: {
             return {
                 ...state,
-                nonBunIngredients: [action.payload]
+                nonBunIngredients: [...state.nonBunIngredients, action.payload]
+            }
+        }
+        case DELETE_INGREDIENT: {
+            debugger
+            return {
+                ...state,
+                nonBunIngredients: [...state.nonBunIngredients.filter((ingredient) => ingredient.id !== action.id)]
+            }
+        }
+        case CHANGE_INGREDIENT_POSITION: {
+            const data = [...state.nonBunIngredients]
+            data.splice(action.hoverIndex, 0, data.splice(action.dragIndex, 1)[0]);
+            return {
+                ...state,
+                nonBunIngredients: data
             }
         }
         default: {

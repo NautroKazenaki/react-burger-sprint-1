@@ -1,14 +1,14 @@
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+
 import React from 'react'
 import IDStyles from './IngredientsDetails.module.css'
-import PropTypes from "prop-types";
-import {ingredientTypes} from '../../utils/PropTypes'
+
+
 import {useSelector} from 'react-redux'
 
 
 
 
-const IngredientsDetails = (props) => {
+const IngredientsDetails = () => {
 const clickedIngredient = useSelector((state) => state.burgerElement.clickedIngredient)
     
     return (
@@ -44,10 +44,6 @@ const clickedIngredient = useSelector((state) => state.burgerElement.clickedIngr
         </>
     )
 }
-IngredientsDetails.propTypes = {
-    ingredient: PropTypes.object.isRequired,
-    onClose: PropTypes.func.isRequired
 
-  };
 
 export default IngredientsDetails

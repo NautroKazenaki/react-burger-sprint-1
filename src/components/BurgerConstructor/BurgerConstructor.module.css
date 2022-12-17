@@ -24,24 +24,24 @@
     
 }
 .burgerConstructorItemContainer{
-    width: 568px;
-    /* height: 80px; */
-    
+    width: 550px;
     display: flex;
     order: 0;
     flex-grow: 0;
 }
 .burgerDragIconContainer{
     padding: 15px;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 .burgerDragIconContainerForBuns{
     composes:burgerDragIconContainer;
     visibility: hidden; 
 }
 .constructorElementContainer{
-    margin-top: 25px;
-    border: 1px red solid;
+    display: flex;
+    margin-top: 10px;
+    width:100%;
+    
 }
 
 .burgerConstructorPayInfo{
