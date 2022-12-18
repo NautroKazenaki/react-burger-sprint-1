@@ -31,9 +31,10 @@ const BurgerIngredients = () => {
   );
   const isShowing = useSelector((state) => state.burgerElement.isShowing);
 
-  const buns = data.filter((ingredient) => ingredient.type === "bun");
-  const sauses = data.filter((ingredient) => ingredient.type === "sauce");
-  const mains = data.filter((ingredient) => ingredient.type === "main");
+  const buns = React.useMemo(() =>  data.filter((ingredient) => ingredient.type === "bun"));
+ 
+  const sauses = React.useMemo(() => data.filter((ingredient) => ingredient.type === "sauce"));
+  const mains = React.useMemo(() => data.filter((ingredient) => ingredient.type === "main"));
 
   const [current, setCurrent] = React.useState("one");
 
@@ -94,13 +95,11 @@ const BurgerIngredients = () => {
           <p className="text text_type_main-medium"> Булки </p>
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
-          <div className={bIStyles.burgerIngredientsCounter}>
-            <Counter count={1} size="default" extraClass="m-1" />
-          
-          {buns.map((bun) => (
-            <Bun buns={bun} key={bun._id} onOpen={showModalWindow} />
-          ))}
-          </div>
+          {/* <div className={bIStyles.burgerIngredientsCounter}> */}
+            {buns.map((bun) => (
+              <Bun buns={bun} key={bun._id} onOpen={showModalWindow} />
+            ))}
+          {/* </div> */}
         </div>
 
         <section

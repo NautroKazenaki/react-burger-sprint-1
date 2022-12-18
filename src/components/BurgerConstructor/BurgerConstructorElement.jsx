@@ -17,39 +17,59 @@ const BurgerConstructorElement = ({ ingredient, i }) => {
   const deleteIngredient = () => {
     dispatch(deleteIngredientAC(ingredient));
   };
-  const ref = useRef(null);
+  
+  const [{ isDragging }, drag] = useDrag({
+    type: "constructor",
+    
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
 
-  const [ handlerId , drop] = useDrop({
+
+  const [ {} , drop] = useDrop({
     accept: "constructor",
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
       };
     },
-    hover: function (ingredient) {
+    hover: function (ingredient, monitor) {
+     
+      
        const dragIndex = ingredient.index;
        const hoverIndex = i;
-       dispatch(changeIngredientPositionAC(dragIndex, hoverIndex));
-       ingredient.index = hoverIndex;
+       if (dragIndex === hoverIndex) {
+        return;
+    }
+    const hoverBoundingRect = ref.current?.getBoundingClientRect();
+
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+
+    const clientOffset = monitor.getClientOffset();
+
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
+    } 
+    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return;
+    } 
+    dispatch(changeIngredientPositionAC(dragIndex, hoverIndex));
+     ingredient.index = hoverIndex;
     },
    }
   );
 
-  const [{ isDragging }, drag] = useDrag({
-    type: "constructor",
-    ingredient: () => {
-      return { id: ingredient._id, i };
-    },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
-
-  drag(drop(ref));
+ 
+  const ref = useRef(null);
+  const dragDropRef = drag(drop(ref));
+  const opacity = isDragging ? 0 : 1;
 
   return (
-    <div className={bCStyles.burgerConstructorItemContainer} ref={ref}>
-      <div className={bCStyles.constructorElementContainer}>
+    <div className={bCStyles.burgerConstructorItemContainer} style={{opacity}} >
+      <div className={bCStyles.constructorElementContainer} ref={dragDropRef}>
         <div className={bCStyles.burgerDragIconContainer}>
           <DragIcon type="primary" />
         </div>

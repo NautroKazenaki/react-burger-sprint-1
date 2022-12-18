@@ -12,25 +12,19 @@ const Sause = (props) => {
   );
   const buns = useSelector((state) => state.burgerConstructor.buns);
   const sauseIngredients = React.useMemo(() => nonBunIngredients.filter(
-    (ingredient) => ingredient.type === "main"
+    (ingredient) => ingredient.type === "sauce"
   ));
 
   const counter = React.useMemo(() => {
     let count = 0;
-    if (sauseIngredients.type !== 'bun') {
-      nonBunIngredients.map((element) => {
+   
+    sauseIngredients.map((element) => {
             if(element._id === props.sauses._id) {
                 ++count;
             }   
         })
-    }
-    else {
-      buns.map((element) => {
-            if(element._id === props.sauses._id) {
-                return count = 2;
-            }
-        })
-    }
+    
+    
     return count
 }, [nonBunIngredients, buns])
 

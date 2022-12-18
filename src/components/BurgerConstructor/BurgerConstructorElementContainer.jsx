@@ -5,13 +5,10 @@ import BurgerConstructorElement from "./BurgerConstructorElement";
 
 const BurgerConstructorElementContainer = () => {
   
-
-  const burgerIngredientsData = useSelector(
-    (state) => state.burgerIngredients.burgerIngredientsData
-  );
   const {nonBunIngredients} = useSelector(
     (state) => state.burgerConstructor
   );
+
 
  
   return (

@@ -6,13 +6,16 @@ import {getBurgerIngredientsData} from '../../services/actions/burgerIngredients
 import {useSelector, useDispatch} from 'react-redux'
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import  Loader  from '../../utils/Loader'
+import Error from '../../utils/Error'
 
 
 
 
 const App = () => {
  
-  const {burgerIngredientsData } = useSelector((state) => state.burgerIngredients)
+  const {burgerIngredientsData, isLoading, hasError } = useSelector((state) => state.burgerIngredients)
+  
   const dispatch = useDispatch()
   
   useEffect(() => {
@@ -23,7 +26,13 @@ const App = () => {
   return (
     <div>
       <AppHeader />
-      {burgerIngredientsData.length > 0 && (
+      {isLoading && (
+        <Loader />
+      )}
+      {hasError && (
+        <Error />
+      )}
+      {!isLoading && !hasError & burgerIngredientsData.length > 0 && (
         <DndProvider backend={HTML5Backend}>
           <BurgerIngredients />
           <BurgerConstructor />

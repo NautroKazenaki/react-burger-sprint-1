@@ -36,7 +36,7 @@ export const setIngredientData = (ingredient, dispatch) => {
 }
 
 export const addIngredient = (ingredient, dispatch) => {
-    debugger
+    
     if (ingredient.type === 'bun') {
         dispatch(setBunAC(ingredient))
     } else {

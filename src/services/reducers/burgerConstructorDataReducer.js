@@ -4,11 +4,12 @@ import {SET_BUN,
     CHANGE_INGREDIENT_POSITION} from '../actions/burgerConstructorDataActions'
 
 const initialState = {
-    buns: [],
+    buns: null,
     nonBunIngredients: []
 }
 
 const burgerConstructorDataReducer = (state = initialState, action) => {
+    
     switch(action.type) {
         case SET_BUN: {
             return {
@@ -23,15 +24,18 @@ const burgerConstructorDataReducer = (state = initialState, action) => {
             }
         }
         case DELETE_INGREDIENT: {
-            debugger
+            
             return {
                 ...state,
-                nonBunIngredients: [...state.nonBunIngredients.filter((ingredient) => ingredient.id !== action.id)]
+                nonBunIngredients: state.nonBunIngredients.filter((ingredient) => ingredient.id !== action.id)
             }
         }
         case CHANGE_INGREDIENT_POSITION: {
+          
             const data = [...state.nonBunIngredients]
             data.splice(action.hoverIndex, 0, data.splice(action.dragIndex, 1)[0]);
+            
+            
             return {
                 ...state,
                 nonBunIngredients: data

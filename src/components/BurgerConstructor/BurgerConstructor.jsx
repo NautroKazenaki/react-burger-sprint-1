@@ -25,17 +25,18 @@ const BurgerConstructor = () => {
    const data = useSelector(
      (state) => state.burgerIngredients.burgerIngredientsData
    );
-
-  const buns = data.find((ingredient) => ingredient.type === "bun");
+   const bunsInitialState = data.find((ingredient) => ingredient.type === "bun");
+   React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState])
+   const buns = useSelector((state) => state.burgerConstructor.buns)
+   
   
-  console.log(buns)
   
   const nonBunIngredients = useSelector((state) => state.burgerConstructor.nonBunIngredients)
   
   const [{}, dragRef] = useDrop({
     accept: 'ingredient',
     drop(ingredient) {
-      debugger
+      
       addIngredient(ingredient, dispatch)
         }
     })
@@ -43,7 +44,7 @@ const BurgerConstructor = () => {
 
 
     const getFinalPrice = () => {
-      const sum = [...nonBunIngredients, buns];
+      const sum = [...nonBunIngredients, buns[0]];
       return sum.reduce((acc, curr) => curr.type === 'bun' ? acc  + curr.price * 2 : acc + curr.price, 0);
   };
 
@@ -73,9 +74,9 @@ const BurgerConstructor = () => {
             <ConstructorElement
               type="top"
               isLocked={true}
-              text={buns.name + `(верх)`}
-              price={buns.price}
-              thumbnail={buns.image}
+              text={buns[0].name + `(верх)`}
+              price={buns[0].price}
+              thumbnail={buns[0].image}
             />
           </div>
         </div>
@@ -89,9 +90,9 @@ const BurgerConstructor = () => {
             <ConstructorElement
               type="bottom"
               isLocked={true}
-              text={buns.name + `(низ)`}
-              price={buns.price}
-              thumbnail={buns.image}
+              text={buns[0].name + `(низ)`}
+              price={buns[0].price}
+              thumbnail={buns[0].image}
             />
           </div>
         </div>

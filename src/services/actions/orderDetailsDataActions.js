@@ -25,12 +25,13 @@ export const hideOrderDetailsDataAC = () => ({
 
 export const getOrderNumber = (bun, nonBunIngredients ) => (dispatch) => {
      
-    nonBunIngredients = [...nonBunIngredients];
-    nonBunIngredients.unshift(bun);
-    nonBunIngredients.push(bun);
+     nonBunIngredients = [...nonBunIngredients];
+     nonBunIngredients.unshift(bun);
+     nonBunIngredients.push(bun);
+    
       
     const burgerIngredientsId = nonBunIngredients.map((item) => item._id);
-   console.log(burgerIngredientsId)
+   
     dispatch(getOrderNumberDataRequestAC())
     fetch(`${BASE_URL}/orders`, {
         method: 'POST',
