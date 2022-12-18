@@ -6,8 +6,8 @@ import {getBurgerIngredientsData} from '../../services/actions/burgerIngredients
 import {useSelector, useDispatch} from 'react-redux'
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import  Loader  from '../../utils/Loader'
-import Error from '../../utils/Error'
+import  Loader  from '../Loader/Loader'
+import Error from '../Error/Error'
 
 
 

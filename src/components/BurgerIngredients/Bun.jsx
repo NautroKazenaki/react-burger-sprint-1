@@ -16,11 +16,14 @@ const Bun = (props) => {
   
   const counter = React.useMemo(() => {
     let count = 0
-    currentBun.map((bun) => {
-      if(bun._id === props.buns._id) {
-        return count = 2;
-    }
-    })
+    
+     
+       {
+        if(currentBun._id === props.buns._id) {
+          return count = 2;
+      }
+      }
+    
     
     return count;
   }, [currentBun]);

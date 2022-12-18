@@ -11,7 +11,7 @@ import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 
-const BurgerConstructorElement = ({ ingredient, i }) => {
+const BurgerConstructorElement = ({ ingredient, index }) => {
   const dispatch = useDispatch();
 
   const deleteIngredient = () => {
@@ -20,7 +20,7 @@ const BurgerConstructorElement = ({ ingredient, i }) => {
   
   const [{ isDragging }, drag] = useDrag({
     type: "constructor",
-    
+    item: () => { return { ...ingredient, index: index } },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -38,7 +38,7 @@ const BurgerConstructorElement = ({ ingredient, i }) => {
      
       
        const dragIndex = ingredient.index;
-       const hoverIndex = i;
+       const hoverIndex = index;
        if (dragIndex === hoverIndex) {
         return;
     }
@@ -78,6 +78,7 @@ const BurgerConstructorElement = ({ ingredient, i }) => {
           price={ingredient.price}
           thumbnail={ingredient.image}
           handleClose={deleteIngredient}
+          index={index}
         />
       </div>
     </div>

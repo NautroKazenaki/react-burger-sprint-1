@@ -13,11 +13,11 @@ const BurgerConstructorElementContainer = () => {
  
   return (
     <div>
-      {nonBunIngredients.map((ingredient, i) => (
+      {nonBunIngredients.map((ingredient, index) => (
         <BurgerConstructorElement
-          i={i}
+          index={index}
           ingredient={ingredient}
-          key={ingredient._id}
+          key={index}
         />
       ))}
     </div>

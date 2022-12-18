@@ -14,7 +14,8 @@ const burgerConstructorDataReducer = (state = initialState, action) => {
         case SET_BUN: {
             return {
                 ...state,
-                buns: [ action.payload]
+                
+                buns:  action.payload
             }
         }
         case SET_NON_BUN_INGREDIENT: {
@@ -33,7 +34,7 @@ const burgerConstructorDataReducer = (state = initialState, action) => {
         case CHANGE_INGREDIENT_POSITION: {
           
             const data = [...state.nonBunIngredients]
-            data.splice(action.hoverIndex, 0, data.splice(action.dragIndex, 1)[0]);
+             data.splice(action.hoverIndex, 0, data.splice(action.dragIndex, 1)[0]);
             
             
             return {

@@ -22,12 +22,28 @@ const BurgerConstructor = () => {
   
   const dispatch = useDispatch();
 
-   const data = useSelector(
-     (state) => state.burgerIngredients.burgerIngredientsData
-   );
+    const data = useSelector(
+      (state) => state.burgerIngredients.burgerIngredientsData
+    );
+   
    const bunsInitialState = data.find((ingredient) => ingredient.type === "bun");
+   //const bunsInitialState = React.useMemo(() => data.find((ingredient) => ingredient.type === "bun"), [data] ) 
+   
    React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState])
+   
+  //  React.useCallback(
+  //   () => {
+  //     addIngredient(bunsInitialState, dispatch)
+  //   },
+  //   [bunsInitialState],
+  // );
+    
+  
+  
    const buns = useSelector((state) => state.burgerConstructor.buns)
+  
+   
+   
    
   
   
@@ -35,16 +51,16 @@ const BurgerConstructor = () => {
   
   const [{}, dragRef] = useDrop({
     accept: 'ingredient',
-    drop(ingredient) {
-      
-      addIngredient(ingredient, dispatch)
+    drop(bunsInitialState) {
+      addIngredient(bunsInitialState, dispatch)
+      //memoizedCallback(bunsInitialState, dispatch)
         }
     })
   
 
 
     const getFinalPrice = () => {
-      const sum = [...nonBunIngredients, buns[0]];
+      const sum = [...nonBunIngredients, buns];
       return sum.reduce((acc, curr) => curr.type === 'bun' ? acc  + curr.price * 2 : acc + curr.price, 0);
   };
 
@@ -55,7 +71,11 @@ const BurgerConstructor = () => {
    
  
    const showModalWindow = () => {
-     dispatch(getOrderNumber(buns, nonBunIngredients))
+    
+     if (buns!== null  && nonBunIngredients.length > 0 ) {
+      dispatch(getOrderNumber(buns, nonBunIngredients))
+     }
+     
    };
   const hideModalWindow= () => {
     dispatch(hideOrderDetailsDataAC())
@@ -74,9 +94,9 @@ const BurgerConstructor = () => {
             <ConstructorElement
               type="top"
               isLocked={true}
-              text={buns[0].name + `(верх)`}
-              price={buns[0].price}
-              thumbnail={buns[0].image}
+              text={buns.name + `(верх)`}
+              price={buns.price}
+              thumbnail={buns.image}
             />
           </div>
         </div>
@@ -90,9 +110,9 @@ const BurgerConstructor = () => {
             <ConstructorElement
               type="bottom"
               isLocked={true}
-              text={buns[0].name + `(низ)`}
-              price={buns[0].price}
-              thumbnail={buns[0].image}
+              text={buns.name + `(низ)`}
+              price={buns.price}
+              thumbnail={buns.image}
             />
           </div>
         </div>

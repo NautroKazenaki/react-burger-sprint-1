@@ -25,6 +25,8 @@ export const hideOrderDetailsDataAC = () => ({
 
 export const getOrderNumber = (bun, nonBunIngredients ) => (dispatch) => {
      
+     
+     
      nonBunIngredients = [...nonBunIngredients];
      nonBunIngredients.unshift(bun);
      nonBunIngredients.push(bun);
