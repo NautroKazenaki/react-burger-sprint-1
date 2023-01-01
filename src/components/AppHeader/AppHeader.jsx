@@ -10,7 +10,7 @@ import headerStyles from "./AppHeader.module.css";
 const AppHeader = () => {
   return (
     <div className={headerStyles.headerContainer}>
-      <a href="#" className={headerStyles.headerConstructorLinkContainer}>
+      <a href="/" className={headerStyles.headerConstructorLinkContainer}>
         <BurgerIcon type="primary" className={headerStyles.headerLinkIcon} />
         <p className={`${headerStyles.headerText} + ${headerStyles.active}`}>
           Конструктор
@@ -26,7 +26,7 @@ const AppHeader = () => {
         <Logo />
       </div>
 
-      <a href="#" className={headerStyles.headerProfileLinkContainer}>
+      <a href="/profile" className={headerStyles.headerProfileLinkContainer}>
         <ProfileIcon type="secondary" className={headerStyles.headerLinkIcon} />
         <p className={headerStyles.headerText}>Личный кабинет</p>
       </a>

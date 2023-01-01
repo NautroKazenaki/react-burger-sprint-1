@@ -1,0 +1,65 @@
+.navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: absolute;
+    width: 320px;
+    height: 192px;
+    left: 380px;
+    top: 228px;
+}
+.frame1{
+    width: 320px;
+    height: 64px;
+
+   
+
+    background: #131316;
+    
+
+    
+
+    
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.frame2{
+    composes: frame1;
+    order: 1;
+}
+.frame3{
+    composes: frame1;
+    order: 2;
+}
+.caption{
+    position: absolute;
+    width: 320px;
+    height: 48px;
+    /* left: 380px; */
+    top: 200px;
+
+
+
+    background: #131316;
+
+
+    
+}
+.editProfileContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 24px;
+
+    position: absolute;
+    width: 480px;
+    height: 240px;
+    left: 760px;
+    top: 228px;
+}

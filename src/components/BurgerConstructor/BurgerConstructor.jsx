@@ -31,13 +31,7 @@ const BurgerConstructor = () => {
    
    React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState])
    
-  //  React.useCallback(
-  //   () => {
-  //     addIngredient(bunsInitialState, dispatch)
-  //   },
-  //   [bunsInitialState],
-  // );
-    
+  
   
   
    const buns = useSelector((state) => state.burgerConstructor.buns)
@@ -97,6 +91,7 @@ const BurgerConstructor = () => {
               text={buns.name + `(верх)`}
               price={buns.price}
               thumbnail={buns.image}
+              
             />
           </div>
         </div>
