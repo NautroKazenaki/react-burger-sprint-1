@@ -4,71 +4,103 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
+
 import bCStyles from "./BurgerConstructor.module.css";
-import {ingredientTypes} from '../../utils/PropTypes'
+
 import ModalWindow from "../Modal/ModalWindow";
 import OrderDetails from "../OrderDetails/OrderDetails";
 
+import { useSelector, useDispatch } from "react-redux";
+import { addIngredient } from "../../services/actions/burgerConstructorDataActions";
+import {getOrderNumber, hideOrderDetailsDataAC} from '../../services/actions/orderDetailsDataActions'
+import BurgerConstructorElementContainer from "./BurgerConstructorElementContainer";
+import { useDrop } from "react-dnd";
 
-const BurgerConstructor = ({data}) => {
-   const bun = data.find((ingredient) => ingredient.type === "bun");
-   const nonBunIngredients = data.filter(
-     (ingredient) => ingredient.type !== "bun"
-   );
-   const nonBunIngredientsMock = data.slice(14)
 
-  const [isModalWindowShows, setIsModalWindowShows] = useState(false)
-  const ModalWindowToggler = () => {
-    setIsModalWindowShows(!isModalWindowShows)
-  }
+const BurgerConstructor = () => {
+  
+  const dispatch = useDispatch();
 
-  BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(ingredientTypes.isRequired).isRequired,
+    const data = useSelector(
+      (state) => state.burgerIngredients.burgerIngredientsData
+    );
+   
+   const bunsInitialState = data.find((ingredient) => ingredient.type === "bun");
+   //const bunsInitialState = React.useMemo(() => data.find((ingredient) => ingredient.type === "bun"), [data] ) 
+   
+   React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState])
+   
+  //  React.useCallback(
+  //   () => {
+  //     addIngredient(bunsInitialState, dispatch)
+  //   },
+  //   [bunsInitialState],
+  // );
+    
+  
+  
+   const buns = useSelector((state) => state.burgerConstructor.buns)
+  
+   
+   
+   
+  
+  
+  const nonBunIngredients = useSelector((state) => state.burgerConstructor.nonBunIngredients)
+  
+  const [{}, dragRef] = useDrop({
+    accept: 'ingredient',
+    drop(bunsInitialState) {
+      addIngredient(bunsInitialState, dispatch)
+      //memoizedCallback(bunsInitialState, dispatch)
+        }
+    })
+  
+
+
+    const getFinalPrice = () => {
+      const sum = [...nonBunIngredients, buns];
+      return sum.reduce((acc, curr) => curr.type === 'bun' ? acc  + curr.price * 2 : acc + curr.price, 0);
   };
 
+  const orderNumber = useSelector((state) => state.orderDetails.orderNumber)
+ 
 
-
-
+  const isShowing = useSelector((state) => state.orderDetails.isShowing)
+   
+ 
+   const showModalWindow = () => {
+    
+     if (buns!== null  && nonBunIngredients.length > 0 ) {
+      dispatch(getOrderNumber(buns, nonBunIngredients))
+     }
+     
+   };
+  const hideModalWindow= () => {
+    dispatch(hideOrderDetailsDataAC())
+  };
 
   return (
-    <div className={bCStyles.burgerConstructorContainer}>
-      <div className={bCStyles.burgerConstructorItemsContainer}>
+    <div className={bCStyles.burgerConstructorContainer} ref={dragRef}>
+      <div
+        className={`${bCStyles.burgerConstructorItemsContainer} + ${bCStyles.customScroll}`}
+      >
         <div className={bCStyles.burgerConstructorItemContainer}>
           <div className={bCStyles.burgerDragIconContainerForBuns}>
             <DragIcon type="primary" />
           </div>
           <div>
-        
-                <ConstructorElement
-                type="top"
-                isLocked={true}
-                text={bun.name + `(верх)`}
-                price={bun.price}
-                thumbnail={bun.image}
-              />
-            
-            
+            <ConstructorElement
+              type="top"
+              isLocked={true}
+              text={buns.name + `(верх)`}
+              price={buns.price}
+              thumbnail={buns.image}
+            />
           </div>
         </div>
-
-        <div className={bCStyles.burgerConstructorItemContainer}>
-          <div className={bCStyles.burgerDragIconContainer}>
-            <DragIcon type="primary" />
-          </div>
-            <div>
-              {nonBunIngredientsMock.map((ingredient) => (
-                <ConstructorElement
-                  text={ingredient.name}
-                  price={ingredient.price}
-                  thumbnail={ingredient.image}
-                  key={ingredient._id}
-              />
-              ))}
-            </div>
-          
-        </div>
+        <BurgerConstructorElementContainer />
 
         <div className={bCStyles.burgerConstructorItemContainer}>
           <div className={bCStyles.burgerDragIconContainerForBuns}>
@@ -78,9 +110,9 @@ const BurgerConstructor = ({data}) => {
             <ConstructorElement
               type="bottom"
               isLocked={true}
-              text={bun.name + `(низ)`}
-              price={bun.price}
-              thumbnail={bun.image}
+              text={buns.name + `(низ)`}
+              price={buns.price}
+              thumbnail={buns.image}
             />
           </div>
         </div>
@@ -88,15 +120,20 @@ const BurgerConstructor = ({data}) => {
 
       <div className={bCStyles.burgerConstructorPayInfo}>
         <div className={bCStyles.burgerConstructorFinalPrice}>
-          <p className="text text_type_digits-medium">5510</p>
+          <p className="text text_type_digits-medium">{getFinalPrice()}</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button onClick={ModalWindowToggler} htmlType="button" type="primary" size="medium">
+        <Button
+          onClick={showModalWindow}
+          htmlType="button"
+          type="primary"
+          size="medium"
+        >
           Оформить заказ
         </Button>
-        {isModalWindowShows && (
-          <ModalWindow onClose={ModalWindowToggler} >
-            <OrderDetails onClose={ModalWindowToggler} />
+        {isShowing && (
+          <ModalWindow onClose={hideModalWindow}>
+            <OrderDetails orderNumber={orderNumber} />
           </ModalWindow>
         )}
       </div>

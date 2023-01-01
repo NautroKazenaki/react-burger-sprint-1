@@ -10,7 +10,7 @@ const OrderDetails = (props) => {
   return (
     <>
         <div className={ODStyles.orderNumberContainer}>
-          <p className="text text_type_digits-large"> 034536</p>
+          <p className="text text_type_digits-large"> {props.orderNumber}</p>
         </div>
         <div className={ODStyles.idOrderContainer}>
           <p className="text text_type_main-small">Идентификатор заказа</p>
@@ -34,6 +34,6 @@ const OrderDetails = (props) => {
   );
 };
 OrderDetails.propTypes = {
-  props: PropTypes.func
+  orderNumber: PropTypes.number.isRequired,
 }
 export default OrderDetails;

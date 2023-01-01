@@ -6,6 +6,8 @@
     top: 128px;
 }
 .burgerConstructorItemsContainer{
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -17,22 +19,29 @@
     height: 656px;
     left: 16px;
     top: 100px;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
     
 }
 .burgerConstructorItemContainer{
-    width: 568px;
-    height: 80px;
+    width: 550px;
     display: flex;
     order: 0;
     flex-grow: 0;
 }
 .burgerDragIconContainer{
     padding: 15px;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 .burgerDragIconContainerForBuns{
     composes:burgerDragIconContainer;
     visibility: hidden; 
+}
+.constructorElementContainer{
+    display: flex;
+    margin-top: 10px;
+    width:100%;
+    
 }
 
 .burgerConstructorPayInfo{
@@ -59,4 +68,21 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+}
+@-moz-document url-prefix() {
+	:root {
+		scrollbar-color: #8585AD #2F2F37;
+	}
+}
+
+.customScroll::-webkit-scrollbar {
+	width: 12px;
+}
+.customScroll::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.customScroll::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #2F2F37;
+	border-radius: 6px;
 }
