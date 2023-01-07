@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { ingredientTypes } from "../../utils/PropTypes";
 import { useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
+import {useLocation, Link} from 'react-router-dom'
 
 const MainIngredient = (props) => {
   const nonBunIngredients = useSelector(
@@ -17,6 +18,8 @@ const MainIngredient = (props) => {
   const mainIngredients = React.useMemo(() =>
     nonBunIngredients.filter((ingredient) => ingredient.type === "main")
   );
+  const location = useLocation();
+  const ingredientId = props.mains['_id'];
 
   const counter = React.useMemo(() => {
     let count = 0;
@@ -43,29 +46,31 @@ const MainIngredient = (props) => {
   });
 
   return (
-    <div
-      className={bIStyles.burgerIngredientsContentContainer}
-      onClick={handleClick}
-      ref={dragRef}
-    >
-      <div className={bIStyles.burgerIngredientsCounter}>
-        {counter !== 0 && <Counter count={counter} size="default" />}
-      </div>
-      <img
-        className={bIStyles.burgerIngredientsImg}
-        src={props.mains.image}
-        alt="здесь будет картинка"
-      />
-      <div className={bIStyles.burgerIngredientsPrice}>
-        <p className="text text_type_digits-default">{props.mains.price}</p>
-        <div>
-          <CurrencyIcon type="primary" />
+    <Link to={{pathname: `/ingredients/${ingredientId}`, state: { background: location }, }} key={ingredientId} className={bIStyles.links}>
+      <div
+        className={bIStyles.burgerIngredientsContentContainer}
+        onClick={handleClick}
+        ref={dragRef}
+      >
+        <div className={bIStyles.burgerIngredientsCounter}>
+          {counter !== 0 && <Counter count={counter} size="default" />}
+        </div>
+        <img
+          className={bIStyles.burgerIngredientsImg}
+          src={props.mains.image}
+          alt="здесь будет картинка"
+        />
+        <div className={bIStyles.burgerIngredientsPrice}>
+          <p className="text text_type_digits-default">{props.mains.price}</p>
+          <div>
+            <CurrencyIcon type="primary" />
+          </div>
+        </div>
+        <div className={bIStyles.burgerIngredientsDescription1}>
+          <p className="text text_type_main-small">{props.mains.name}</p>
         </div>
       </div>
-      <div className={bIStyles.burgerIngredientsDescription1}>
-        <p className="text text_type_main-small">{props.mains.name}</p>
-      </div>
-    </div>
+    </Link>
   );
 };
 

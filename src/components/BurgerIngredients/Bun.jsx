@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { ingredientTypes } from "../../utils/PropTypes";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
+import {useLocation, Link} from 'react-router-dom'
 
 const Bun = (props) => {
   
@@ -28,7 +29,8 @@ const Bun = (props) => {
     return count;
   }, [currentBun]);
   
-  
+  const location = useLocation();
+  const ingredientId = props.buns['_id'];
  
 
   const handleClick = (e) => {
@@ -45,31 +47,34 @@ const Bun = (props) => {
   });
  
   return (
-    <div
-      className={bIStyles.burgerIngredientsContentContainer}
-      onClick={handleClick}
-      ref={dragRef}
-    >
-      <div className={bIStyles.burgerIngredientsCounter } > 
-      {counter !== 0 && ( <Counter count={counter} test size="default"  />)}
-      
+    <Link to={{pathname: `/ingredients/${ingredientId}`, state: { background: location }, }} key={ingredientId} className={bIStyles.links}>
+        <div
+        className={bIStyles.burgerIngredientsContentContainer}
+        onClick={handleClick}
+        ref={dragRef}
+      >
+        <div className={bIStyles.burgerIngredientsCounter } > 
+        {counter !== 0 && ( <Counter count={counter} test size="default"  />)}
         
-      </div>
-      <img
-        className={bIStyles.burgerIngredientsImg}
-        src={props.buns.image}
-        alt="здесь будет картинка"
-      />
-      <div className={bIStyles.burgerIngredientsPrice}>
-        <p className="text text_type_digits-default">{props.buns.price}</p>
-        <div>
-          <CurrencyIcon type="primary" />
+          
+        </div>
+        <img
+          className={bIStyles.burgerIngredientsImg}
+          src={props.buns.image}
+          alt="здесь будет картинка"
+        />
+        <div className={bIStyles.burgerIngredientsPrice}>
+          <p className="text text_type_digits-default">{props.buns.price}</p>
+          <div>
+            <CurrencyIcon type="primary" />
+          </div>
+        </div>
+        <div className={bIStyles.burgerIngredientsDescription1}>
+          <p className="text text_type_main-small">{props.buns.name}</p>
         </div>
       </div>
-      <div className={bIStyles.burgerIngredientsDescription1}>
-        <p className="text text_type_main-small">{props.buns.name}</p>
-      </div>
-    </div>
+    </Link>
+    
   );
 };
 

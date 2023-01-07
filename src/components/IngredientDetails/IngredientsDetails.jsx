@@ -8,8 +8,10 @@ import {useSelector} from 'react-redux'
 
 
 
+
 const IngredientsDetails = () => {
 const clickedIngredient = useSelector((state) => state.burgerElement.clickedIngredient)
+
     
     return (
         <>

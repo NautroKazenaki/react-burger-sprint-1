@@ -60,12 +60,20 @@
 .additionalContainer{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 16px;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+    gap: 8px;
+    
+    width: 480px;
+    height: 24px;
+    
+    
+    /* Inside auto layout */
     
     flex: none;
-    order: 3;
+    order: 2;
+    align-self: stretch;
     flex-grow: 0;
 }
 .additionalContainer a {

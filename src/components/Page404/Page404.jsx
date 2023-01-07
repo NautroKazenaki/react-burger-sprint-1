@@ -1,5 +1,6 @@
 import React from 'react'
 import P4Styles from './Page404.module.css'
+import {Link} from 'react-router-dom'
 const Page404 = () => {
     return (
         <div className={P4Styles.mainContainer}>
@@ -12,8 +13,8 @@ const Page404 = () => {
                     <p className="text text_type_main-large"> 404</p>
                     <p className="text text_type_main-medium"> PAGE NOT FOUND</p>
                     <p className="text text_type_main-default"> BACK TO CONSTRUCTOR?</p>
-                    <p className="text text_type_main-default"> <a href="/"> YES </a></p>
-                    <p className="text text_type_main-default"> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=3s">NO</a></p>
+                    <p className="text text_type_main-default"> <Link to={"/"}> YES </Link></p>
+                    <p className="text text_type_main-default"> <Link to={"https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=3s"}>NO</Link></p>
                 </div>
             </div>
         </div>
