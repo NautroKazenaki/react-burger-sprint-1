@@ -9,8 +9,8 @@ const ProfilePage = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const { isAuth, profileInfo, isLoading } = useSelector((state) => state.userData);
+   
+    const { isAuth, isUser, profileInfo, isLoading } = useSelector((state) => state.userData);
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -41,14 +41,14 @@ const ProfilePage = () => {
 
     return (
         <>
-            {!isAuth && (
+            {!isAuth && !isUser && (
                 <Redirect to='/login' />
             )}
             <div className={PPStyles.navbar}>
                 <NavLink to='/profile' className={PPStyles.frame1} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium" > Профиль</p>
                 </NavLink> 
-                <NavLink to='/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
+                <NavLink to='/orderList' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium"> История заказов</p>
                 </NavLink> 
                 <div className={PPStyles.frame3} onClick={logOut} >
@@ -63,9 +63,14 @@ const ProfilePage = () => {
                     <Input placeholder={"Имя"} icon={"EditIcon"} value={username} onChange={(e) => setUsername(e.target.value)}/>
                     <EmailInput placeholder={"Логин"} icon={"EditIcon"} value={email} onChange={(e) => setEmail(e.target.value)}/>
                     <PasswordInput placeholder={"Пароль"} icon={"EditIcon"} value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <Button  htmlType="submit" disabled={(username.length > 0 && email.length > 0) ? false : true}>
+                    {/* <Button  htmlType="submit" disabled={(username.length > 0 && email.length > 0) ? false : true}>
+                        Save
+                    </Button> */}
+                    <Button  htmlType="submit" disabled={username.length === 0 || email.length === 0}>
                         Save
                     </Button>
+                    
+                   
                     <Button htmlType="button" disabled={(username.length > 0 || email.length > 0) ? false : true}  onClick={setPrevState}>
                         Cancel
                     </Button>

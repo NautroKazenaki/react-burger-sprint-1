@@ -34,7 +34,7 @@ const BurgerConstructor = () => {
    const buns = useSelector((state) => state.burgerConstructor.buns)
   
   const nonBunIngredients = useSelector((state) => state.burgerConstructor.nonBunIngredients)
-  const {isAuth} = useSelector((state) => state.userData )
+  const {isAuth, isUser} = useSelector((state) => state.userData )
   const history = useHistory();
   const [{}, dragRef] = useDrop({
     accept: 'ingredient',
@@ -58,10 +58,10 @@ const BurgerConstructor = () => {
    
  
    const showModalWindow = () => {
-     if (!isAuth) {
+     if (!isAuth || !isUser) {
       history.push('/login');
      }
-     if (buns!== null  && nonBunIngredients.length > 0 ) {
+     if (buns!== null  && nonBunIngredients.length > 0 && isAuth ) {
       dispatch(getOrderNumber(buns, nonBunIngredients))
      }
      

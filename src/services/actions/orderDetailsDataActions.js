@@ -1,4 +1,5 @@
 import {BASE_URL, checkResponse} from '../../api/api'
+import { getCookie } from "../../utils/Cookie";
 
 export const GET_ORDER_NUMBER_DATA_REQUEST = "GET_ORDER_NUMBER_DATA_REQUEST"
 export const GET_ORDER_NUMBER_DATA_SUCCESS = "GET_ORDER_NUMBER_DATA_SUCCESS"
@@ -38,7 +39,8 @@ export const getOrderNumber = (bun, nonBunIngredients ) => (dispatch) => {
     fetch(`${BASE_URL}/orders`, {
         method: 'POST',
         headers: {
-            'Content-Type': "application/json;charset=utf-8"
+            'Content-Type': "application/json;charset=utf-8",
+            authorization: getCookie("token"),
         },
         body: JSON.stringify({
             ingredients: burgerIngredientsId

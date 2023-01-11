@@ -9,6 +9,7 @@ const initialState = {
 const burgerElementDataReducer = (state = initialState, action) => {
     switch(action.type) {
         case SHOW_BURGER_ELEMENT_DATA: {
+            
             return {
                 ...state,
                 isShowing: true,

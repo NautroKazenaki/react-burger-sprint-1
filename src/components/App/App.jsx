@@ -20,6 +20,7 @@ import {isAuthChecker} from '../../services/actions/userActions'
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import ModalWindow from "../Modal/ModalWindow";
 import IngredientsDetails from "../IngredientDetails/IngredientsDetails";
+import OrderList from "../OrderList/OrderList";
 
 
 
@@ -56,7 +57,7 @@ const App = () => {
       {hasError && (
         <Error />
       )}
-      <Router >
+      {/* <Router > */}
         <Switch location={background || location}>
           <Route path="/register">
             <RegistrationPage />
@@ -75,8 +76,11 @@ const App = () => {
           </ProtectedRoute>
           <Route path='/ingredients/:ingredientId' exact>
             <IngredientsDetails />
+            
           </Route>
-          
+          <ProtectedRoute path ="/orderList">
+            <OrderList />
+          </ProtectedRoute>
           
           <Route path="/" exact={true}>
             {!isLoading && !hasError & burgerIngredientsData.length > 0 && (
@@ -102,7 +106,7 @@ const App = () => {
             <Page404 />
           </Route>
         </Switch>
-      </Router>
+      {/* </Router> */}
      
       
     </div>

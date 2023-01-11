@@ -5,7 +5,7 @@ import {Link, Redirect}  from 'react-router-dom'
 import {forgotPassword} from '../../services/actions/userActions'
 import { useDispatch, useSelector } from 'react-redux'
 const ForgotPasswordPage = () => {
-    const {isUser} = useSelector((state) => state.userData)
+    const {isUser, isAuth} = useSelector((state) => state.userData)
     const dispatch = useDispatch()
     const [email, setEmail] = useState('')
 
@@ -15,6 +15,9 @@ const ForgotPasswordPage = () => {
     }
     return (
         <div className={FPPStyles.mainContent}>
+            {isAuth && (
+                <Redirect to='/' />
+            )}
             {isUser && (
                 <Redirect to='/reset-password' />
             )}

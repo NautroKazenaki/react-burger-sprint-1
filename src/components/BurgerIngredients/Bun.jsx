@@ -20,9 +20,12 @@ const Bun = (props) => {
     
      
        {
-        if(currentBun._id === props.buns._id) {
-          return count = 2;
-      }
+         if (currentBun !== null) {
+          if(currentBun._id === props.buns._id) {
+            return count = 2;
+        }
+         }
+       
       }
     
     
