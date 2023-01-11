@@ -16,7 +16,7 @@ import { addIngredient } from "../../services/actions/burgerConstructorDataActio
 import {getOrderNumber, hideOrderDetailsDataAC} from '../../services/actions/orderDetailsDataActions'
 import BurgerConstructorElementContainer from "./BurgerConstructorElementContainer";
 import { useDrop } from "react-dnd";
-
+import {useHistory} from 'react-router-dom'
 
 const BurgerConstructor = () => {
   
@@ -30,25 +30,12 @@ const BurgerConstructor = () => {
    //const bunsInitialState = React.useMemo(() => data.find((ingredient) => ingredient.type === "bun"), [data] ) 
    
    React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState])
-   
-  //  React.useCallback(
-  //   () => {
-  //     addIngredient(bunsInitialState, dispatch)
-  //   },
-  //   [bunsInitialState],
-  // );
-    
-  
   
    const buns = useSelector((state) => state.burgerConstructor.buns)
   
-   
-   
-   
-  
-  
   const nonBunIngredients = useSelector((state) => state.burgerConstructor.nonBunIngredients)
-  
+  const {isAuth, isUser} = useSelector((state) => state.userData )
+  const history = useHistory();
   const [{}, dragRef] = useDrop({
     accept: 'ingredient',
     drop(bunsInitialState) {
@@ -71,8 +58,10 @@ const BurgerConstructor = () => {
    
  
    const showModalWindow = () => {
-    
-     if (buns!== null  && nonBunIngredients.length > 0 ) {
+     if (!isAuth || !isUser) {
+      history.push('/login');
+     }
+     if (buns!== null  && nonBunIngredients.length > 0 && isAuth ) {
       dispatch(getOrderNumber(buns, nonBunIngredients))
      }
      
@@ -97,6 +86,7 @@ const BurgerConstructor = () => {
               text={buns.name + `(верх)`}
               price={buns.price}
               thumbnail={buns.image}
+              
             />
           </div>
         </div>

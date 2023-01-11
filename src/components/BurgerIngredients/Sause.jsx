@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { ingredientTypes } from "../../utils/PropTypes";
 import { useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
+import {useLocation, Link} from 'react-router-dom'
 
 const Sause = (props) => {
   const nonBunIngredients = useSelector(
@@ -28,6 +29,8 @@ const Sause = (props) => {
     return count
 }, [nonBunIngredients, buns])
 
+const location = useLocation();
+const ingredientId = props.sauses['_id'];
 
   const handleClick = () => {
     props.onOpen(props.sauses);
@@ -42,6 +45,7 @@ const Sause = (props) => {
 })
 
   return (
+    <Link to={{pathname: `/ingredients/${ingredientId}`, state: { background: location }, }} key={ingredientId} className={bIStyles.links}>
     <div
       className={bIStyles.burgerIngredientsItemContainer}
       onClick={handleClick}
@@ -70,6 +74,7 @@ const Sause = (props) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 
