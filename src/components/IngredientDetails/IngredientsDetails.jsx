@@ -15,14 +15,8 @@ const IngredientsDetails = () => {
   const data = useSelector(
     (state) => state.burgerIngredients.burgerIngredientsData
   );
-   let ingredient = data.find(item => item._id === ingredientId)
-   ingredient = clickedIngredient;
-
-  if (ingredient === null) {
-    ingredient = data.find((item) => item._id === ingredientId);
-    
-  }
-
+  
+  const ingredient = clickedIngredient || data.find(item => item._id === ingredientId)
   return (
     <>
       {ingredient && (

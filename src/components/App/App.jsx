@@ -82,7 +82,7 @@ const App = () => {
             <OrderList />
           </ProtectedRoute>
           
-          <Route path="/" exact>
+          <Route path="/" >
             {!isLoading && !hasError & burgerIngredientsData.length > 0 && (
               <DndProvider backend={HTML5Backend}>
                 <BurgerIngredients />
@@ -94,6 +94,7 @@ const App = () => {
           { background && burgerIngredientsData.length > 0 && (
         <Route
           path='/ingredients/:ingredientId'
+          exact
           children={
             <ModalWindow onClose={hideModalWindow} title="Детали ингредиента">
               <IngredientsDetails />
