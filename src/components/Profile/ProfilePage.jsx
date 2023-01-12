@@ -41,7 +41,9 @@ const ProfilePage = () => {
     }
 const ref = React.useRef(null)
 
-
+const isInputsValueChanged =
+    username !== profileInfo.user.name ||
+    email !== profileInfo.user.email
     return (
         <>
             {!isAuth && !isUser && (
@@ -67,14 +69,17 @@ const ref = React.useRef(null)
                     <EmailInput placeholder={"Логин"} icon={"EditIcon"} value={email} onChange={(e) => setEmail(e.target.value)} ref={ref}/>
                     <PasswordInput placeholder={"Пароль"} icon={"EditIcon"} value={password} onChange={(e) => setPassword(e.target.value)}/>
                     
-                    <Button  htmlType="submit" disabled={username.length === 0 || email.length === 0} hidden={ username === profileInfo.user.name ? true : false}>
+                    {isInputsValueChanged && <div><Button  htmlType="submit" disabled={username.length === 0 || email.length === 0} style={{marginRight: "50px"}} >
                         Save
                     </Button>
+                     
+                    
                     
                    
-                    <Button htmlType="button" disabled={(username.length > 0 || email.length > 0) ? false : true}  onClick={setPrevState} hidden={ username === profileInfo.user.name ? true : false}>
+                    <Button htmlType="button" disabled={(username.length > 0 || email.length > 0) ? false : true}  onClick={setPrevState}>
                         Cancel
-                    </Button>
+                    </Button></div>}
+                    
                 </div>
             </form>
         </>

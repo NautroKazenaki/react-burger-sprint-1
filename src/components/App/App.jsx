@@ -74,7 +74,7 @@ const App = () => {
           <ProtectedRoute path ="/profile" exact>
             <ProfilePage />
           </ProtectedRoute>
-          <Route path='/ingredients/:ingredientId' exact>
+          <Route path='/ingredients/:ingredientId'  exact>
             <IngredientsDetails />
             
           </Route>
