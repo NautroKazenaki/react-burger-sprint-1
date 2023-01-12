@@ -34,6 +34,7 @@
 .frame3{
     composes: frame1;
     order: 2;
+    cursor: pointer;
 }
 .caption{
     position: absolute;

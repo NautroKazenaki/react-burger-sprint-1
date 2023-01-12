@@ -20,7 +20,7 @@ const MainIngredient = (props) => {
   );
   const location = useLocation();
   const ingredientId = props.mains['_id'];
-
+  
   const counter = React.useMemo(() => {
     let count = 0;
 

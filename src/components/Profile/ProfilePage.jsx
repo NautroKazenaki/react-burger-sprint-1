@@ -11,6 +11,7 @@ const ProfilePage = () => {
     const [password, setPassword] = useState('');
    
     const { isAuth, isUser, profileInfo, isLoading } = useSelector((state) => state.userData);
+    console.log(profileInfo)
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -38,6 +39,8 @@ const ProfilePage = () => {
         e.preventDefault();
         logout(dispatch);
     }
+const ref = React.useRef(null)
+
 
     return (
         <>
@@ -48,7 +51,7 @@ const ProfilePage = () => {
                 <NavLink to='/profile' className={PPStyles.frame1} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium" > Профиль</p>
                 </NavLink> 
-                <NavLink to='/orderList' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
+                <NavLink to='/profile/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium"> История заказов</p>
                 </NavLink> 
                 <div className={PPStyles.frame3} onClick={logOut} >
@@ -60,18 +63,16 @@ const ProfilePage = () => {
             </div>
             <form onSubmit={updateInfo}>
                 <div className={PPStyles.editProfileContainer}>
-                    <Input placeholder={"Имя"} icon={"EditIcon"} value={username} onChange={(e) => setUsername(e.target.value)}/>
-                    <EmailInput placeholder={"Логин"} icon={"EditIcon"} value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <Input placeholder={"Имя"} icon={"EditIcon"} value={username} onChange={(e) => setUsername(e.target.value)} ref={ref}/>
+                    <EmailInput placeholder={"Логин"} icon={"EditIcon"} value={email} onChange={(e) => setEmail(e.target.value)} ref={ref}/>
                     <PasswordInput placeholder={"Пароль"} icon={"EditIcon"} value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    {/* <Button  htmlType="submit" disabled={(username.length > 0 && email.length > 0) ? false : true}>
-                        Save
-                    </Button> */}
-                    <Button  htmlType="submit" disabled={username.length === 0 || email.length === 0}>
+                    
+                    <Button  htmlType="submit" disabled={username.length === 0 || email.length === 0} hidden={ username === profileInfo.user.name ? true : false}>
                         Save
                     </Button>
                     
                    
-                    <Button htmlType="button" disabled={(username.length > 0 || email.length > 0) ? false : true}  onClick={setPrevState}>
+                    <Button htmlType="button" disabled={(username.length > 0 || email.length > 0) ? false : true}  onClick={setPrevState} hidden={ username === profileInfo.user.name ? true : false}>
                         Cancel
                     </Button>
                 </div>

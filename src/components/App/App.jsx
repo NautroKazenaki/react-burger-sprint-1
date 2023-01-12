@@ -57,7 +57,7 @@ const App = () => {
       {hasError && (
         <Error />
       )}
-      {/* <Router > */}
+     
         <Switch location={background || location}>
           <Route path="/register">
             <RegistrationPage />
@@ -71,7 +71,7 @@ const App = () => {
           <Route path="/reset-password">
             <ResetPasswordPage />
           </Route>
-          <ProtectedRoute path ="/profile">
+          <ProtectedRoute path ="/profile" exact>
             <ProfilePage />
           </ProtectedRoute>
           <Route path='/ingredients/:ingredientId' exact>
@@ -82,7 +82,7 @@ const App = () => {
             <OrderList />
           </ProtectedRoute>
           
-          <Route path="/" exact={true}>
+          <Route path="/" exact>
             {!isLoading && !hasError & burgerIngredientsData.length > 0 && (
               <DndProvider backend={HTML5Backend}>
                 <BurgerIngredients />
@@ -106,7 +106,7 @@ const App = () => {
             <Page404 />
           </Route>
         </Switch>
-      {/* </Router> */}
+      
      
       
     </div>
