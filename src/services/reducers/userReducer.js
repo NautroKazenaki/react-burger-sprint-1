@@ -91,7 +91,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                profileInfo: action.payload
+                profileInfo: action.payload,
+                isAuth: true
             }
         }
         case SET_PROFILE_INFO_ERROR: {

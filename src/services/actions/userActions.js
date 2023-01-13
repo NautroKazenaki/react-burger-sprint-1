@@ -191,7 +191,7 @@ export const setUserInfo =  () => (dispatch) => {
     },
   })
     
-    .then(checkResponse)
+    
     
     .then((res) => {
       
