@@ -7,7 +7,7 @@ import {NavLink, Redirect} from 'react-router-dom'
 import { BASE_URL } from "../../api/api";
 import { getCookie } from '../../utils/Cookie';
 const ProfilePage = () => {
-debugger
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,14 +17,14 @@ debugger
     const dispatch = useDispatch();
     
     useEffect(() => {
-        debugger
-        // dispatch(fetchWithRefresh(`${BASE_URL}/auth/user`, {
-        //     method: "GET",
-        //     headers: {
-        //       "Content-Type": "application/json;charset=utf-8",
-        //       authorization: getCookie("token"),
-        //     },
-        //   }))
+       
+        //  dispatch(fetchWithRefresh(`${BASE_URL}/auth/user`, {
+        //      method: "GET",
+        //      headers: {
+        //        "Content-Type": "application/json;charset=utf-8",
+        //        authorization: getCookie("token"),
+        //      },
+        //    }))
          dispatch(setUserInfo())
     }, [])
 

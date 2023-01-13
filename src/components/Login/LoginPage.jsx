@@ -7,7 +7,7 @@ import { login } from '../../services/actions/userActions'
 
 const LoginPage = () => {
     
-debugger
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -17,7 +17,7 @@ debugger
     const location = useLocation();
 
     const logIn = (e) => {
-        debugger
+        
         e.preventDefault();
         dispatch(login(email, password));
     }

@@ -174,9 +174,16 @@ export const resetPassword = (password, token) => (dispatch) => {
 };
 
 export const setUserInfo =  () => (dispatch) => {
-  debugger
+  
   dispatch(setProfileInfoRequestAC());
-   fetch(`${BASE_URL}/auth/user`, {
+  //  fetch(`${BASE_URL}/auth/user`, {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json;charset=utf-8",
+  //     authorization: getCookie("token"),
+  //   },
+  // })
+  fetchWithRefresh(`${BASE_URL}/auth/user`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -197,13 +204,13 @@ export const setUserInfo =  () => (dispatch) => {
        
       
       // dispatch(isUserAuthorizedAC());
-       fetchWithRefresh(`${BASE_URL}/auth/user`, {
-         method: "GET",
-         headers: {
-           "Content-Type": "application/json;charset=utf-8",
-           authorization: getCookie("token"),
-         },
-       })
+      //  fetchWithRefresh(`${BASE_URL}/auth/user`, {
+      //    method: "GET",
+      //    headers: {
+      //      "Content-Type": "application/json;charset=utf-8",
+      //      authorization: getCookie("token"),
+      //    },
+      //  })
     });
 };
 
@@ -280,7 +287,7 @@ export const isAuthChecker= () => (dispatch) => {
 }
 
 export const refreshToken = () => {
-  debugger
+ 
   return fetch(`${BASE_URL}/auth/token`, {
     method: "POST",
     headers: {
@@ -293,7 +300,7 @@ export const refreshToken = () => {
 };
 
  export const fetchWithRefresh = async (url, options) => {
-   debugger
+   
    try {
      const res = await fetch(url, options);
      
@@ -303,19 +310,20 @@ export const refreshToken = () => {
      if (err.message === "jwt expired") {
        const refreshData = refreshToken();
        
-       // if (!refreshData.success) {
-       //   return Promise.reject(refreshData);
-        //}
+        if (!refreshData.success) {
+          return Promise.reject(refreshData);
+        }
        localStorage.setItem("token", refreshData.refreshToken);
        setCookie("token", refreshData.accessToken);
        options.headers.authorization = refreshData.accessToken;
-       const res = await fetch(`${BASE_URL}/auth/user`, {
-         method: "GET",
-         headers: {
-           "Content-Type": "application/json;charset=utf-8",
-           authorization: getCookie("token"),
-         },
-       });
+      //  const res = await fetch(`${BASE_URL}/auth/user`, {
+      //    method: "GET",
+      //    headers: {
+      //      "Content-Type": "application/json;charset=utf-8",
+      //      authorization: getCookie("token"),
+      //    },
+      //  });
+      const res = await fetch(url, options)
        return await checkResponse(res);
      } else {
        return Promise.reject(err);
