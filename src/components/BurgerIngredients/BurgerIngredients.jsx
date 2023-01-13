@@ -20,6 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TabsStyles from "./BurgerIngredientsTabs.module.css";
 import { useInView } from "react-intersection-observer";
 
+
 const BurgerIngredients = () => {
   const dispatch = useDispatch();
 
@@ -55,9 +56,10 @@ const BurgerIngredients = () => {
   const showModalWindow = (ingredient) => {
     dispatch(showBurgerElementDataAC(ingredient));
   };
-
+  
   const hideModalWindow = () => {
     dispatch(hideBurgerElementDataAC());
+    
   };
 
   return (

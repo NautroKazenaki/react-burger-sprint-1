@@ -174,6 +174,7 @@ export const resetPassword = (password, token) => (dispatch) => {
 };
 
 export const setUserInfo =  () => (dispatch) => {
+  debugger
   dispatch(setProfileInfoRequestAC());
    fetch(`${BASE_URL}/auth/user`, {
     method: "GET",
@@ -182,17 +183,27 @@ export const setUserInfo =  () => (dispatch) => {
       authorization: getCookie("token"),
     },
   })
+    
     .then(checkResponse)
     
     .then((res) => {
+      
       dispatch(setProfileInfoSuccessAC(res));
     })
+    
     .catch((err) => dispatch(setProfileInfoErrorAC(err)))
     .finally(() => {
       
-        dispatch(fetchWithRefresh())
+       
       
-      dispatch(isUserAuthorizedAC());
+      // dispatch(isUserAuthorizedAC());
+       fetchWithRefresh(`${BASE_URL}/auth/user`, {
+         method: "GET",
+         headers: {
+           "Content-Type": "application/json;charset=utf-8",
+           authorization: getCookie("token"),
+         },
+       })
     });
 };
 
@@ -214,7 +225,7 @@ export const updateUserInfo = (email, username) => (dispatch) => {
       dispatch(updateProfileInfoSuccessAC(res));
     })
     .catch((err) =>
-      dispatch(updateProfileInfoErrorAC(err)).then(dispatch(fetchWithRefresh()))
+      dispatch(updateProfileInfoErrorAC(err))
       
     );
 };
@@ -269,34 +280,64 @@ export const isAuthChecker= () => (dispatch) => {
 }
 
 export const refreshToken = () => {
+  debugger
   return fetch(`${BASE_URL}/auth/token`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify({
-      token: localStorage.getItem("refreshToken"),
+      token: localStorage.getItem("token"),
     }),
   }).then(checkResponse);
 };
 
-export const fetchWithRefresh = async (url, options) => {
-  try {
-    const res = await fetch(url, options);
-    return await checkResponse(res);
+ export const fetchWithRefresh = async (url, options) => {
+   debugger
+   try {
+     const res = await fetch(url, options);
+     
+       return  await checkResponse(res);
   } catch (err) {
-    if (err.message === "jwt expired") {
-      const refreshData = await refreshToken();
-      if (!refreshData.success) {
-        return Promise.reject(refreshData);
-      }
-      localStorage.setItem("refreshToken", refreshData.refreshToken);
-      setCookie("accessToken", refreshData.accessToken);
-      options.headers.authorization = refreshData.accessToken;
-      const res = await fetch(url, options);
-      return await checkResponse(res);
-    } else {
-      return Promise.reject(err);
-    }
+    
+     if (err.message === "jwt expired") {
+       const refreshData = refreshToken();
+       
+       // if (!refreshData.success) {
+       //   return Promise.reject(refreshData);
+        //}
+       localStorage.setItem("token", refreshData.refreshToken);
+       setCookie("token", refreshData.accessToken);
+       options.headers.authorization = refreshData.accessToken;
+       const res = await fetch(`${BASE_URL}/auth/user`, {
+         method: "GET",
+         headers: {
+           "Content-Type": "application/json;charset=utf-8",
+           authorization: getCookie("token"),
+         },
+       });
+       return await checkResponse(res);
+     } else {
+       return Promise.reject(err);
+     }
   }
-};
+ };
+
+//  if (err.message === "jwt expired") {
+//   const refreshData = refreshToken();
+  
+//   // if (!refreshData.success) {
+//   //   return Promise.reject(refreshData);
+//    //}
+//   localStorage.setItem("token", refreshData.refreshToken);
+//   setCookie("token", refreshData.accessToken);
+//   options.headers.authorization = refreshData.accessToken;
+//   const res = await fetch(`${BASE_URL}/auth/user`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json;charset=utf-8",
+//       authorization: getCookie("token"),
+//     },
+//   });
+//   return await checkResponse(res);
+// }

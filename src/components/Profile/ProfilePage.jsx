@@ -2,20 +2,30 @@ import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-de
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PPStyles from './ProfilePage.module.css'
-import {logout, setUserInfo, updateUserInfo} from '../../services/actions/userActions'
+import {logout, setUserInfo, updateUserInfo, fetchWithRefresh} from '../../services/actions/userActions'
 import {NavLink, Redirect} from 'react-router-dom'
+import { BASE_URL } from "../../api/api";
+import { getCookie } from '../../utils/Cookie';
 const ProfilePage = () => {
-
+debugger
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
    
     const { isAuth, isUser, profileInfo, isLoading } = useSelector((state) => state.userData);
-    console.log(profileInfo)
+    
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(setUserInfo())
+        debugger
+        // dispatch(fetchWithRefresh(`${BASE_URL}/auth/user`, {
+        //     method: "GET",
+        //     headers: {
+        //       "Content-Type": "application/json;charset=utf-8",
+        //       authorization: getCookie("token"),
+        //     },
+        //   }))
+         dispatch(setUserInfo())
     }, [])
 
     useEffect(() => {
@@ -42,11 +52,12 @@ const ProfilePage = () => {
 const ref = React.useRef(null)
 
 const isInputsValueChanged =
-    username !== profileInfo.user.name ||
-    email !== profileInfo.user.email
+    username !== profileInfo.user?.name ||
+    email !== profileInfo.user?.email ||
+    password !== ''
     return (
         <>
-            {!isAuth && !isUser && (
+            { !isAuth && !isUser && (
                 <Redirect to='/login' />
             )}
             <div className={PPStyles.navbar}>
@@ -69,7 +80,7 @@ const isInputsValueChanged =
                     <EmailInput placeholder={"Логин"} icon={"EditIcon"} value={email} onChange={(e) => setEmail(e.target.value)} ref={ref}/>
                     <PasswordInput placeholder={"Пароль"} icon={"EditIcon"} value={password} onChange={(e) => setPassword(e.target.value)}/>
                     
-                    {isInputsValueChanged && <div><Button  htmlType="submit" disabled={username.length === 0 || email.length === 0} style={{marginRight: "50px"}} >
+                    {isInputsValueChanged && <div className={PPStyles.buttonContainer}><Button  htmlType="submit" disabled={username.length === 0 || email.length === 0} >
                         Save
                     </Button>
                      

@@ -68,3 +68,6 @@
     color: gold;
     text-decoration: none;
 }
+.buttonContainer button{
+    margin-right: 50px;
+}

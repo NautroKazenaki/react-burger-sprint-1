@@ -37,7 +37,7 @@ const Bun = (props) => {
   
 
   const handleClick = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     props.onOpen(props.buns);
   };
 
@@ -50,7 +50,7 @@ const Bun = (props) => {
   });
  
   return (
-    <Link to={{pathname: `/ingredients/${props.buns['_id']}`, state: { background: location }, }} key={ingredientId} className={bIStyles.links}>
+    <Link to={{pathname:`/ingredients/${ingredientId}`, state: { background: location }, }} key={ingredientId} className={bIStyles.links}>
     {/* <Link to={{pathname: `/ingredients/${ingredientId}`, state: { background: location }, }} key={ingredientId} className={bIStyles.links}> */}
         <div
         className={bIStyles.burgerIngredientsContentContainer}
