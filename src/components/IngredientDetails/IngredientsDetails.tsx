@@ -3,20 +3,24 @@ import IDStyles from "./IngredientsDetails.module.css";
 
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
+import {TIngredient} from '../../utils/Types'
 
 const IngredientsDetails = () => {
 
-  const { ingredientId } = useParams();
+  interface IIngredientDetailsParams{
+    ingredientId: string;
+}
+
+  const { ingredientId } = useParams<IIngredientDetailsParams>();
   const clickedIngredient = useSelector(
-    (state) => state.burgerElement.clickedIngredient
+    (state:any) => state.burgerElement.clickedIngredient
   );
   
   const data = useSelector(
-    (state) => state.burgerIngredients.burgerIngredientsData
+    (state:any) => state.burgerIngredients.burgerIngredientsData
   );
   
-  const ingredient = clickedIngredient || data.find(item => item._id === ingredientId)
+  const ingredient = clickedIngredient || data.find((item: TIngredient) => item._id === ingredientId)
   return (
     <>
       {ingredient && (

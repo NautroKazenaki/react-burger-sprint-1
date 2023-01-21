@@ -7,11 +7,15 @@ import {
   changeIngredientPositionAC,
   deleteIngredientAC,
 } from "../../services/actions/burgerConstructorDataActions";
-import React, { useRef } from "react";
+import React, { ReactElement, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
-
-const BurgerConstructorElement = ({ ingredient, index }) => {
+import {TIngredient} from '../../utils/Types'
+type TBurgerConstructorElementProps = {
+  ingredient: TIngredient,
+  index: number,
+}
+const BurgerConstructorElement = ({ ingredient, index }: TBurgerConstructorElementProps) => {
   const dispatch = useDispatch();
 
   const deleteIngredient = () => {
@@ -36,18 +40,19 @@ const BurgerConstructorElement = ({ ingredient, index }) => {
     },
     hover: function (ingredient, monitor) {
      
-      
+      //@ts-ignore
        const dragIndex = ingredient.index;
        const hoverIndex = index;
        if (dragIndex === hoverIndex) {
         return;
     }
+    //@ts-ignore
     const hoverBoundingRect = ref.current?.getBoundingClientRect();
 
     const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
     const clientOffset = monitor.getClientOffset();
-
+    //@ts-ignore
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
@@ -57,6 +62,7 @@ const BurgerConstructorElement = ({ ingredient, index }) => {
         return;
     } 
     dispatch(changeIngredientPositionAC(dragIndex, hoverIndex));
+    //@ts-ignore
      ingredient.index = hoverIndex;
     },
    }
@@ -69,6 +75,7 @@ const BurgerConstructorElement = ({ ingredient, index }) => {
 
   return (
     <div className={bCStyles.burgerConstructorItemContainer} style={{opacity}} >
+      {/* @ts-ignore */}
       <div className={bCStyles.constructorElementContainer} ref={dragDropRef}>
         <div className={bCStyles.burgerDragIconContainer}>
           <DragIcon type="primary" />
@@ -78,7 +85,7 @@ const BurgerConstructorElement = ({ ingredient, index }) => {
           price={ingredient.price}
           thumbnail={ingredient.image}
           handleClose={deleteIngredient}
-          index={index}
+          // index={index}
         />
       </div>
     </div>

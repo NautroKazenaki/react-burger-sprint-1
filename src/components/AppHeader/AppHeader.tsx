@@ -24,7 +24,7 @@ const AppHeader = () => {
       </NavLink>
 
       <NavLink to="/orderList" className={headerStyles.headerOrderListLinkContainer} activeClassName={headerStyles.active}>
-        <ListIcon type={isOrderList ? 'primary' : "secondary"} className={headerStyles.headerLinkIcon} />
+        <ListIcon type={isOrderList ? 'primary' : "secondary"} />
         <p className={headerStyles.headerText} >Лента Заказов</p>
       </NavLink>
 
@@ -33,7 +33,7 @@ const AppHeader = () => {
       </div>
 
       <NavLink to="/profile" className={headerStyles.headerProfileLinkContainer} activeClassName={headerStyles.active}>
-        <ProfileIcon type={isProfile ? 'primary' : "secondary"}className={headerStyles.headerLinkIcon} />
+        <ProfileIcon type={isProfile ? 'primary' : "secondary"} />
         <p className={headerStyles.headerText}>Личный кабинет</p>
       </NavLink>
     </div>

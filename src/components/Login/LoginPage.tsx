@@ -5,20 +5,25 @@ import {Link, useLocation, Redirect} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../services/actions/userActions'
 
+type TLocation = {
+    from: Location
+  }
+
 const LoginPage = () => {
     
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { isAuth } = useSelector((state) => state.userData)
+    const { isAuth } = useSelector((state:any) => state.userData)
     const dispatch = useDispatch();
 
-    const location = useLocation();
+    const location = useLocation<TLocation>();
 
-    const logIn = (e) => {
+    const logIn = (e:React.FormEvent<HTMLFormElement>) => {
         
         e.preventDefault();
+        //@ts-ignore
         dispatch(login(email, password));
     }
 

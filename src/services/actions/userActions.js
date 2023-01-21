@@ -1,5 +1,5 @@
-import { checkResponse } from "../../api/api";
-import { BASE_URL } from "../../api/api";
+import { checkResponse } from "../../api/api.ts";
+import { BASE_URL } from "../../api/api.ts";
 import { deleteCookie, getCookie, setCookie } from "../../utils/Cookie";
 //Forgot Password block
 export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";

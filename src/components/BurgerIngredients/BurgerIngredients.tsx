@@ -19,23 +19,23 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import TabsStyles from "./BurgerIngredientsTabs.module.css";
 import { useInView } from "react-intersection-observer";
-
+import {TIngredient} from '../../utils/Types'
 
 const BurgerIngredients = () => {
   const dispatch = useDispatch();
 
   const data = useSelector(
-    (state) => state.burgerIngredients.burgerIngredientsData
+    (state:any) => state.burgerIngredients.burgerIngredientsData
   );
   const clickedIngredient = useSelector(
-    (state) => state.burgerElement.clickedIngredient
+    (state:any) => state.burgerElement.clickedIngredient
   );
-  const isShowing = useSelector((state) => state.burgerElement.isShowing);
+  const isShowing = useSelector((state:any) => state.burgerElement.isShowing);
 
-  const buns = React.useMemo(() =>  data.filter((ingredient) => ingredient.type === "bun"));
+  const buns = React.useMemo(() =>  data.filter((ingredient:TIngredient) => ingredient.type === "bun"),[]);
  
-  const sauses = React.useMemo(() => data.filter((ingredient) => ingredient.type === "sauce"));
-  const mains = React.useMemo(() => data.filter((ingredient) => ingredient.type === "main"));
+  const sauses = React.useMemo(() => data.filter((ingredient:TIngredient) => ingredient.type === "sauce"),[]);
+  const mains = React.useMemo(() => data.filter((ingredient:TIngredient) => ingredient.type === "main"),[]);
 
   const [current, setCurrent] = React.useState("one");
 
@@ -53,7 +53,7 @@ const BurgerIngredients = () => {
     }
   }, [inViewBuns, inViewSauses, inViewMains]);
 
-  const showModalWindow = (ingredient) => {
+  const showModalWindow = (ingredient:TIngredient) => {
     dispatch(showBurgerElementDataAC(ingredient));
   };
   
@@ -98,7 +98,7 @@ const BurgerIngredients = () => {
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
           {/* <div className={bIStyles.burgerIngredientsCounter}> */}
-            {buns.map((bun) => (
+            {buns.map((bun:TIngredient) => (
               <Bun buns={bun} key={bun._id} onOpen={showModalWindow} />
             ))}
           {/* </div> */}
@@ -111,7 +111,7 @@ const BurgerIngredients = () => {
           <p className="text text_type_main-medium"> Соусы </p>
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
-          {sauses.map((sause) => (
+          {sauses.map((sause:TIngredient) => (
             <Sause sauses={sause} key={sause._id} onOpen={showModalWindow} />
           ))}
         </div>
@@ -123,7 +123,7 @@ const BurgerIngredients = () => {
           <p className="text text_type_main-medium"> Начинки </p>
         </section>
         <div className={bIStyles.burgerIngredientsColumnsPuns}>
-          {mains.map((main) => (
+          {mains.map((main:TIngredient) => (
             <MainIngredient
               mains={main}
               key={main._id}
@@ -135,6 +135,7 @@ const BurgerIngredients = () => {
       {isShowing && (
         <ModalWindow onClose={hideModalWindow} title="Детали ингредиента">
           <IngredientsDetails
+          //@ts-ignore
             onClose={hideModalWindow}
             ingredient={clickedIngredient}
           />

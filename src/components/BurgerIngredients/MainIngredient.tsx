@@ -9,14 +9,18 @@ import { ingredientTypes } from "../../utils/PropTypes";
 import { useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
 import {useLocation, Link} from 'react-router-dom'
-
-const MainIngredient = (props) => {
+import {TIngredient} from '../../utils/Types'
+type TMainIngredientProps = {
+  mains: TIngredient,
+  onOpen: (mains: TIngredient) => void,
+}
+const MainIngredient = (props:TMainIngredientProps) => {
   const nonBunIngredients = useSelector(
-    (state) => state.burgerConstructor.nonBunIngredients
+    (state:any) => state.burgerConstructor.nonBunIngredients
   );
-  const buns = useSelector((state) => state.burgerConstructor.buns);
+  const buns = useSelector((state:any) => state.burgerConstructor.buns);
   const mainIngredients = React.useMemo(() =>
-    nonBunIngredients.filter((ingredient) => ingredient.type === "main")
+    nonBunIngredients.filter((ingredient:TIngredient) => ingredient.type === "main"),[]
   );
   const location = useLocation();
   const ingredientId = props.mains['_id'];
@@ -24,7 +28,7 @@ const MainIngredient = (props) => {
   const counter = React.useMemo(() => {
     let count = 0;
 
-    mainIngredients.map((element) => {
+    mainIngredients.map((element: TIngredient) => {
       if (element._id === props.mains._id) {
         ++count;
       }

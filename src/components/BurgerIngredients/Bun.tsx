@@ -2,17 +2,21 @@ import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import bIStyles from "./BurgerIngredients.module.css";
 import PropTypes from "prop-types";
 import { ingredientTypes } from "../../utils/PropTypes";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
 import {useLocation, Link} from 'react-router-dom'
-
-const Bun = (props) => {
+import {TIngredient} from '../../utils/Types'
+type TBunProps = {
+  buns: TIngredient,
+  onOpen: (buns: TIngredient) => void,
+}
+const Bun = (props: TBunProps) => {
   
-  const currentBun = useSelector((state) => state.burgerConstructor.buns)
+  const currentBun = useSelector((state:any) => state.burgerConstructor.buns)
   
   
   const counter = React.useMemo(() => {
@@ -36,7 +40,7 @@ const Bun = (props) => {
   const ingredientId = props.buns['_id'];
   
 
-  const handleClick = (e) => {
+  const handleClick = (e:SyntheticEvent) => {
     // e.preventDefault();
     props.onOpen(props.buns);
   };
@@ -58,7 +62,7 @@ const Bun = (props) => {
         ref={dragRef}
       >
         <div className={bIStyles.burgerIngredientsCounter } > 
-        {counter !== 0 && ( <Counter count={counter} test size="default"  />)}
+        {counter !== 0 && ( <Counter count={counter}  size="default"  />)}
         
           
         </div>

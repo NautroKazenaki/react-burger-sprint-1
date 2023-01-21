@@ -6,20 +6,25 @@ import { ingredientTypes } from "../../utils/PropTypes";
 import { useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
 import {useLocation, Link} from 'react-router-dom'
+import {TIngredient} from '../../utils/Types'
 
-const Sause = (props) => {
+type TSauseProps = {
+  sauses: TIngredient,
+  onOpen: (sauses: TIngredient) => void,
+}
+const Sause = (props: TSauseProps) => {
   const nonBunIngredients = useSelector(
-    (state) => state.burgerConstructor.nonBunIngredients
+    (state:any) => state.burgerConstructor.nonBunIngredients
   );
-  const buns = useSelector((state) => state.burgerConstructor.buns);
+  const buns = useSelector((state:any) => state.burgerConstructor.buns);
   const sauseIngredients = React.useMemo(() => nonBunIngredients.filter(
-    (ingredient) => ingredient.type === "sauce"
-  ));
+    (ingredient:TIngredient) => ingredient.type === "sauce"
+  ),[]);
 
   const counter = React.useMemo(() => {
     let count = 0;
    
-    sauseIngredients.map((element) => {
+    sauseIngredients.map((element:TIngredient) => {
             if(element._id === props.sauses._id) {
                 ++count;
             }   

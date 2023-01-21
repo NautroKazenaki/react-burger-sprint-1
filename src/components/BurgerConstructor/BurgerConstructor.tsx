@@ -17,25 +17,26 @@ import {getOrderNumber, hideOrderDetailsDataAC} from '../../services/actions/ord
 import BurgerConstructorElementContainer from "./BurgerConstructorElementContainer";
 import { useDrop } from "react-dnd";
 import {useHistory} from 'react-router-dom'
-
+import {TIngredient} from '../../utils/Types'
 const BurgerConstructor = () => {
   
   const dispatch = useDispatch();
 
     const data = useSelector(
-      (state) => state.burgerIngredients.burgerIngredientsData
+      (state:any) => state.burgerIngredients.burgerIngredientsData
     );
    
-   const bunsInitialState = data.find((ingredient) => ingredient.type === "bun");
+   const bunsInitialState = data.find((ingredient:TIngredient) => ingredient.type === "bun");
    //const bunsInitialState = React.useMemo(() => data.find((ingredient) => ingredient.type === "bun"), [data] ) 
    
    React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState])
   
-   const buns = useSelector((state) => state.burgerConstructor.buns)
+   const buns = useSelector((state:any) => state.burgerConstructor.buns)
   
-  const nonBunIngredients = useSelector((state) => state.burgerConstructor.nonBunIngredients)
-  const {isAuth, isUser} = useSelector((state) => state.userData )
+  const nonBunIngredients = useSelector((state:any) => state.burgerConstructor.nonBunIngredients)
+  const {isAuth, isUser} = useSelector((state:any) => state.userData )
   const history = useHistory();
+  //@ts-ignore
   const [{}, dragRef] = useDrop({
     accept: 'ingredient',
     drop(bunsInitialState) {
@@ -51,10 +52,10 @@ const BurgerConstructor = () => {
       return sum.reduce((acc, curr) => curr.type === 'bun' ? acc  + curr.price * 2 : acc + curr.price, 0);
   };
 
-  const orderNumber = useSelector((state) => state.orderDetails.orderNumber)
+  const orderNumber = useSelector((state:any) => state.orderDetails.orderNumber)
  
 
-  const isShowing = useSelector((state) => state.orderDetails.isShowing)
+  const isShowing = useSelector((state:any) => state.orderDetails.isShowing)
    
  
    const showModalWindow = () => {
@@ -62,6 +63,7 @@ const BurgerConstructor = () => {
       history.push('/login');
      }
      if (buns!== null  && nonBunIngredients.length > 0 && isAuth ) {
+       //@ts-ignore
       dispatch(getOrderNumber(buns, nonBunIngredients))
      }
      

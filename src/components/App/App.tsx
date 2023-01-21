@@ -24,25 +24,29 @@ import OrderList from "../OrderList/OrderList";
 
 
 
+type TLocation = {
+  background: Location
+};
 
 
 const App = () => {
  
-  const {burgerIngredientsData, isLoading, hasError } = useSelector((state) => state.burgerIngredients)
+  const {burgerIngredientsData, isLoading, hasError } = useSelector((state:any) => state.burgerIngredients)
   
   const dispatch = useDispatch()
   
   useEffect(() => {
+    //@ts-ignore
     dispatch(getBurgerIngredientsData())
   }, [dispatch]);
 
   useEffect( () => {
-    
+    //@ts-ignore
     dispatch(isAuthChecker())
   }, [])
  
-  const location = useLocation()
-  const background = location.state && location.state.background;
+  const location = useLocation<TLocation>()
+  const background = location.state && location.state?.background;
   const history = useHistory();
   const hideModalWindow = () => {
     history.goBack();
@@ -57,7 +61,7 @@ const App = () => {
       {hasError && (
         <Error />
       )}
-     
+      {/* @ts-ignore */}
         <Switch location={background || location}>
           <Route path="/register">
             <RegistrationPage />
@@ -71,6 +75,7 @@ const App = () => {
           <Route path="/reset-password">
             <ResetPasswordPage />
           </Route>
+          {/* @ts-ignore */}
           <ProtectedRoute path ="/profile" exact>
             <ProfilePage />
           </ProtectedRoute>
@@ -78,12 +83,13 @@ const App = () => {
             <IngredientsDetails />
             
           </Route>
+          {/* @ts-ignore */}
           <ProtectedRoute path ="/orderList">
             <OrderList />
           </ProtectedRoute>
           
           <Route path="/" exact >
-            {!isLoading && !hasError & burgerIngredientsData.length > 0 && (
+            {!isLoading && !hasError && burgerIngredientsData.length > 0 && (
               <DndProvider backend={HTML5Backend}>
                 <BurgerIngredients />
                 <BurgerConstructor />

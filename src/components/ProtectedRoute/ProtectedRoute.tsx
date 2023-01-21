@@ -1,10 +1,15 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Redirect, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export const ProtectedRoute = ({ children, ...rest }) => {
+interface Props {
+  children?: ReactNode
+  
+}
+
+export const ProtectedRoute = ({ children, ...rest }:Props) => {
     
-  const { isAuth } = useSelector((state) => state.userData);
+  const { isAuth } = useSelector((state:any) => state.userData);
 
   return (
     <Route

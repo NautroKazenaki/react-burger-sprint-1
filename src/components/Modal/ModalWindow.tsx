@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, ReactNode, SyntheticEvent } from 'react';
 import ReactDOM from 'react-dom';
 import MWStyles from './ModalWindow.module.css'
 import ODStyles from '../OrderDetails/OrderDetails.module.css'
@@ -7,16 +7,20 @@ import ModalWindowOverlay from './ModalWindowOverlay';
 import PropTypes from "prop-types";
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-const modalRoot = document.getElementById('react-modals')
+const modalRoot = document.getElementById('react-modals') as HTMLElement
   
+type TModalWindowProps = {
+    onClose: () => void,
+    children: ReactNode,
+    title?: string,
+}
 
 
-
-const ModalWindow = (props) => {
+const ModalWindow = (props:TModalWindowProps) => {
 
    
     
-    const closeModalWindow = (e) => {
+    const closeModalWindow = (e: KeyboardEvent) => {
         if(e.key === 'Escape') {
             props.onClose();
         }

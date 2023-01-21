@@ -1,12 +1,12 @@
 import {
   CheckMarkIcon,
-  CloseIcon,
+  
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import ODStyles from "./OrderDetails.module.css";
 import PropTypes from "prop-types";
-
-const OrderDetails = (props) => {
+import {TOrderNumber} from './../../utils/Types'
+const OrderDetails = (props:TOrderNumber) => {
   return (
     <>
         <div className={ODStyles.orderNumberContainer}>

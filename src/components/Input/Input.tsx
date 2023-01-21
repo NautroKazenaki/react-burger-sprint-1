@@ -1,16 +1,18 @@
 import React from 'react'
-
+//@ts-ignore
 const Input = () => {
     const [value, setValue] = React.useState('value')
-    const inputRef = React.useRef(null)
+    const inputRef = React.useRef<HTMLInputElement>(null)
     const onIconClick = () => {
-      setTimeout(() => inputRef.current.focus(), 0)
+      setTimeout(() => inputRef.current?.focus(), 0)
       alert('Icon Click Callback')
     }
     return (
       <Input
+      //@ts-ignore
         type={'text'}
         placeholder={'placeholder'}
+        //@ts-ignore
         onChange={e => setValue(e.target.value)}
         icon={'CurrencyIcon'}
         value={value}
