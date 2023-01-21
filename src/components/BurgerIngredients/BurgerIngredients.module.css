@@ -110,6 +110,10 @@
     composes: burgerIngredientsDescription1;
     flex-grow: 0;
 }
+.links{
+    text-decoration: none;
+    color: white
+}
 
 
 
