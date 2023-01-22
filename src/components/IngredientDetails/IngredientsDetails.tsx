@@ -24,7 +24,7 @@ const IngredientsDetails = () => {
   return (
     <>
       {ingredient && (
-        <>
+        <div className={IDStyles.mainContainer}>
           <div className={IDStyles.imageContainer}>
             <img alt="test" src={ingredient.image_large} />
           </div>
@@ -81,7 +81,7 @@ const IngredientsDetails = () => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

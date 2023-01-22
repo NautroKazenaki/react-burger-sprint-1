@@ -9,7 +9,7 @@ import React from "react";
 import bCStyles from "./BurgerConstructor.module.css";
 
 import ModalWindow from "../Modal/ModalWindow";
-import OrderDetails from "../OrderDetails/OrderDetails";
+import OrderDetails from "../../pages/OrderDetails/OrderDetails";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addIngredient } from "../../services/actions/burgerConstructorDataActions";
@@ -21,15 +21,18 @@ import {TIngredient} from '../../utils/Types'
 const BurgerConstructor = () => {
   
   const dispatch = useDispatch();
-
+ 
+  
     const data = useSelector(
       (state:any) => state.burgerIngredients.burgerIngredientsData
     );
+  
    
-   const bunsInitialState = data.find((ingredient:TIngredient) => ingredient.type === "bun");
-   //const bunsInitialState = React.useMemo(() => data.find((ingredient) => ingredient.type === "bun"), [data] ) 
    
-   React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState])
+   //const bunsInitialState = data.find((ingredient:TIngredient) => ingredient.type === "bun");
+   const bunsInitialState = React.useMemo(() => data.find((ingredient:TIngredient) => ingredient.type === "bun"), [data] ) 
+   
+   React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState, dispatch])
   
    const buns = useSelector((state:any) => state.burgerConstructor.buns)
   

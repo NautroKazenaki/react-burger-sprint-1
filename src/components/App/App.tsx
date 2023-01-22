@@ -10,18 +10,18 @@ import  Loader  from '../Loader/Loader'
 import Error from '../Error/Error'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { useHistory, useLocation} from 'react-router-dom'
-import RegistrationPage from "../Registration/RegistrationPage";
-import LoginPage from "../Login/LoginPage";
-import ForgotPasswordPage from "../ForgotPassword/ForgotPasswordPage";
-import ResetPasswordPage from "../ResetPassword/ResetPasswordPage";
-import ProfilePage from "../Profile/ProfilePage";
-import Page404 from "../Page404/Page404";
+import RegistrationPage from "../../pages/Registration/RegistrationPage";
+import LoginPage from "../../pages/Login/LoginPage";
+import ForgotPasswordPage from "../../pages/ForgotPassword/ForgotPasswordPage";
+import ResetPasswordPage from "../../pages/ResetPassword/ResetPasswordPage";
+import ProfilePage from "../../pages/Profile/ProfilePage";
+import Page404 from "../../pages/Page404/Page404";
 import {isAuthChecker} from '../../services/actions/userActions'
-import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
+import { ProtectedRoute } from "../../pages/ProtectedRoute/ProtectedRoute";
 import ModalWindow from "../Modal/ModalWindow";
 import IngredientsDetails from "../IngredientDetails/IngredientsDetails";
-import OrderList from "../OrderList/OrderList";
-
+import OrderList from "../../pages/OrderList/OrderList";
+import AppStyles from './App.module.css'
 
 
 type TLocation = {
@@ -79,8 +79,13 @@ const App = () => {
           <ProtectedRoute path ="/profile" exact>
             <ProfilePage />
           </ProtectedRoute>
-          <Route path='/ingredients/:ingredientId'  exact>
-            <IngredientsDetails />
+          <Route path='/ingredients/:ingredientId' >
+          {/* <Route path='/ingredients/:ingredientId'  exact > */}
+            <div className={AppStyles.ingredientDetailModalContainer}>
+             
+              <IngredientsDetails  />
+            </div>
+            
             
           </Route>
           {/* @ts-ignore */}

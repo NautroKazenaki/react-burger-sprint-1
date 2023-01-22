@@ -5,7 +5,7 @@ import {
 import React from "react";
 import ODStyles from "./OrderDetails.module.css";
 import PropTypes from "prop-types";
-import {TOrderNumber} from './../../utils/Types'
+import {TOrderNumber} from '../../utils/Types'
 const OrderDetails = (props:TOrderNumber) => {
   return (
     <>
@@ -13,7 +13,7 @@ const OrderDetails = (props:TOrderNumber) => {
           <p className="text text_type_digits-large"> {props.orderNumber}</p>
         </div>
         <div className={ODStyles.idOrderContainer}>
-          <p className="text text_type_main-small">Идентификатор заказа</p>
+          <p className="text text_type_main-small">Идентификатор заказа появится выше, ожидайте</p>
         </div>
         <div className={ODStyles.iconEffectsContainer}>
           <div className={ODStyles.iconContainer}>
@@ -33,7 +33,7 @@ const OrderDetails = (props:TOrderNumber) => {
     </>
   );
 };
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired,
-}
+// OrderDetails.propTypes = {
+//   orderNumber: PropTypes.number.isRequired,
+// }
 export default OrderDetails;

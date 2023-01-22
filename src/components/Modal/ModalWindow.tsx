@@ -59,10 +59,10 @@ const ModalWindow = (props:TModalWindowProps) => {
       );
      
 }
-ModalWindow.propTypes = {
-    onClose: PropTypes.func.isRequired,
-    children: PropTypes.element.isRequired,
-    title: PropTypes.string.isRequired
-}
+// ModalWindow.propTypes = {
+//     onClose: PropTypes.func.isRequired,
+//     children: PropTypes.element.isRequired,
+//     title: PropTypes.string.isRequired
+// }
 
 export default ModalWindow
