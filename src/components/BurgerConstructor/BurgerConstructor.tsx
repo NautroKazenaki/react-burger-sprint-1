@@ -9,7 +9,7 @@ import React from "react";
 import bCStyles from "./BurgerConstructor.module.css";
 
 import ModalWindow from "../Modal/ModalWindow";
-import OrderDetails from "../../pages/OrderDetails/OrderDetails";
+import OrderDetails from "../OrderDetails/OrderDetails";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addIngredient } from "../../services/actions/burgerConstructorDataActions";
