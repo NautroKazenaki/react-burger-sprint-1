@@ -9,5 +9,8 @@
     left: 640px;
     top: 180px;
 }
+.mainContentContainer {
+  width: 100vw
+}
 
 

@@ -96,8 +96,10 @@ const App = () => {
           <Route path="/" exact >
             {!isLoading && !hasError && burgerIngredientsData.length > 0 && (
               <DndProvider backend={HTML5Backend}>
-                <BurgerIngredients />
-                <BurgerConstructor />
+                <div className={AppStyles.mainContentContainer}>
+                  <BurgerIngredients />
+                  <BurgerConstructor />
+                </div>
               </DndProvider>
             )}
           </Route>

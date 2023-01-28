@@ -27,12 +27,18 @@ const BurgerConstructor = () => {
       (state:any) => state.burgerIngredients.burgerIngredientsData
     );
   
+     
    
+    const bunsInitialState = data.find((ingredient:TIngredient) => ingredient.type === "bun");
+    React.useEffect(() => {
+      if (bunsInitialState !== null || undefined) {
+        addIngredient(bunsInitialState, dispatch)
+      }
+       
+    }, [bunsInitialState, dispatch])
+  //  const bunsInitialState = React.useMemo(() => data.find((ingredient:TIngredient) => ingredient.type === "bun"), [data] ) 
    
-   //const bunsInitialState = data.find((ingredient:TIngredient) => ingredient.type === "bun");
-   const bunsInitialState = React.useMemo(() => data.find((ingredient:TIngredient) => ingredient.type === "bun"), [data] ) 
-   
-   React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState, dispatch])
+    // React.useMemo(() => addIngredient(bunsInitialState, dispatch), [bunsInitialState, dispatch])
   
    const buns = useSelector((state:any) => state.burgerConstructor.buns)
   
@@ -52,7 +58,8 @@ const BurgerConstructor = () => {
 
     const getFinalPrice = () => {
       const sum = [...nonBunIngredients, buns];
-      return sum.reduce((acc, curr) => curr.type === 'bun' ? acc  + curr.price * 2 : acc + curr.price, 0);
+     
+      return  sum.reduce((acc, curr) => curr?.type === 'bun' ? acc  + curr?.price * 2 : acc + curr?.price, 0);
   };
 
   const orderNumber = useSelector((state:any) => state.orderDetails.orderNumber)
@@ -80,21 +87,22 @@ const BurgerConstructor = () => {
       <div
         className={`${bCStyles.burgerConstructorItemsContainer} + ${bCStyles.customScroll}`}
       >
-        <div className={bCStyles.burgerConstructorItemContainer}>
-          <div className={bCStyles.burgerDragIconContainerForBuns}>
-            <DragIcon type="primary" />
-          </div>
-          <div>
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={buns.name + `(верх)`}
-              price={buns.price}
-              thumbnail={buns.image}
-              
-            />
-          </div>
-        </div>
+        
+          <div className={bCStyles.burgerConstructorItemContainer}>
+           <div className={bCStyles.burgerDragIconContainerForBuns}>
+             <DragIcon type="primary" />
+           </div>
+           <div>
+             <ConstructorElement
+               type="top"
+               isLocked={true}
+               text={buns?.name + `(верх)`}
+               price={buns?.price}
+               thumbnail={buns?.image}
+               extraClass="string"
+             />
+           </div>
+         </div> 
         <BurgerConstructorElementContainer />
 
         <div className={bCStyles.burgerConstructorItemContainer}>
@@ -105,9 +113,10 @@ const BurgerConstructor = () => {
             <ConstructorElement
               type="bottom"
               isLocked={true}
-              text={buns.name + `(низ)`}
-              price={buns.price}
-              thumbnail={buns.image}
+              text={buns?.name + `(низ)`}
+              price={buns?.price}
+              thumbnail={buns?.image}
+              extraClass="string"
             />
           </div>
         </div>
@@ -115,7 +124,10 @@ const BurgerConstructor = () => {
 
       <div className={bCStyles.burgerConstructorPayInfo}>
         <div className={bCStyles.burgerConstructorFinalPrice}>
-          <p className="text text_type_digits-medium">{getFinalPrice()}</p>
+          
+          <p className="text text_type_digits-medium" >
+            {getFinalPrice().toString()}
+          </p>
           <CurrencyIcon type="primary" />
         </div>
         <Button

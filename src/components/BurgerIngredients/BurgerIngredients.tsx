@@ -57,10 +57,10 @@ const BurgerIngredients = () => {
     dispatch(showBurgerElementDataAC(ingredient));
   };
   
-  const hideModalWindow = () => {
-    dispatch(hideBurgerElementDataAC());
+  // const hideModalWindow = () => {
+  //   dispatch(hideBurgerElementDataAC());
     
-  };
+  // };
 
   return (
     <div
@@ -132,7 +132,7 @@ const BurgerIngredients = () => {
           ))}
         </div>
       </div>
-      {isShowing && (
+      {/* {isShowing && (
         <ModalWindow onClose={hideModalWindow} title="Детали ингредиента">
           <IngredientsDetails
           //@ts-ignore
@@ -140,7 +140,7 @@ const BurgerIngredients = () => {
             ingredient={clickedIngredient}
           />
         </ModalWindow>
-      )}
+      )} */}
     </div>
   );
 };
