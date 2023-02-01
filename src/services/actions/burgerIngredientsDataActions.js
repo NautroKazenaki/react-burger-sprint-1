@@ -1,4 +1,4 @@
-import {BASE_URL, checkResponse} from '../../api/api'
+import {BASE_URL, checkResponse} from '../../api/api.ts'
 
 export const GET_BURGER_INGREDIENTS_DATA_REQUEST = "GET_BURGER_INGREDIENTS_DATA_REQUEST"
 export const GET_BURGER_INGREDIENTS_DATA_SUCCESS = "GET_BURGER_INGREDIENTS_DATA_SUCCESS"

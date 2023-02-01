@@ -1,4 +1,4 @@
-import {BASE_URL, checkResponse} from '../../api/api'
+import {BASE_URL, checkResponse} from '../../api/api.ts'
 import { getCookie } from "../../utils/Cookie";
 
 export const GET_ORDER_NUMBER_DATA_REQUEST = "GET_ORDER_NUMBER_DATA_REQUEST"
