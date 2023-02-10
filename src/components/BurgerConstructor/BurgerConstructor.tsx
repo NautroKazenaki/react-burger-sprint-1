@@ -29,9 +29,10 @@ const BurgerConstructor = () => {
   
      
    
-    const bunsInitialState = data.find((ingredient:TIngredient) => ingredient.type === "bun");
+    const bunsInitialState:TIngredient = data.find((ingredient:TIngredient) => ingredient.type === "bun");
     React.useEffect(() => {
       if (bunsInitialState !== null || undefined) {
+        //@ts-ignore
         addIngredient(bunsInitialState, dispatch)
       }
        
@@ -48,7 +49,8 @@ const BurgerConstructor = () => {
   //@ts-ignore
   const [{}, dragRef] = useDrop({
     accept: 'ingredient',
-    drop(bunsInitialState) {
+    drop(bunsInitialState: TIngredient) {
+      //@ts-ignore
       addIngredient(bunsInitialState, dispatch)
       //memoizedCallback(bunsInitialState, dispatch)
         }

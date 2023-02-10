@@ -1,110 +1,201 @@
-import { checkResponse } from "../../api/api.ts";
-import { BASE_URL } from "../../api/api.ts";
+import { checkResponse } from "../../api/api";
+import { BASE_URL } from "../../api/api";
 import { deleteCookie, getCookie, setCookie } from "../../utils/Cookie";
+import { TUser, TRegisterResponse, TCredentials, TResponse } from "../../utils/Types";
+import { AppDispatch, AppThunk } from "../reducers/rootReducer";
 //Forgot Password block
-export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
-export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
-export const FORGOT_PASSWORD_ERROR = "FORGOT_PASSWORD_ERROR";
-
+export const FORGOT_PASSWORD_REQUEST: "FORGOT_PASSWORD_REQUEST" = "FORGOT_PASSWORD_REQUEST";
+export const FORGOT_PASSWORD_SUCCESS: "FORGOT_PASSWORD_SUCCESS" = "FORGOT_PASSWORD_SUCCESS";
+export const FORGOT_PASSWORD_ERROR: "FORGOT_PASSWORD_ERROR" = "FORGOT_PASSWORD_ERROR";
+export interface IForgotPasswordRequestAC {
+  readonly type: typeof FORGOT_PASSWORD_REQUEST
+}
 export const forgotPasswordRequestAC = () => ({
   type: FORGOT_PASSWORD_REQUEST,
 });
-export const forgotPasswordSuccessAC = (res) => ({
+
+export interface IForgotPasswordSuccessAC {
+  readonly type: typeof FORGOT_PASSWORD_SUCCESS;
+  payload: TUser
+}
+export const forgotPasswordSuccessAC = (res: TUser) => ({
   type: FORGOT_PASSWORD_SUCCESS,
   payload: res,
 });
+
+export interface IForgotPasswordErrorAC {
+  readonly type: typeof FORGOT_PASSWORD_ERROR;
+}
 export const forgotPasswordErrorAC = () => ({
   type: FORGOT_PASSWORD_ERROR,
 });
-//Create account block
-export const CREATE_ACCOUNT_REQUEST = "CREATE_ACCOUNT_REQUEST";
-export const CREATE_ACCOUNT_SUCCESS = "CREATE_ACCOUNT_SUCCESS";
-export const CREATE_ACCOUNT_ERROR = "CREATE_ACCOUNT_ERROR";
 
+//Create account block
+export const CREATE_ACCOUNT_REQUEST: "CREATE_ACCOUNT_REQUEST" = "CREATE_ACCOUNT_REQUEST";
+export const CREATE_ACCOUNT_SUCCESS: "CREATE_ACCOUNT_SUCCESS" = "CREATE_ACCOUNT_SUCCESS";
+export const CREATE_ACCOUNT_ERROR: "CREATE_ACCOUNT_ERROR" = "CREATE_ACCOUNT_ERROR";
+
+export interface ICreateAccountRequestAC {
+  readonly type: typeof CREATE_ACCOUNT_REQUEST
+}
 export const createAccountRequestAC = () => ({
   type: CREATE_ACCOUNT_REQUEST,
 });
-export const createAccountSuccessAC = (res) => ({
+
+export interface ICreateAccountSuccessAC {
+  readonly type: typeof CREATE_ACCOUNT_SUCCESS;
+  payload: TUser
+}
+export const createAccountSuccessAC = (res: TUser) => ({
   type: CREATE_ACCOUNT_SUCCESS,
   payload: res,
 });
+
+export interface ICreateAccountErrorAC {
+  readonly type: typeof CREATE_ACCOUNT_ERROR
+}
 export const createAccountErrorAC = () => ({
   type: CREATE_ACCOUNT_ERROR,
 });
 //Reset password block
-export const RESET_PASSWORD_REQUEST = "RESET_PASSWORD_REQUEST";
-export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
-export const RESET_PASSWORD_ERROR = "RESET_PASSWORD_ERROR";
+export const RESET_PASSWORD_REQUEST: "RESET_PASSWORD_REQUEST" = "RESET_PASSWORD_REQUEST";
+export const RESET_PASSWORD_SUCCESS: "RESET_PASSWORD_SUCCESS" = "RESET_PASSWORD_SUCCESS";
+export const RESET_PASSWORD_ERROR: "RESET_PASSWORD_ERROR" = "RESET_PASSWORD_ERROR";
 
+export interface IResetPasswordRequestAC {
+  readonly type: typeof RESET_PASSWORD_REQUEST
+}
 export const resetPasswordRequestAC = () => ({
   type: RESET_PASSWORD_REQUEST,
 });
-export const resetPasswordSuccessAC = (res) => ({
+
+export interface IResetPasswordSuccessAC {
+  readonly type: typeof RESET_PASSWORD_SUCCESS;
+  readonly payload: TUser
+}
+export const resetPasswordSuccessAC = (res: TUser) => ({
   type: RESET_PASSWORD_SUCCESS,
   payload: res,
 });
+
+export interface IResetPasswordErrorAC {
+  readonly type: typeof RESET_PASSWORD_ERROR
+}
 export const resetPasswordErrorAC = () => ({
   type: RESET_PASSWORD_ERROR,
 });
-//Set profile info block
-export const SET_PROFILE_INFO_REQUEST = "SET_PROFILE_INFO_REQUEST";
-export const SET_PROFILE_INFO_SUCCESS = "SET_PROFILE_INFO_SUCCESS";
-export const SET_PROFILE_INFO_ERROR = "SET_PROFILE_INFO_ERROR";
 
+//Set profile info block
+export const SET_PROFILE_INFO_REQUEST: "SET_PROFILE_INFO_REQUEST" = "SET_PROFILE_INFO_REQUEST";
+export const SET_PROFILE_INFO_SUCCESS: "SET_PROFILE_INFO_SUCCESS" = "SET_PROFILE_INFO_SUCCESS";
+export const SET_PROFILE_INFO_ERROR: "SET_PROFILE_INFO_ERROR" = "SET_PROFILE_INFO_ERROR";
+
+export interface ISetProfileInfoRequestAC {
+  readonly type: typeof SET_PROFILE_INFO_REQUEST
+}
 export const setProfileInfoRequestAC = () => ({
   type: SET_PROFILE_INFO_REQUEST,
 });
-export const setProfileInfoSuccessAC = (res) => ({
+
+export interface ISetProfileInfoSuccessAC {
+  readonly type: typeof SET_PROFILE_INFO_SUCCESS;
+  readonly payload: TUser
+}
+export const setProfileInfoSuccessAC = (res:TUser) => ({
   type: SET_PROFILE_INFO_SUCCESS,
   payload: res,
 });
-export const setProfileInfoErrorAC = (err) => ({
+
+export interface ISetProfileInfoErrorAC {
+  readonly type: typeof SET_PROFILE_INFO_ERROR;
+  readonly payload: string
+}
+export const setProfileInfoErrorAC = (err:string) => ({
   type: SET_PROFILE_INFO_ERROR,
   payload: err,
 });
-//Update profile info block
-export const UPDATE_PROFILE_INFO_REQUEST = "UPDATE_PROFILE_INFO_REQUEST";
-export const UPDATE_PROFILE_INFO_SUCCESS = "UPDATE_PROFILE_INFO_SUCCESS";
-export const UPDATE_PROFILE_INFO_ERROR = "UPDATE_PROFILE_INFO_ERROR";
 
+//Update profile info block
+export const UPDATE_PROFILE_INFO_REQUEST: "UPDATE_PROFILE_INFO_REQUEST" = "UPDATE_PROFILE_INFO_REQUEST";
+export const UPDATE_PROFILE_INFO_SUCCESS: "UPDATE_PROFILE_INFO_SUCCESS" = "UPDATE_PROFILE_INFO_SUCCESS";
+export const UPDATE_PROFILE_INFO_ERROR: "UPDATE_PROFILE_INFO_ERROR" = "UPDATE_PROFILE_INFO_ERROR";
+
+export interface IUpdateProfileInfoRequestAC {
+  readonly type: typeof UPDATE_PROFILE_INFO_REQUEST;
+}
 export const updateProfileInfoRequestAC = () => ({
   type: UPDATE_PROFILE_INFO_REQUEST,
 });
-export const updateProfileInfoSuccessAC = (res) => ({
+
+export interface IUpdateProfileInfoSuccessAC {
+  readonly type: typeof UPDATE_PROFILE_INFO_SUCCESS;
+  readonly payload: TUser
+}
+export const updateProfileInfoSuccessAC = (res: TUser) => ({
   type: UPDATE_PROFILE_INFO_SUCCESS,
   payload: res,
 });
-export const updateProfileInfoErrorAC = (err) => ({
+
+export interface IUpdateProfileInfoErrorAC {
+  readonly type: typeof UPDATE_PROFILE_INFO_ERROR;
+  readonly payload: string
+}
+export const updateProfileInfoErrorAC = (err: string) => ({
   type: UPDATE_PROFILE_INFO_ERROR,
   payload: err,
 });
 
 //login||logout user block
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOGOUT = 'LOGOUT';
-export const IS_USER_AUTHORIZED = "IS_USER_AUTHORIZED";
+export const LOGIN_REQUEST: 'LOGIN_REQUEST' = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS: 'LOGIN_SUCCESS' = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR: 'LOGIN_ERROR' = 'LOGIN_ERROR';
+export const LOGOUT: 'LOGOUT' = 'LOGOUT';
+export const IS_USER_AUTHORIZED: "IS_USER_AUTHORIZED" = "IS_USER_AUTHORIZED";
 
+export interface ILoginRequestAC {
+  readonly type: typeof LOGIN_REQUEST
+}
 export const loginRequestAC = () => ({
     type: LOGIN_REQUEST,
   });
-export const loginSuccessAC = (res) => ({
+
+export interface ILoginSuccessAC {
+  readonly type: typeof LOGIN_SUCCESS;
+  readonly payload: TRegisterResponse
+}
+export const loginSuccessAC = (res: TRegisterResponse) => ({
     type: LOGIN_SUCCESS,
     payload: res,
   });
-export const loginErrorAC = (err) => ({
+
+export interface ILoginErrorAC {
+  readonly type: typeof LOGIN_ERROR;
+  readonly payload: string
+}
+export const loginErrorAC = (err:string) => ({
     type: LOGIN_ERROR,
     payload: err,
   });
+
+export interface ILogoutAC {
+  readonly type: typeof LOGOUT
+}
 export const logoutAC = () => ({
     type: LOGOUT
 })
+
+export interface IIsUserAuthorizedAC {
+  readonly type: typeof IS_USER_AUTHORIZED
+}
 export const isUserAuthorizedAC = () => ({
   type: IS_USER_AUTHORIZED,
 });
+export type TUserActions = |ILogoutAC| IIsUserAuthorizedAC| IForgotPasswordRequestAC| IForgotPasswordSuccessAC| IForgotPasswordErrorAC|ICreateAccountRequestAC |ICreateAccountSuccessAC
+|ICreateAccountErrorAC |IResetPasswordRequestAC |IResetPasswordSuccessAC |IResetPasswordErrorAC |ISetProfileInfoRequestAC |ISetProfileInfoSuccessAC |ISetProfileInfoErrorAC |IUpdateProfileInfoRequestAC |IUpdateProfileInfoSuccessAC |IUpdateProfileInfoErrorAC |ILoginRequestAC |ILoginSuccessAC |ILoginErrorAC |ILogoutAC
 
-export const forgotPassword = (email) => (dispatch) => {
+
+
+export const forgotPassword = (email:string):AppThunk => (dispatch:AppDispatch) => {
   dispatch(forgotPasswordRequestAC());
   fetch(`${BASE_URL}/password-reset`, {
     method: "POST",
@@ -115,7 +206,7 @@ export const forgotPassword = (email) => (dispatch) => {
       email: email,
     }),
   })
-    .then(checkResponse)
+    .then(res => checkResponse<TResponse>(res))
     .then((res) => {
       if (res.success) {
         dispatch(forgotPasswordSuccessAC(res));
@@ -126,7 +217,7 @@ export const forgotPassword = (email) => (dispatch) => {
     });
 };
 
-export const createAccount = (email, password, name) => (dispatch) => {
+export const createAccount = (email:string, password:string, name:string):AppThunk => (dispatch:AppDispatch) => {
   dispatch(createAccountRequestAC());
   fetch(`${BASE_URL}/auth/register`, {
     method: "POST",
@@ -139,7 +230,7 @@ export const createAccount = (email, password, name) => (dispatch) => {
       name: name,
     }),
   })
-    .then(checkResponse)
+    .then(res => checkResponse<TRegisterResponse>(res))
     .then((res) => {
       if (res.success) {
         dispatch(createAccountSuccessAC(res));
@@ -150,7 +241,7 @@ export const createAccount = (email, password, name) => (dispatch) => {
     });
 };
 
-export const resetPassword = (password, token) => (dispatch) => {
+export const resetPassword = (password:string, token: string):AppThunk => (dispatch: AppDispatch) => {
   dispatch(resetPasswordRequestAC());
   fetch(`${BASE_URL}/password-reset/reset`, {
     method: "POST",
@@ -162,7 +253,7 @@ export const resetPassword = (password, token) => (dispatch) => {
       token: token,
     }),
   })
-    .then(checkResponse)
+    .then(res => checkResponse<TResponse>(res))
     .then((res) => {
       if (res.success) {
         dispatch(resetPasswordSuccessAC(res));
@@ -173,7 +264,7 @@ export const resetPassword = (password, token) => (dispatch) => {
     });
 };
 
-export const setUserInfo =  () => (dispatch) => {
+export const setUserInfo =  ():AppThunk => (dispatch: AppDispatch) => {
   
   dispatch(setProfileInfoRequestAC());
   //  fetch(`${BASE_URL}/auth/user`, {
@@ -192,7 +283,7 @@ export const setUserInfo =  () => (dispatch) => {
   })
     
     
-    
+  .then(res => checkResponse<TResponse>(res))
     .then((res) => {
       
       dispatch(setProfileInfoSuccessAC(res));
@@ -214,10 +305,11 @@ export const setUserInfo =  () => (dispatch) => {
     });
 };
 
-export const updateUserInfo = (email, username) => (dispatch) => {
+export const updateUserInfo = (email:string, username:string):AppThunk => (dispatch: AppDispatch) => {
   dispatch(updateProfileInfoRequestAC());
   fetch(`${BASE_URL}/auth/user`, {
     method: "PATCH",
+    //@ts-ignore
     headers: {
       "Content-Type": "application/json;charset=utf-8",
       authorization: getCookie("token"),
@@ -227,7 +319,7 @@ export const updateUserInfo = (email, username) => (dispatch) => {
       name: username,
     }),
   })
-    .then(checkResponse)
+    .then(res => checkResponse<TUser>(res))
     .then((res) => {
       dispatch(updateProfileInfoSuccessAC(res));
     })
@@ -237,7 +329,7 @@ export const updateUserInfo = (email, username) => (dispatch) => {
     );
 };
 
-export const login = (email, password) => (dispatch) => {
+export const login = (email:string, password:string):AppThunk => (dispatch: AppDispatch) => {
     dispatch(loginRequestAC());
     fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
@@ -249,17 +341,17 @@ export const login = (email, password) => (dispatch) => {
             'password': password
         })
     })
-    .then(checkResponse)
+    .then(res => checkResponse<TRegisterResponse>(res))
     .then(res =>  {
         if(res.success) {
-            setCookie('token', res.accessToken)
+            setCookie('token', res.accessToken, null)
             localStorage.setItem('token', res.refreshToken);     
         }
         dispatch(loginSuccessAC(res))
     })
     .catch(err => dispatch(loginErrorAC(err)));
 }
-export const logout = (dispatch) => {
+export const logout = (dispatch: AppDispatch) => {
     fetch(`${BASE_URL}/auth/logout`, {
         method: 'POST',
         headers: {
@@ -269,7 +361,7 @@ export const logout = (dispatch) => {
             'token': localStorage.token
         })
     })
-    .then(checkResponse)
+    .then(res => checkResponse<TRegisterResponse>(res))
     .then(res =>  {
         if(res.success) {
             deleteCookie('token')   
@@ -279,7 +371,7 @@ export const logout = (dispatch) => {
     .catch(err => console.log(err));
 }
 
-export const isAuthChecker= () => (dispatch) => {
+export const isAuthChecker= () => (dispatch: AppDispatch) => {
  
     if (getCookie('token')) {
         dispatch(setUserInfo())
@@ -299,7 +391,7 @@ export const refreshToken = () => {
   }).then(checkResponse);
 };
 
- export const fetchWithRefresh = async (url, options) => {
+ export const fetchWithRefresh = async (url:string, options:any) => {
    
    try {
      const res = await fetch(url, options);
@@ -308,13 +400,17 @@ export const refreshToken = () => {
   } catch (err) {
     
      if (err.message === "jwt expired") {
-       const refreshData = refreshToken();
+       const refreshData = refreshToken()  as unknown as {
+        success: boolean
+        refreshToken:string
+        accessToken: string
+       }
        
         if (!refreshData.success) {
           return Promise.reject(refreshData);
         }
        localStorage.setItem("token", refreshData.refreshToken);
-       setCookie("token", refreshData.accessToken);
+       setCookie("token", refreshData.accessToken, null);
        options.headers.authorization = refreshData.accessToken;
       //  const res = await fetch(`${BASE_URL}/auth/user`, {
       //    method: "GET",
