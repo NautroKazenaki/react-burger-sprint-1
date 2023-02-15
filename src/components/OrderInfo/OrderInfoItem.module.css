@@ -1,0 +1,17 @@
+.itemContainer{
+    display: flex;
+    justify-content: space-between;
+}
+.ingredient{
+    display: flex;
+    align-items: center;
+}
+.ingredientImage{
+    width: 64px;
+    height: 64px;
+    box-sizing: border-box;
+    border: solid 2px #801AB2;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+}

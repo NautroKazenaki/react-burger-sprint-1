@@ -12,7 +12,7 @@ export interface ISetBunAC {
     readonly type: typeof SET_BUN;
     readonly payload: TIngredient
 }
-export const setBunAC = (ingredient: TIngredient) => ({
+export const setBunAC = (ingredient: TIngredient):ISetBunAC => ({
     type: SET_BUN,
     payload: {...ingredient,
         id: uuid()}
@@ -21,7 +21,7 @@ export interface ISetNonBunIngredientAC {
     readonly type: typeof SET_NON_BUN_INGREDIENT;
     readonly payload: TIngredient
 }
-export const setNonBunIngredientAC = (ingredient: TIngredient) => ({
+export const setNonBunIngredientAC = (ingredient: TIngredient): ISetNonBunIngredientAC => ({
     type: SET_NON_BUN_INGREDIENT,
     payload: {...ingredient,
         id: uuid()}
@@ -30,7 +30,7 @@ export interface IDeleteIngredientAC {
     readonly type: typeof DELETE_INGREDIENT;
     id: string | undefined
 }
-export const deleteIngredientAC = (ingredient: TIngredient) => ({
+export const deleteIngredientAC = (ingredient: TIngredient): IDeleteIngredientAC => ({
     type: DELETE_INGREDIENT,
     id: ingredient.id
 })
@@ -39,7 +39,7 @@ export interface IChangeIngredientPositionAC {
     readonly dragIndex: number;
     readonly hoverIndex: number
 }
-export const changeIngredientPositionAC = (dragIndex: number, hoverIndex: number) => ({
+export const changeIngredientPositionAC = (dragIndex: number, hoverIndex: number): IChangeIngredientPositionAC => ({
     type: CHANGE_INGREDIENT_POSITION,
     dragIndex: dragIndex,
     hoverIndex: hoverIndex

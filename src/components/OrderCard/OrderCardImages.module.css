@@ -1,0 +1,42 @@
+.image_preview {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    border: solid 2px #801AB2;
+    border-radius: 100px;
+    position: relative;
+    background-color: black;
+}
+
+.image_preview:nth-child(1) {
+    left: 0;
+    z-index: 6;
+}
+
+.image_preview:nth-child(2) {
+    left: -10px;
+    z-index: 5;
+}
+
+.image_preview:nth-child(3) {
+    left: -20px;
+    z-index: 4;
+}
+
+.image_preview:nth-child(4) {
+    left: -30px;
+    z-index: 3;
+}
+
+.image_preview:nth-child(5) {
+    left: -40px;
+    z-index: 2;
+}
+
+.image_preview:nth-child(6) {
+    left: -50px;
+    z-index: 1;
+    opacity: 0.2;
+}

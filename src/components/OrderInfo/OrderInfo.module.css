@@ -1,0 +1,21 @@
+.orderName{
+    text-align: left
+}
+.orderDone{
+    color: #00CCCC;
+    text-align: left
+}
+.orderPending{
+    text-align: left
+}
+.title{
+    text-align: left
+}
+.orderComposition{
+    display: flex;
+    flex-direction: column;
+    max-height: 312px;
+    overflow: hidden auto;
+    padding-right: 25px;
+    gap: 16px;
+}

@@ -11,34 +11,34 @@ export const HIDE_ORDER_DETAILS_DATA: "HIDE_ORDER_DETAILS_DATA" = "HIDE_ORDER_DE
 export interface IGetOrderNumberDataRequestAC {
     readonly type: typeof GET_ORDER_NUMBER_DATA_REQUEST;
 }
-export const getOrderNumberDataRequestAC = () => ({
+export const getOrderNumberDataRequestAC = (): IGetOrderNumberDataRequestAC => ({
     type:GET_ORDER_NUMBER_DATA_REQUEST,
 })
 export interface IGetOrderNumberDataSuccessAC {
     readonly type: typeof GET_ORDER_NUMBER_DATA_SUCCESS;
-    readonly orderNumber: number
+    readonly orderNumber: number | null | undefined
 }
-export const getOrderNumberDataSuccessAC = (res: TOrderNumber) => ({
+export const getOrderNumberDataSuccessAC = (res: number): IGetOrderNumberDataSuccessAC => ({
     type: GET_ORDER_NUMBER_DATA_SUCCESS,
     orderNumber: res
 })
 export interface IGetOrderNumberDataFailedAC  {
     readonly type: typeof GET_ORDER_NUMBER_DATA_FAILED;
 }
-export const getOrderNumberDataFailedAC = () => ({
+export const getOrderNumberDataFailedAC = (): IGetOrderNumberDataFailedAC => ({
     type: GET_ORDER_NUMBER_DATA_FAILED,
 })
 export interface IShowOrderDetailsDataAC {
     readonly type: typeof SHOW_ORDER_DETAILS_DATA;
 }
-export const showOrderDetailsDataAC = () => ({
+export const showOrderDetailsDataAC = (): IShowOrderDetailsDataAC => ({
     type: SHOW_ORDER_DETAILS_DATA
 })
 export interface IHideOrderDetailsDataAC {
     readonly type: typeof HIDE_ORDER_DETAILS_DATA;
 }
 
-export const hideOrderDetailsDataAC = () => ({
+export const hideOrderDetailsDataAC = (): IHideOrderDetailsDataAC => ({
     type: HIDE_ORDER_DETAILS_DATA
 })
 export type TOrderDetailsDataActions = |IGetOrderNumberDataRequestAC|IGetOrderNumberDataSuccessAC|IGetOrderNumberDataFailedAC|IShowOrderDetailsDataAC|IHideOrderDetailsDataAC
@@ -69,6 +69,7 @@ export const getOrderNumber = (bun: TIngredient, nonBunIngredients:TIngredient[]
     .then((res) => {
       dispatch(getOrderNumberDataSuccessAC(res.order.number))
      })
+     //@ts-ignore
      .then(dispatch(showOrderDetailsDataAC()))
     .catch(err => dispatch(getOrderNumberDataFailedAC()));
 }

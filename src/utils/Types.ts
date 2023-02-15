@@ -38,4 +38,20 @@ export type TCredentials = {
   accessToken: string, 
   refreshToken: string
 }
-export type TRegisterResponse = TResponse & TCredentials & { user: Omit<TUser, "password"> };
+export type TRegisterResponse = TResponse & TCredentials & { user: Omit<TUser, "password"> }
+
+export type TOrderInfo = {
+  _id: string;
+  ingredients: Array<string>;
+  status: string;
+  name: string;
+  number: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type TOrders = {
+  orders: Array<TOrderInfo>;
+  total?: number;
+  totalToday?: number;
+}

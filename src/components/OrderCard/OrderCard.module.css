@@ -1,0 +1,29 @@
+.link {
+    text-decoration: none;
+    color: white;
+}
+.ready{
+    color: #00CCCC;
+    text-align: left;
+}
+.pending{
+    text-align: left;
+}
+.price{
+    display: flex;
+    align-items: center;
+}
+.counter{
+    z-index: 1;
+    margin: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: solid 2px #801AB2;
+    border-radius: 100px;
+    position: relative;
+    left: -106px;
+}

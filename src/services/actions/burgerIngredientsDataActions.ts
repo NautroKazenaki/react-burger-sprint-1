@@ -8,15 +8,15 @@ export const GET_BURGER_INGREDIENTS_DATA_FAILED: "GET_BURGER_INGREDIENTS_DATA_FA
 export interface IGetBurgerIngredientsDataRequestAC {
     readonly type: typeof GET_BURGER_INGREDIENTS_DATA_REQUEST
 }
-const getBurgerIngredientsDataRequestAC = () => ({
+const getBurgerIngredientsDataRequestAC = (): IGetBurgerIngredientsDataRequestAC => ({
     type: GET_BURGER_INGREDIENTS_DATA_REQUEST
 })
 
 export interface IGetBurgerIngredientsDataSuccessAC {
     readonly type: typeof GET_BURGER_INGREDIENTS_DATA_SUCCESS;
-    readonly payload: TIngredientResponse
+    readonly payload: TIngredient[]
 }
-const getBurgerIngredientsDataSuccessAC = (res: TIngredientResponse) => ({
+const getBurgerIngredientsDataSuccessAC = (res: TIngredientResponse):IGetBurgerIngredientsDataSuccessAC => ({
     type: GET_BURGER_INGREDIENTS_DATA_SUCCESS,
     payload: res.data
 })
@@ -24,7 +24,7 @@ const getBurgerIngredientsDataSuccessAC = (res: TIngredientResponse) => ({
 export interface IGetBurgerIngredientsDataFailedAC {
     readonly type: typeof GET_BURGER_INGREDIENTS_DATA_FAILED;
 }
-const getBurgerIngredientsDataFailedAC = () => ({
+const getBurgerIngredientsDataFailedAC = (): IGetBurgerIngredientsDataFailedAC => ({
     type:GET_BURGER_INGREDIENTS_DATA_FAILED
 })
 

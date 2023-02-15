@@ -1,11 +1,10 @@
-import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Input,  PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import React, {useState, useEffect, SyntheticEvent} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PPStyles from './ProfilePage.module.css'
 import {logout, setUserInfo, updateUserInfo, fetchWithRefresh} from '../../services/actions/userActions'
 import {NavLink, Redirect} from 'react-router-dom'
-import { BASE_URL } from "../../api/api";
-import { getCookie } from '../../utils/Cookie';
+
 const ProfilePage = () => {
 
     const [username, setUsername] = useState('');
@@ -13,7 +12,7 @@ const ProfilePage = () => {
     const [password, setPassword] = useState('');
    
     const { isAuth, isUser, profileInfo, isLoading } = useSelector((state:any) => state.userData);
-    
+   
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -47,8 +46,9 @@ const ProfilePage = () => {
         setUsername(profileInfo.user.name);
         setEmail(profileInfo.user.email);
     }
-    const logOut = (e:SyntheticEvent) => {
+     const logOut = (e:SyntheticEvent) => {
         e.preventDefault();
+        //@ts-ignore
         logout(dispatch);
     }
 const ref = React.useRef(null)

@@ -274,6 +274,7 @@ export const setUserInfo =  ():AppThunk => (dispatch: AppDispatch) => {
   //     authorization: getCookie("token"),
   //   },
   // })
+  
   fetchWithRefresh(`${BASE_URL}/auth/user`, {
     method: "GET",
     headers: {
@@ -282,8 +283,8 @@ export const setUserInfo =  ():AppThunk => (dispatch: AppDispatch) => {
     },
   })
     
-    
-  .then(res => checkResponse<TResponse>(res))
+  //@ts-ignore
+  .then(res => checkResponse<TUser>(res))
     .then((res) => {
       
       dispatch(setProfileInfoSuccessAC(res));
@@ -397,7 +398,7 @@ export const refreshToken = () => {
      const res = await fetch(url, options);
      
        return  await checkResponse(res);
-  } catch (err) {
+  } catch (err:any) {
     
      if (err.message === "jwt expired") {
        const refreshData = refreshToken()  as unknown as {
