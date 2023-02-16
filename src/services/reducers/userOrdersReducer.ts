@@ -14,7 +14,7 @@ const initialState: TUserOrdersListState = {
     connectionError: '',
     userOrders: null,
 }
-debugger
+
 export const userOrdersReducer = createReducer(initialState, builder => {
     builder
         .addCase(wsConnecting, state => {

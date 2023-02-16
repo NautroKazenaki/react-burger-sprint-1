@@ -35,9 +35,7 @@ const UserOrders = () => {
     //@ts-ignore
     logout(dispatch);
 }
-if (userOrders !== null) {
-  console.log(userOrders.orders)
-}
+
   return (
     <div className={UOStyles.mainContainer}>
       <div className={PPStyles.navbar}>

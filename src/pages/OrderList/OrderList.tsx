@@ -11,7 +11,7 @@ import OLStyles from "./OrderList.module.css";
 
 const OrderList = () => {
 
- debugger
+ 
   const dispatch = useDispatch();
   let  orderList = useSelector((state:any) => state.orderList);
   React.useEffect(() => {

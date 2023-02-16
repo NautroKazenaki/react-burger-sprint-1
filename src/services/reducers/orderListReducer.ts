@@ -14,7 +14,7 @@ const initialState: TOrdersListState = {
   connectionError: "",
   orders: null,
 };
-debugger
+
  export const orderListReducer = createReducer(initialState, (builder) => {
    
    builder

@@ -14,7 +14,7 @@ const ProfilePage = () => {
     const { isAuth, isUser, profileInfo, isLoading } = useSelector((state:any) => state.userData);
     
     const dispatch = useDispatch();
-    debugger
+    
     useEffect(() => {
        
         //  dispatch(fetchWithRefresh(`${BASE_URL}/auth/user`, {

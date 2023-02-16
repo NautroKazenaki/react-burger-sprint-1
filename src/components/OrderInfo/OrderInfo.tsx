@@ -10,7 +10,7 @@ import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burge
 import { OrderInfoItem } from './OrderInfoItem';
 
 const OrderInfo = () => {
-debugger
+
     interface IOrderInfoParams{
         orderNumber: string | undefined;
         // feedNumber: string | undefined;
@@ -28,7 +28,7 @@ debugger
 
     const dispatch = useDispatch();
     React.useEffect(() => {
-        console.log(orderNumber)
+        
         if (currentOrder === undefined) {
             dispatch(connect(wsUrl));
         }        
@@ -37,7 +37,7 @@ debugger
         }   
     }, [])
     React.useEffect(() => {
-        console.log(orderNumber)
+        
         if (orderList.orders === null) {
             dispatch(connect(wsUrl));
         }        
