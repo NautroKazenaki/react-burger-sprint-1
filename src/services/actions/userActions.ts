@@ -274,7 +274,7 @@ export const setUserInfo =  ():AppThunk => (dispatch: AppDispatch) => {
   //     authorization: getCookie("token"),
   //   },
   // })
-  
+  debugger
   fetchWithRefresh(`${BASE_URL}/auth/user`, {
     method: "GET",
     headers: {
@@ -283,11 +283,12 @@ export const setUserInfo =  ():AppThunk => (dispatch: AppDispatch) => {
     },
   })
     
-  //@ts-ignore
-  .then(res => checkResponse<TUser>(res))
+  
+  
+  //  .then((res) => checkResponse<TUser>(res))
     .then((res) => {
-      
-      dispatch(setProfileInfoSuccessAC(res));
+      //@ts-ignore
+       dispatch(setProfileInfoSuccessAC(res));
     })
     
     .catch((err) => dispatch(setProfileInfoErrorAC(err)))

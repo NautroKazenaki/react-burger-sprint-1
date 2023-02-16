@@ -1,5 +1,5 @@
 import React from 'react'
-import OIStyles from './OrderInfo.module.css'
+import OIStyles from '../OrderInfo/OrderInfo.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { wsUrl } from '../../api/api';
@@ -7,21 +7,21 @@ import { connect, disconnect } from '../../services/actions/orderListActions';
 import { TIngredient, TOrderInfo } from '../../utils/Types';
 import Loader from '../Loader/Loader';
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
-import { OrderInfoItem } from './OrderInfoItem';
+import { OrderInfoItem } from '../OrderInfo/OrderInfoItem';
 
-const OrderInfo = () => {
+const UserOrderInfo = () => {
 debugger
     interface IOrderInfoParams{
-        orderNumber: string | undefined;
-        // feedNumber: string | undefined;
+         orderNumber: string | undefined;
+        //  feedNumber: string | undefined;
     }
 
     const  orderList  = useSelector((state:any) => state.orderList);
     
     const  ingredients  = useSelector((state:any) => state.burgerIngredients.burgerIngredientsData);
     const  feedNumber  = useParams<IOrderInfoParams>();
-    // const orderNumber = feedNumber.feedNumber
-    const orderNumber = feedNumber.orderNumber
+    //  const orderNumber = feedNumber.feedNumber
+     const orderNumber = feedNumber.orderNumber
     
     let currentOrder:TOrderInfo = {_id: '', ingredients: [''], status: '', name:'', number: '', createdAt: '', updatedAt:''
     }
@@ -118,4 +118,4 @@ debugger
     )
 }
 
-export default OrderInfo
+export default UserOrderInfo

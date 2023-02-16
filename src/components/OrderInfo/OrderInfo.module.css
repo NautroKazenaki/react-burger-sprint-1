@@ -1,12 +1,15 @@
 .orderName{
-    text-align: left
+    text-align: left;
+    margin-bottom:10px;
 }
 .orderDone{
     color: #00CCCC;
-    text-align: left
+    text-align: left;
+    margin-bottom:60px;
 }
 .orderPending{
-    text-align: left
+    text-align: left;
+    margin-bottom: 60px;
 }
 .title{
     text-align: left
@@ -18,4 +21,15 @@
     overflow: hidden auto;
     padding-right: 25px;
     gap: 16px;
+}
+.orderNumberContainer{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.orderData {
+    margin-top: 40px;
+}
+.orderPrice {
+    text-align: right;
+    padding-right: 25px;
 }

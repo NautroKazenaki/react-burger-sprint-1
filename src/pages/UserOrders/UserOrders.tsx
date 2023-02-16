@@ -20,7 +20,7 @@ const UserOrders = () => {
   
   let  userOrders  = useSelector((state: any) => state.userOrders.userOrders);
 
-    debugger
+  
    useEffect(() => {
      dispatch(connect(`${userOrdersWsUrl}?token=${token}`));
       return () => {
@@ -35,13 +35,16 @@ const UserOrders = () => {
     //@ts-ignore
     logout(dispatch);
 }
+if (userOrders !== null) {
+  console.log(userOrders.orders)
+}
   return (
     <div className={UOStyles.mainContainer}>
       <div className={PPStyles.navbar}>
                 <NavLink to='/profile' className={PPStyles.frame1} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium" > Профиль</p>
                 </NavLink> 
-                <NavLink to='/profile/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
+                <NavLink to='/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium"> История заказов</p>
                 </NavLink> 
                 <div className={PPStyles.frame3} onClick={logOut} >
@@ -56,7 +59,7 @@ const UserOrders = () => {
       ) : (
         
         <div className={`${UOStyles.contentContainer} + ${OLStyles.customScroll}`}>
-          {userOrders.orders.map((order:TOrderInfo, index:number) => (
+          {userOrders.orders.slice().reverse().map((order:TOrderInfo, index:number) => (
             <OrderCard item={order} key={index} />
           ))}
         </div>

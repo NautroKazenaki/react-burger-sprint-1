@@ -24,6 +24,7 @@ import OrderList from "../../pages/OrderList/OrderList";
 import AppStyles from './App.module.css'
 import OrderInfo from "../OrderInfo/OrderInfo";
 import UserOrders from "../../pages/UserOrders/UserOrders";
+import UserOrderInfo from "../UserOrderInfo/UserOrderInfo";
 
 
 type TLocation = {
@@ -99,7 +100,10 @@ const App = () => {
            <Route path='/feed/:orderNumber' exact>
                   <OrderInfo />
           </Route> 
-          <Route path="/profile/orders" exact>
+           <Route path='/feed/:feedNumber' exact>
+                  <UserOrderInfo />
+          </Route> 
+          <Route path="/orders" exact>
                   <UserOrders />
                 </Route>
           <Route path="/" exact >
@@ -136,11 +140,31 @@ const App = () => {
         path='/feed/:feedNumber'
         children={
           <ModalWindow onClose={hideModalWindow}>
-            <OrderInfo />
+            <UserOrderInfo />
           </ModalWindow>
         }
       />
       )}
+      {background && ordersList && (
+      <Route
+        path='/feed/:orderNumber'
+        children={
+          <ModalWindow onClose={hideModalWindow}>
+            <UserOrderInfo />
+          </ModalWindow>
+        }
+      />
+      )}
+     {/* {background && ordersList && (
+      <Route
+        path='/feed/:feedNumber'
+        children={
+          <ModalWindow onClose={hideModalWindow}>
+            <OrderInfo />
+          </ModalWindow>
+        }
+      />
+      )} */}
     </div>
   );
 };

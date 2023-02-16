@@ -12,9 +12,9 @@ const ProfilePage = () => {
     const [password, setPassword] = useState('');
    
     const { isAuth, isUser, profileInfo, isLoading } = useSelector((state:any) => state.userData);
-   
-    const dispatch = useDispatch();
     
+    const dispatch = useDispatch();
+    debugger
     useEffect(() => {
        
         //  dispatch(fetchWithRefresh(`${BASE_URL}/auth/user`, {
@@ -63,10 +63,10 @@ const isInputsValueChanged =
                 <Redirect to='/login' />
             )}
             <div className={PPStyles.navbar}>
-                <NavLink to='/profile' className={PPStyles.frame1} activeClassName={PPStyles.activeNavLink}>
+                <NavLink to='/profile' className={PPStyles.frame1} activeClassName={PPStyles.activeNavLink} >
                     <p className="text text_type_main-medium" > Профиль</p>
                 </NavLink> 
-                <NavLink to='/profile/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
+                <NavLink to='/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium"> История заказов</p>
                 </NavLink> 
                 <div className={PPStyles.frame3} onClick={logOut} >
