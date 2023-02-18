@@ -23,7 +23,7 @@ export const OrderInfoItem = ({ item, count }: TOrderInfoElementProps): JSX.Elem
                 <div className={OIISTyles.ingredientImage}>
                     <img src={currentItem?.image} />
                 </div>
-                <span className="text text_type_main-medium">{currentItem?.name}</span>
+                <span className="text text_type_main-small">{currentItem?.name}</span>
             </div>
             <div className={OIISTyles.price}>
                 {/* @ts-ignore */}

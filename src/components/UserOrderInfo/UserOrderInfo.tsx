@@ -100,7 +100,7 @@ const UserOrderInfo = () => {
 
                     )}
                     <p className={`${OIStyles.title} text text_type_main-medium`}>Состав: </p>
-                    <div className={OIStyles.orderComposition}>
+                    <div className={`${OIStyles.orderComposition} + ${OIStyles.customScroll}`}>
                         {singleElementFinder(currentOrder?.ingredients).map((ingredient:String, index:number) => (
                             <OrderInfoItem item={ingredient} key={index} count={duplicatedItem} />
                         ))}
