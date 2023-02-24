@@ -1,14 +1,21 @@
+import { TIngredient } from '../../utils/Types'
 import {GET_BURGER_INGREDIENTS_DATA_REQUEST, 
         GET_BURGER_INGREDIENTS_DATA_SUCCESS, 
-        GET_BURGER_INGREDIENTS_DATA_FAILED} from '../actions/burgerIngredientsDataActions'
+        GET_BURGER_INGREDIENTS_DATA_FAILED,
+        TBurgerIngredientsDataActions} from '../actions/burgerIngredientsDataActions'
 
-const initialState = {
+type TBurgerIngredientDataListState = {
+    burgerIngredientsData: TIngredient[]
+    isLoading: boolean
+    hasError: boolean
+}
+const initialState: TBurgerIngredientDataListState = {
     burgerIngredientsData: [],
     isLoading: false,
     hasError: false
 }
 
- const burgerIngredientDataReducer = (state = initialState, action) => {
+ const burgerIngredientDataReducer = (state = initialState, action: TBurgerIngredientsDataActions) => {
     switch(action.type) {
         case GET_BURGER_INGREDIENTS_DATA_REQUEST: {
             return {

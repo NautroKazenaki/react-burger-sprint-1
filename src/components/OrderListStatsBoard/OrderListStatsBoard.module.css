@@ -1,0 +1,15 @@
+.doneList{
+    height: 150px;
+    padding-right: 10px;
+    /* overflow: hidden auto; */
+    list-style-type: none;
+    padding-left: 0;
+}
+.doneListShow{
+    color: #00CCCC;
+    padding-bottom: 8px;
+}
+.inOrder{
+    color: #F2F2F3;
+    padding-bottom: 8px;
+}

@@ -13,6 +13,7 @@
     top: 0%;
     bottom: 0%;
     background: #1C1C21;
+    border-radius: 30px;
 }
 .orderDetailsHeaderAndXButtonContainer{
     display: flex;

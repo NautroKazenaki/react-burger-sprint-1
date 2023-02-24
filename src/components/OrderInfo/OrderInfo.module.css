@@ -1,0 +1,67 @@
+.orderName{
+    text-align: left;
+    margin-bottom:10px;
+    margin-left: 25px;
+}
+.orderDone{
+    color: #00CCCC;
+    text-align: left;
+    margin-bottom:20px;
+    margin-left: 25px;
+}
+.orderPending{
+    text-align: left;
+    margin-bottom: 15px;
+    margin-left: 25px;
+}
+.title{
+    text-align: left;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+.orderComposition{
+    display: flex;
+    flex-direction: column;
+    max-height: 312px;
+    /* overflow: hidden auto; */
+    padding-right: 25px;
+    gap: 16px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-left: 25px;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
+}
+.orderNumberContainer{
+    text-align: left;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-left: 25px;
+}
+.orderData {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 25px;
+    justify-content: space-between;
+}
+.orderPrice {
+    margin-left: 25px;
+    padding-right: 25px;
+}
+@-moz-document url-prefix() {
+	:root {
+		scrollbar-color: #8585AD #2F2F37;
+	}
+}
+
+.customScroll::-webkit-scrollbar {
+	width: 12px;
+}
+.customScroll::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.customScroll::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #2F2F37;
+	border-radius: 6px;
+}

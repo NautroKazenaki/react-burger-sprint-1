@@ -1,11 +1,10 @@
-import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Input,  PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import React, {useState, useEffect, SyntheticEvent} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PPStyles from './ProfilePage.module.css'
 import {logout, setUserInfo, updateUserInfo, fetchWithRefresh} from '../../services/actions/userActions'
 import {NavLink, Redirect} from 'react-router-dom'
-import { BASE_URL } from "../../api/api";
-import { getCookie } from '../../utils/Cookie';
+
 const ProfilePage = () => {
 
     const [username, setUsername] = useState('');
@@ -47,8 +46,9 @@ const ProfilePage = () => {
         setUsername(profileInfo.user.name);
         setEmail(profileInfo.user.email);
     }
-    const logOut = (e:SyntheticEvent) => {
+     const logOut = (e:SyntheticEvent) => {
         e.preventDefault();
+        //@ts-ignore
         logout(dispatch);
     }
 const ref = React.useRef(null)
@@ -63,10 +63,10 @@ const isInputsValueChanged =
                 <Redirect to='/login' />
             )}
             <div className={PPStyles.navbar}>
-                <NavLink to='/profile' className={PPStyles.frame1} activeClassName={PPStyles.activeNavLink}>
+                <NavLink to='/profile' className={PPStyles.frame1} activeClassName={PPStyles.activeNavLink} >
                     <p className="text text_type_main-medium" > Профиль</p>
                 </NavLink> 
-                <NavLink to='/profile/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
+                <NavLink to='/orders' className={PPStyles.frame2} activeClassName={PPStyles.activeNavLink}>
                     <p className="text text_type_main-medium"> История заказов</p>
                 </NavLink> 
                 <div className={PPStyles.frame3} onClick={logOut} >

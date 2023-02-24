@@ -1,14 +1,20 @@
+import { TIngredient } from '../../utils/Types'
 import {SET_BUN,
     SET_NON_BUN_INGREDIENT,
     DELETE_INGREDIENT, 
-    CHANGE_INGREDIENT_POSITION} from '../actions/burgerConstructorDataActions'
+    CHANGE_INGREDIENT_POSITION,
+    TBurgerConstructorDataActions} from '../actions/burgerConstructorDataActions'
 
-const initialState = {
+type TBurgerConstructorDataListState = {
+    buns: null | TIngredient;
+    nonBunIngredients:ReadonlyArray<TIngredient>
+}
+const initialState:TBurgerConstructorDataListState = {
     buns: null,
     nonBunIngredients: []
 }
 
-const burgerConstructorDataReducer = (state = initialState, action) => {
+const burgerConstructorDataReducer = (state = initialState, action:TBurgerConstructorDataActions) => {
     
     switch(action.type) {
         case SET_BUN: {

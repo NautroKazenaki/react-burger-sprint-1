@@ -22,6 +22,9 @@ import ModalWindow from "../Modal/ModalWindow";
 import IngredientsDetails from "../IngredientDetails/IngredientsDetails";
 import OrderList from "../../pages/OrderList/OrderList";
 import AppStyles from './App.module.css'
+import OrderInfo from "../OrderInfo/OrderInfo";
+import UserOrders from "../../pages/UserOrders/UserOrders";
+import UserOrderInfo from "../UserOrderInfo/UserOrderInfo";
 
 
 type TLocation = {
@@ -32,6 +35,7 @@ type TLocation = {
 const App = () => {
  
   const {burgerIngredientsData, isLoading, hasError } = useSelector((state:any) => state.burgerIngredients)
+  const  ordersList  = useSelector((state:any) => state.orderList.orders);
   
   const dispatch = useDispatch()
   
@@ -89,10 +93,19 @@ const App = () => {
             
           </Route>
           {/* @ts-ignore */}
-          <ProtectedRoute path ="/orderList">
+          <Route path ="/orderList">
             <OrderList />
-          </ProtectedRoute>
+          </Route>
           
+           <Route path='/feed/:orderNumber' exact>
+                  <OrderInfo />
+          </Route> 
+           <Route path='/feed/:feedNumber' exact>
+                  <UserOrderInfo />
+          </Route> 
+          <Route path="/orders" exact>
+                  <UserOrders />
+                </Route>
           <Route path="/" exact >
             {!isLoading && !hasError && burgerIngredientsData.length > 0 && (
               <DndProvider backend={HTML5Backend}>
@@ -122,7 +135,36 @@ const App = () => {
         />
       )}
      
-      
+     {background && ordersList && (
+      <Route
+        path='/feed/:feedNumber'
+        children={
+          <ModalWindow onClose={hideModalWindow}>
+            <UserOrderInfo />
+          </ModalWindow>
+        }
+      />
+      )}
+      {background && ordersList && (
+      <Route
+        path='/feed/:orderNumber'
+        children={
+          <ModalWindow onClose={hideModalWindow}>
+            <UserOrderInfo />
+          </ModalWindow>
+        }
+      />
+      )}
+     {/* {background && ordersList && (
+      <Route
+        path='/feed/:feedNumber'
+        children={
+          <ModalWindow onClose={hideModalWindow}>
+            <OrderInfo />
+          </ModalWindow>
+        }
+      />
+      )} */}
     </div>
   );
 };

@@ -1,0 +1,33 @@
+.mainContainer{
+    display: flex;
+    justify-content: center;
+}
+.contentContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 44px;
+    height: 916px;
+    /* overflow: hidden auto; */
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+@-moz-document url-prefix() {
+	:root {
+		scrollbar-color: #8585AD #2F2F37;
+	}
+}
+
+.customScroll::-webkit-scrollbar {
+	width: 12px;
+}
+.customScroll::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.customScroll::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #2F2F37;
+	border-radius: 6px;
+}

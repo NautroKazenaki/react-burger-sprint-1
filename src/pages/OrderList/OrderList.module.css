@@ -1,4 +1,244 @@
-.mainContainer{
-    text-align: center;
-   
+.mainContainer h4{
+    /* text-align: center; */
+    position: absolute;
+    width: 1240px;
+    height: 40px;
+    left: 380px;
+    top: 148px;
+}
+.ordersContainer {
+    position: absolute;
+    width: 608px;
+    height: 852px;
+    left: 372px;
+    top: 208px;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
+}
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    position: absolute;
+    width: 584px;
+    height: 768px;
+    left: 8px;
+    top: 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: #2F2F37 #8585AD;
+	scrollbar-width: thin;
+}
+.orderCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+    width: 584px;
+    height: 214px;
+    background: #1C1C21;
+    /* border: 2px dashed #4C4CFF; */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 2px rgba(0, 0, 0, 0.06), 0px 0px 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.cardTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+    width: 536px;
+    height: 24px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.burgerTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    width: 536px;
+    height: 30px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.ingredientsAndPriceInfoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    /* gap: 24px; */
+    width: 536px;
+    height: 64px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.ingredientsContainer {
+    margin-top: 120px;
+    display: flex;
+    width: 436px;
+    height: 64px;
+    background: #1C1C21;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+.priceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    /* width: 76px; */
+    height: 64px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.statsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 60px;
+    position: absolute;
+    width: 580px;
+    height: 626px;
+    left: 1040px;
+    top: 208px;
+    /* border: 2px dashed #4C4CFF; */
+}
+.ordersBoardContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 36px;
+    width: 580px;
+    height: 206px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.ordersDoneContainer {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    /* gap: 24px; */
+    width: 272px;
+    height: 206px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+.doneListContainer {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    width: 272px;
+    height: 152px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.ordersInWorkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    width: 272px;
+    height: 206px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+.inWorkListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    width: 272px;
+    height: 152px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.allCompletedOrdersContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    width: 580px;
+    height: 150px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.allCompletedOrdersForTodayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    width: 580px;
+    height: 120px;
+    /* border: 2px dashed #4C4CFF; */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+@-moz-document url-prefix() {
+	:root {
+		scrollbar-color: #8585AD #2F2F37;
+	}
+}
+
+.customScroll::-webkit-scrollbar {
+	width: 12px;
+}
+.customScroll::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.customScroll::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #2F2F37;
+	border-radius: 6px;
 }

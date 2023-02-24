@@ -1,12 +1,17 @@
 import {SHOW_BURGER_ELEMENT_DATA,
-        HIDE_BURGER_ELEMENT_DATA} from '../actions/burgerElementDataActions'
+        HIDE_BURGER_ELEMENT_DATA,
+        TBurgerElementDataAC} from '../actions/burgerElementDataActions'
 
-const initialState = {
+type TBurgerElementDataListState = {
+    clickedIngredient: null;
+    isShowing: boolean
+}
+const initialState: TBurgerElementDataListState = {
     clickedIngredient: null,
     isShowing: false
 }
 
-const burgerElementDataReducer = (state = initialState, action) => {
+const burgerElementDataReducer = (state = initialState, action:TBurgerElementDataAC) => {
     switch(action.type) {
         case SHOW_BURGER_ELEMENT_DATA: {
             

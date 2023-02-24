@@ -1,11 +1,23 @@
+import { TUser, TRegisterResponse } from '../../utils/Types'
 import {FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR,
     CREATE_ACCOUNT_REQUEST, CREATE_ACCOUNT_SUCCESS, CREATE_ACCOUNT_ERROR,
     RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR,
     SET_PROFILE_INFO_REQUEST, SET_PROFILE_INFO_SUCCESS, SET_PROFILE_INFO_ERROR,
     UPDATE_PROFILE_INFO_REQUEST, UPDATE_PROFILE_INFO_SUCCESS, UPDATE_PROFILE_INFO_ERROR,
-    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, IS_USER_AUTHORIZED} from '../actions/userActions'
+    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, IS_USER_AUTHORIZED, TUserActions} from '../actions/userActions'
 
-const initialState = {
+type TUserListState = {
+    userNewPassword: TUser
+    isLoading: boolean
+    hasError: boolean
+    isUser: boolean
+    isAuth: boolean
+    newUserData: TUser
+    isUserPasswordChanged: boolean
+    profileInfo: TUser
+    userData: TUser
+}
+const initialState: TUserListState = {
     userNewPassword: {},
     isLoading: false,
     hasError: false,
@@ -17,7 +29,7 @@ const initialState = {
     userData: {}
 }
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action: TUserActions) => {
     switch(action.type) {
         case FORGOT_PASSWORD_REQUEST: {
             return {
