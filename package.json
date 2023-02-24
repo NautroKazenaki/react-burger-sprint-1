@@ -40,7 +40,8 @@
     "eject": "react-scripts eject",
     "cypress:open": "./node_modules/.bin/cypress open",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "deploy-script": "npm run build && scp -r ./build/* nautrokazenaki@158.160.26.12:/home/nautrokazenaki"
   },
   "eslintConfig": {
     "extends": [
