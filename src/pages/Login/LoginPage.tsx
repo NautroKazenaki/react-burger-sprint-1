@@ -37,8 +37,8 @@ const LoginPage = () => {
                     <div className={LPStyles.titleContainer}>
                         <p className="text text_type_main-large"> Вход</p>
                     </div>
-                    <EmailInput placeholder={'E-mail'} value={email}  onChange={e => setEmail(e.target.value)}/>
-                    <PasswordInput placeholder={'Пароль'} icon={"ShowIcon"}  value={password}  onChange={e => setPassword(e.target.value)}/>
+                    <EmailInput placeholder={'E-mail'} value={email}  onChange={e => setEmail(e.target.value)} data-testid='email_input'/>
+                    <PasswordInput placeholder={'Пароль'} icon={"ShowIcon"}  value={password}  onChange={e => setPassword(e.target.value)} data-testid='password_input'/>
                     <div className={LPStyles.buttonContainer}>
                         <Button htmlType="submit"><p className="text text_type_main-default"> Войти</p> </Button>
                     </div>

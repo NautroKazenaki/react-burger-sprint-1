@@ -17,7 +17,7 @@ type TUserListState = {
     profileInfo: TUser
     userData: TUser
 }
-const initialState: TUserListState = {
+export const initialState: TUserListState = {
     userNewPassword: {},
     isLoading: false,
     hasError: false,
@@ -29,7 +29,7 @@ const initialState: TUserListState = {
     userData: {}
 }
 
-const userReducer = (state = initialState, action: TUserActions) => {
+export const userReducer = (state = initialState, action: TUserActions) => {
     switch(action.type) {
         case FORGOT_PASSWORD_REQUEST: {
             return {

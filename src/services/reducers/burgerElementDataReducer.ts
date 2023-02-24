@@ -6,12 +6,12 @@ type TBurgerElementDataListState = {
     clickedIngredient: null;
     isShowing: boolean
 }
-const initialState: TBurgerElementDataListState = {
+export const initialState: TBurgerElementDataListState = {
     clickedIngredient: null,
     isShowing: false
 }
 
-const burgerElementDataReducer = (state = initialState, action:TBurgerElementDataAC) => {
+export const burgerElementDataReducer = (state = initialState, action:TBurgerElementDataAC) => {
     switch(action.type) {
         case SHOW_BURGER_ELEMENT_DATA: {
             

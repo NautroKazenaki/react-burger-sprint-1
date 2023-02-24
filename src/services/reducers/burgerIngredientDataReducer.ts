@@ -9,13 +9,13 @@ type TBurgerIngredientDataListState = {
     isLoading: boolean
     hasError: boolean
 }
-const initialState: TBurgerIngredientDataListState = {
+export const initialState: TBurgerIngredientDataListState = {
     burgerIngredientsData: [],
     isLoading: false,
     hasError: false
 }
 
- const burgerIngredientDataReducer = (state = initialState, action: TBurgerIngredientsDataActions) => {
+ export const burgerIngredientDataReducer = (state = initialState, action: TBurgerIngredientsDataActions) => {
     switch(action.type) {
         case GET_BURGER_INGREDIENTS_DATA_REQUEST: {
             return {

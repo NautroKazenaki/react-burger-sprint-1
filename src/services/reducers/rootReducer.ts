@@ -54,7 +54,8 @@ export const orderListMiddleware = socketMiddleware({
     onError: orderListWsError,
 });
 // const composeEnhancers = composeWithDevTools({});
- const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//  const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose
 const enhancer = composeEnhancers(applyMiddleware(thunk, orderListMiddleware, userOrdersMiddleware))
 
 

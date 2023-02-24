@@ -11,14 +11,14 @@ type TOrderDetailsDataListState = {
     isLoading: boolean
     hasError: boolean
 }
-const initialState: TOrderDetailsDataListState = {
+export const initialState: TOrderDetailsDataListState = {
     orderNumber: null,
     isShowing: false,
     isLoading: false,
     hasError: false,
 }
 
- const orderDetailsDataReducer = ( state = initialState, action:TOrderDetailsDataActions) => {
+ export const orderDetailsDataReducer = ( state = initialState, action:TOrderDetailsDataActions) => {
     switch(action.type) {
         case GET_ORDER_NUMBER_DATA_REQUEST: {
             return {

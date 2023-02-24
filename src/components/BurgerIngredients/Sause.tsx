@@ -55,6 +55,7 @@ const ingredientId = props.sauses['_id'];
       className={bIStyles.burgerIngredientsItemContainer}
       onClick={handleClick}
       ref={dragRef}
+      data-testid='ingredient'
     >
       <div className={bIStyles.burgerIngredientsContentContainer}>
       <div className={bIStyles.burgerIngredientsCounter}>

@@ -76,7 +76,7 @@ const BurgerConstructorElement = ({ ingredient, index }: TBurgerConstructorEleme
   return (
     <div className={bCStyles.burgerConstructorItemContainer} style={{opacity}} >
       {/* @ts-ignore */}
-      <div className={bCStyles.constructorElementContainer} ref={dragDropRef}>
+      <div className={bCStyles.constructorElementContainer} ref={dragDropRef} data-cy={index}>
         <div className={bCStyles.burgerDragIconContainer}>
           <DragIcon type="primary" />
         </div>

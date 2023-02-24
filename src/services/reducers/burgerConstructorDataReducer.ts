@@ -9,12 +9,12 @@ type TBurgerConstructorDataListState = {
     buns: null | TIngredient;
     nonBunIngredients:ReadonlyArray<TIngredient>
 }
-const initialState:TBurgerConstructorDataListState = {
+export const initialState:TBurgerConstructorDataListState = {
     buns: null,
     nonBunIngredients: []
 }
 
-const burgerConstructorDataReducer = (state = initialState, action:TBurgerConstructorDataActions) => {
+export const burgerConstructorDataReducer = (state = initialState, action:TBurgerConstructorDataActions) => {
     
     switch(action.type) {
         case SET_BUN: {

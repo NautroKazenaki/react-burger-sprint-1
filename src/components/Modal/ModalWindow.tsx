@@ -42,7 +42,7 @@ const ModalWindow = (props:TModalWindowProps) => {
                         <div className={ODStyles.orderDetailsHeaderContainer}>
                             <p className="text text_type_main-medium">{props.title}</p>
                         </div>
-                        <div onClick={props.onClose} className={ODStyles.orderDetailsCloseIcon}>
+                        <div onClick={props.onClose} className={ODStyles.orderDetailsCloseIcon} data-testid='close'>
                             <CloseIcon type="primary" onClick={props.onClose}/>
                         </div>
                     </div>

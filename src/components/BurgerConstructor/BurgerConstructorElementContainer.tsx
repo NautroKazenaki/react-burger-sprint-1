@@ -13,7 +13,7 @@ const BurgerConstructorElementContainer = () => {
 
  
   return (
-    <div>
+    <div data-testid={"drop box container"}>
       {nonBunIngredients.map((ingredient:TIngredient, index:number) => (
         <BurgerConstructorElement
           index={index}
