@@ -9,7 +9,7 @@ export type TUserOrdersListState = {
 }
 
 
-const initialState: TUserOrdersListState = {
+export const initialState: TUserOrdersListState = {
     status: '',
     connectionError: '',
     userOrders: null,

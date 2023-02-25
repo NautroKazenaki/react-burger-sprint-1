@@ -60,6 +60,7 @@ const Bun = (props: TBunProps) => {
         className={bIStyles.burgerIngredientsContentContainer}
         onClick={handleClick}
         ref={dragRef}
+        data-testid='ingredient'
       >
         <div className={bIStyles.burgerIngredientsCounter } > 
         {counter !== 0 && ( <Counter count={counter}  size="default"  />)}

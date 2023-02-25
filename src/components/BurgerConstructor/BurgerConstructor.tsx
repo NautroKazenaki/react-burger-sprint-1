@@ -85,7 +85,7 @@ const BurgerConstructor = () => {
   };
 
   return (
-    <div className={bCStyles.burgerConstructorContainer} ref={dragRef}>
+    <div className={bCStyles.burgerConstructorContainer} ref={dragRef} data-testid='drop_box'>
       <div
         className={`${bCStyles.burgerConstructorItemsContainer} + ${bCStyles.customScroll}`}
       >
@@ -137,6 +137,7 @@ const BurgerConstructor = () => {
           htmlType="button"
           type="primary"
           size="medium"
+          data-testid='button'
         >
           Оформить заказ
         </Button>
